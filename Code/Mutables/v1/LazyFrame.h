@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 // The purpose of this class is to provide lazy evaluation to obtain a frame
 @interface LazyFrame : NSObject

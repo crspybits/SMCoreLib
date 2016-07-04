@@ -50,6 +50,7 @@ FOUNDATION_EXPORT const unsigned char SMCoreLibVersionString[];
 #import <SMCoreLib/ImageStorage.h>
 #import <SMCoreLib/SMAppearance.h>
 #import <SMCoreLib/SMRotation.h>
+#import <SMCoreLib/SMFileData.h>
 
 
 
