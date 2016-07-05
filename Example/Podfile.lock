@@ -1,0 +1,39 @@
+PODS:
+  - AFNetworking (3.1.0):
+    - AFNetworking/NSURLSession (= 3.1.0)
+    - AFNetworking/Reachability (= 3.1.0)
+    - AFNetworking/Security (= 3.1.0)
+    - AFNetworking/Serialization (= 3.1.0)
+    - AFNetworking/UIKit (= 3.1.0)
+  - AFNetworking/NSURLSession (3.1.0):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (3.1.0)
+  - AFNetworking/Security (3.1.0)
+  - AFNetworking/Serialization (3.1.0)
+  - AFNetworking/UIKit (3.1.0):
+    - AFNetworking/NSURLSession
+  - HPTextViewTapGestureRecognizer (0.1)
+  - Reachability (3.2)
+  - SMCoreLib (0.0.2):
+    - AFNetworking
+    - HPTextViewTapGestureRecognizer (~> 0.1)
+    - Reachability
+
+DEPENDENCIES:
+  - SMCoreLib (from `../`)
+
+EXTERNAL SOURCES:
+  SMCoreLib:
+    :path: ../
+
+SPEC CHECKSUMS:
+  AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
+  HPTextViewTapGestureRecognizer: 6a73fd09f858e49a2743c3a338dc5c0791b0fae0
+  Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
+  SMCoreLib: 08fe6db03a0591c811b953002c150a7deeb1b535
+
+PODFILE CHECKSUM: d300995a769b7af246ce059b05b3612c5e673f5b
+
+COCOAPODS: 1.0.1

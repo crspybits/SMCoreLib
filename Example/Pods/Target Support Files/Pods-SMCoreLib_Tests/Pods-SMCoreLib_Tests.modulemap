@@ -1,0 +1,6 @@
+framework module Pods_SMCoreLib_Tests {
+  umbrella header "Pods-SMCoreLib_Tests-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -1,0 +1,6 @@
+framework module Pods_SMCoreLib_Example {
+  umbrella header "Pods-SMCoreLib_Example-umbrella.h"
+
+  export *
+  module * { export * }
+}

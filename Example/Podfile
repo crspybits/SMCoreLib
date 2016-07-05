@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'SMCoreLib_Example' do
+  pod 'SMCoreLib', :path => '../'
+
+  target 'SMCoreLib_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
