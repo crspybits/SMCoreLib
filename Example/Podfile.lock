@@ -22,18 +22,14 @@ PODS:
     - Reachability
 
 DEPENDENCIES:
-  - SMCoreLib (from `../`)
-
-EXTERNAL SOURCES:
-  SMCoreLib:
-    :path: ../
+  - SMCoreLib
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   HPTextViewTapGestureRecognizer: 6a73fd09f858e49a2743c3a338dc5c0791b0fae0
   Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
-  SMCoreLib: 08fe6db03a0591c811b953002c150a7deeb1b535
+  SMCoreLib: 9f4756a9abfa695802a4f225e8fac2fff2b86d08
 
-PODFILE CHECKSUM: d300995a769b7af246ce059b05b3612c5e673f5b
+PODFILE CHECKSUM: f7e4f48acc4e0bfcad4e38af0c34f66f6963fbb6
 
 COCOAPODS: 1.0.1

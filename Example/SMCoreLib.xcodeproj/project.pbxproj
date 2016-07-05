@@ -14,6 +14,7 @@
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
+		8374BED51D2B474D00A88F92 /* TestObjc.m in Sources */ = {isa = PBXBuildFile; fileRef = 8374BED41D2B474D00A88F92 /* TestObjc.m */; };
 		D49C61248AE65E274D9B5B7D /* Pods_SMCoreLib_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D6898309ABC01933A8E4878 /* Pods_SMCoreLib_Example.framework */; };
 /* End PBXBuildFile section */
 
@@ -43,6 +44,9 @@
 		728E304308F245C0E18096C9 /* Pods-SMCoreLib_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SMCoreLib_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-SMCoreLib_Example/Pods-SMCoreLib_Example.release.xcconfig"; sourceTree = "<group>"; };
 		740BC94FD6298943D5F2A68A /* Pods-SMCoreLib_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SMCoreLib_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SMCoreLib_Tests/Pods-SMCoreLib_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		75041B25A2439372636A4803 /* Pods_SMCoreLib_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SMCoreLib_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8374BED21D2B474C00A88F92 /* SMCoreLib_Example-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SMCoreLib_Example-Bridging-Header.h"; sourceTree = "<group>"; };
+		8374BED31D2B474D00A88F92 /* TestObjc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestObjc.h; sourceTree = "<group>"; };
+		8374BED41D2B474D00A88F92 /* TestObjc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestObjc.m; sourceTree = "<group>"; };
 		96C17CA8DFAECA4026EBA83B /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		A20DE2CCB5A0C15D7AE92A31 /* Pods-SMCoreLib_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SMCoreLib_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SMCoreLib_Tests/Pods-SMCoreLib_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		B7D1E953EA06F92A4CBA6FB5 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
@@ -113,8 +117,11 @@
 		607FACD21AFB9204008FA782 /* Example for SMCoreLib */ = {
 			isa = PBXGroup;
 			children = (
+				8374BED21D2B474C00A88F92 /* SMCoreLib_Example-Bridging-Header.h */,
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				607FACD71AFB9204008FA782 /* ViewController.swift */,
+				8374BED31D2B474D00A88F92 /* TestObjc.h */,
+				8374BED41D2B474D00A88F92 /* TestObjc.m */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
@@ -209,7 +216,7 @@
 		607FACC81AFB9204008FA782 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0720;
+				LastSwiftUpdateCheck = 0730;
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = CocoaPods;
 				TargetAttributes = {
@@ -361,6 +368,7 @@
 			files = (
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
+				8374BED51D2B474D00A88F92 /* TestObjc.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -489,12 +497,16 @@
 			baseConfigurationReference = 2AD7B76C4385815449B6AF08 /* Pods-SMCoreLib_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = SMCoreLib/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -D DEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "SMCoreLib/SMCoreLib_Example-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -503,12 +515,15 @@
 			baseConfigurationReference = 728E304308F245C0E18096C9 /* Pods-SMCoreLib_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = SMCoreLib/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -D DEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "SMCoreLib/SMCoreLib_Example-Bridging-Header.h";
 			};
 			name = Release;
 		};

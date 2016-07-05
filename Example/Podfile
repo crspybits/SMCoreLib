@@ -1,11 +1,13 @@
+source 'https://github.com/CocoaPods/Specs.git'
+source 'https://github.com/crspybits/Specs.git'
+
 use_frameworks!
 
 target 'SMCoreLib_Example' do
-  pod 'SMCoreLib', :path => '../'
+  # pod 'SMCoreLib', :path => '../'
+  pod 'SMCoreLib' # SMCoreLib imports AFNetworking
 
   target 'SMCoreLib_Tests' do
     inherit! :search_paths
-
-    
   end
 end
