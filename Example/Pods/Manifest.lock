@@ -16,20 +16,24 @@ PODS:
     - AFNetworking/NSURLSession
   - HPTextViewTapGestureRecognizer (0.1)
   - Reachability (3.2)
-  - SMCoreLib (0.0.2):
+  - SMCoreLib (0.0.5):
     - AFNetworking
     - HPTextViewTapGestureRecognizer (~> 0.1)
     - Reachability
 
 DEPENDENCIES:
-  - SMCoreLib
+  - SMCoreLib (from `../`)
+
+EXTERNAL SOURCES:
+  SMCoreLib:
+    :path: ../
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   HPTextViewTapGestureRecognizer: 6a73fd09f858e49a2743c3a338dc5c0791b0fae0
   Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
-  SMCoreLib: 9f4756a9abfa695802a4f225e8fac2fff2b86d08
+  SMCoreLib: 8ee34cb45633c8423c8b05ba3eb9fe60c4c6a2c0
 
-PODFILE CHECKSUM: f7e4f48acc4e0bfcad4e38af0c34f66f6963fbb6
+PODFILE CHECKSUM: 225886903fb8ee7ec53cd6e817c1c17c324b5cc0
 
 COCOAPODS: 1.0.1
