@@ -47,7 +47,7 @@ Pod::Spec.new do |s|
   s.requires_arc = true
 
   s.pod_target_xcconfig = {
-     # I haven't been able to get a DEBUG flag set in SMCoreLib, as a Cocoapod, without these
+     # I haven't been able to get a DEBUG flag set in a Cocoapod, without these
 	'GCC_PREPROCESSOR_DEFINITIONS[config=Debug]' => 'DEBUG=1',
 	'OTHER_SWIFT_FLAGS[config=Debug]' => '-DDEBUG'
   }
