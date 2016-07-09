@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'SMCoreLib'
-  s.version          = '0.0.9'
+  s.version          = '0.0.10'
   s.summary      = 'Spastic Muffin Core Library for iOS'
 
 # This description is used to generate tags and improve search results.
@@ -34,7 +34,7 @@ Pod::Spec.new do |s|
   # 'SMCoreLib/Classes/**' matches directories recursively, but doesn't match any files!
   s.source_files = 'SMCoreLib/Classes/**/*.{h,m,swift}'
   
-  s.resources = "SMCoreLib/Assets/**/*.{json,png}"
+  s.resources = "SMCoreLib/Assets/*.xcassets"
   
   # s.resource_bundles = {
   #   'SMCoreLib' => ['SMCoreLib/Assets/*.png']

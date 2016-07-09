@@ -13,6 +13,7 @@ import Foundation
 public class SMIcons {
     public static var GoogleIcon:UIImage {
         let bundle = NSBundle(forClass: self)
+        // Log.msg("bundle: \(bundle)")
         return UIImage(named: "GoogleIcon", inBundle: bundle,compatibleWithTraitCollection: nil)!
     }
 }

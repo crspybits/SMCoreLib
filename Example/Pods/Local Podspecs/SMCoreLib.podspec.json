@@ -19,7 +19,7 @@
     "tag": "0.0.9"
   },
   "source_files": "SMCoreLib/Classes/**/*.{h,m,swift}",
-  "resources": "SMCoreLib/Assets/**/*.{json,png}",
+  "resources": "SMCoreLib/Assets/*.xcassets",
   "requires_arc": true,
   "pod_target_xcconfig": {
     "GCC_PREPROCESSOR_DEFINITIONS[config=Debug]": "DEBUG=1",

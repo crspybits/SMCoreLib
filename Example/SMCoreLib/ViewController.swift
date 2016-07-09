@@ -17,6 +17,8 @@ class ViewController: UIViewController {
         Log.msg("Hello World!")
         let x = self.view.frameX
         Log.msg("Hello World: \(x)")
+        let image = SMIcons.GoogleIcon
+        Log.msg("image: \(image)")
     }
 
     override func didReceiveMemoryWarning() {
