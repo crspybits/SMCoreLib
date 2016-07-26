@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'SMCoreLib'
-  s.version          = '0.0.11'
+  s.version          = '0.0.12'
   s.summary      = 'Spastic Muffin Core Library for iOS'
 
 # This description is used to generate tags and improve search results.

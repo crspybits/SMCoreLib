@@ -121,6 +121,8 @@
 		80A0F9A7520B9BC04A8EC0C7B1E7093C /* SMCoreLib-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 33959FC2B9AD8889C692DC6C91279AD1 /* SMCoreLib-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		81B617F8D26BB10C5726D75E85D21EB7 /* UIButton+AFNetworking.h in Headers */ = {isa = PBXBuildFile; fileRef = 91ABC7005B57EF99C70D024C2937AE30 /* UIButton+AFNetworking.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		836A53833306428B9CC4AFEA42B2381D /* AFNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD6A8168EE64BFEDFFB12B7414828974 /* AFNetworking.framework */; };
+		8393D22C1D4724BA00975EAC /* SMEmail.h in Headers */ = {isa = PBXBuildFile; fileRef = 8393D22A1D4724BA00975EAC /* SMEmail.h */; };
+		8393D22D1D4724BA00975EAC /* SMEmail.m in Sources */ = {isa = PBXBuildFile; fileRef = 8393D22B1D4724BA00975EAC /* SMEmail.m */; };
 		8ACFF4153BD096AC0E63A7D2912EB643 /* UIColor+Extras.h in Headers */ = {isa = PBXBuildFile; fileRef = C9847252B8815A29CD766769BDE51746 /* UIColor+Extras.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8C892294E800D1E8F1E0C056FA6058EE /* KeyChain.m in Sources */ = {isa = PBXBuildFile; fileRef = E7CCDA1F6BF7237AD396ACB62D6A004E /* KeyChain.m */; };
 		8DC768113C2E272A4DFB5C2E80BED832 /* UIImageResizing.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FFB4516230A976E03F427DEC0C0DF42 /* UIImageResizing.m */; };
@@ -374,6 +376,8 @@
 		8156CDA3742E3D952FA7861221F331E2 /* NSString+Extras.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "NSString+Extras.h"; sourceTree = "<group>"; };
 		83871D37FC3DAFFFC88FCE04B5EE64CB /* UINavigationBar+Extras.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "UINavigationBar+Extras.h"; sourceTree = "<group>"; };
 		838B0A5CAE9386DA979170294C5623A1 /* SMModal.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SMModal.h; sourceTree = "<group>"; };
+		8393D22A1D4724BA00975EAC /* SMEmail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SMEmail.h; path = SMEmail/SMEmail.h; sourceTree = "<group>"; };
+		8393D22B1D4724BA00975EAC /* SMEmail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SMEmail.m; path = SMEmail/SMEmail.m; sourceTree = "<group>"; };
 		8562F72F11F8BEF7DE25B5FEC6A041DC /* MutableBOOL.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = MutableBOOL.m; sourceTree = "<group>"; };
 		8816B1F76FDA707AF5EE3DC4F1BFB4C8 /* AFHTTPSessionManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AFHTTPSessionManager.m; path = AFNetworking/AFHTTPSessionManager.m; sourceTree = "<group>"; };
 		8835F978FB059BDE9676C09578FCA5DC /* NSObject+TargetsAndSelectors.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "NSObject+TargetsAndSelectors.m"; sourceTree = "<group>"; };
@@ -789,6 +793,15 @@
 			);
 			sourceTree = "<group>";
 		};
+		8393D2291D47244700975EAC /* SMEmail */ = {
+			isa = PBXGroup;
+			children = (
+				8393D22A1D4724BA00975EAC /* SMEmail.h */,
+				8393D22B1D4724BA00975EAC /* SMEmail.m */,
+			);
+			name = SMEmail;
+			sourceTree = "<group>";
+		};
 		87F167359EF9F5465333C1B1F54D32DA /* SMCoreLib */ = {
 			isa = PBXGroup;
 			children = (
@@ -1068,6 +1081,7 @@
 		E1CB8FB92AD53E8612B5310F0DA4B6F3 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				8393D2291D47244700975EAC /* SMEmail */,
 				76A81AA2D5BC02ACFC5AD788128896AB /* ChangeFrameTransitioningDelegate */,
 				B4952D7085611ADB5EB01DEA0AC6CE0B /* SMModal */,
 				FE9A77EAB7742B19B7D611528BCDB742 /* SMRotation */,
@@ -1245,6 +1259,7 @@
 				31A4D56BDEDC5E395702A230D00E2991 /* ImageStorage.h in Headers */,
 				A5D0EA3AE4786ED9C844E9802FDAA78A /* KeyChain.h in Headers */,
 				09DBC0D1C97324E09EC9FA533B4CDDB6 /* LazyFrame.h in Headers */,
+				8393D22C1D4724BA00975EAC /* SMEmail.h in Headers */,
 				CBF8C8CDCF500251798E2077973F3F77 /* LogFile.h in Headers */,
 				9F399A0843DADAF9E08B66504271F8BD /* MutableBOOL.h in Headers */,
 				1896868DB3186F791E35C4155FD17C7B /* Network.h in Headers */,
@@ -1471,6 +1486,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EBFD7AF1E2C6DB078DAD06FC6849BE9E /* Array+Extras.swift in Sources */,
+				8393D22D1D4724BA00975EAC /* SMEmail.m in Sources */,
 				306158BFF5D154DCCCACCAB54B280A15 /* Assert.swift in Sources */,
 				B548D06EF8679EA33BDD2B105A5491F7 /* BiRef.m in Sources */,
 				3CB96B84A6F51CC55C9C06713C6578DD /* CallCounter.m in Sources */,
