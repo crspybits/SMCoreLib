@@ -76,8 +76,10 @@ extension SMMultiPeer : MCNearbyServiceAdvertiserDelegate {
         NSLog("%@", "didNotStartAdvertisingPeer: \(error)")
     }
     
-    public func advertiser(advertiser: MCNearbyServiceAdvertiser, didReceiveInvitationFromPeer peerID: MCPeerID, withContext context: NSData?, invitationHandler: ((Bool, MCSession) -> Void)) {
-        
+    public func advertiser(_ advertiser: MCNearbyServiceAdvertiser,
+didReceiveInvitationFromPeer peerID: MCPeerID, 
+    withContext context: NSData?,
+invitationHandler: (Bool, MCSession?) -> Void) {
         NSLog("%@", "didReceiveInvitationFromPeer \(peerID)")
         invitationHandler(true, self.session)
     }
