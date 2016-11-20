@@ -186,6 +186,8 @@ const NSString *CoreDataModelBundle = @"CoreDataModelBundle";
         }
 #endif
 
+        [self setupWithMigrationOptions:nil];
+
         // This has to come after the setup above. managedObjectContext does not get set until the setup occurs. 
         [[NSNotificationCenter defaultCenter]
          addObserver:self

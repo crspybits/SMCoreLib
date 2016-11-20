@@ -1,4 +1,6 @@
+#ifdef __OBJC__
 #import <UIKit/UIKit.h>
+#endif
 
 #import "CLPlacemark+Extras.h"
 #import "NSArray+Extras.h"
@@ -51,6 +53,7 @@
 #import "NSArray+Globbing.h"
 #import "SMCoreLib.h"
 #import "ChangeFrameTransitioningDelegate.h"
+#import "SMEmail.h"
 #import "SMModal.h"
 #import "SMRotation.h"
 #import "SMEdgeInsetLabel.h"
