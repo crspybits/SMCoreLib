@@ -8,8 +8,8 @@
 
 import Foundation
 
-public class SMMaskUtilities {
-    public static func enumDescription(rawValue rawValue:Int, allAsStrings: [String]) -> String {
+open class SMMaskUtilities {
+    open static func enumDescription(rawValue:Int, allAsStrings: [String]) -> String {
         var shift = 0
         while (rawValue >> shift != 1) {
             shift += 1
@@ -17,7 +17,7 @@ public class SMMaskUtilities {
         return allAsStrings[shift]
     }
     
-    public static func maskDescription(stringArray stringArray:[String]) -> String {
+    open static func maskDescription(stringArray:[String]) -> String {
         var result = ""
 
         for value in stringArray {
@@ -28,16 +28,16 @@ public class SMMaskUtilities {
     }
     
     // An array of strings, possibly empty.
-    public static func maskArrayOfStrings
-        <StructType: OptionSetType, EnumType: RawRepresentable where EnumType.RawValue == Int>
-        (maskObj:StructType, contains:(maskObj:StructType, enumValue:EnumType)-> Bool) -> [String] {
+    open static func maskArrayOfStrings
+        <StructType: OptionSet, EnumType: RawRepresentable>
+        (_ maskObj:StructType, contains:(_ maskObj:StructType, _ enumValue:EnumType)-> Bool) -> [String] where EnumType.RawValue == Int {
         
         var result = [String]()
         var shift = 0
 
         while let enumValue = EnumType(rawValue: 1 << shift) {
             shift += 1
-            if contains(maskObj: maskObj, enumValue: enumValue) {
+            if contains(maskObj, enumValue) {
                 result.append("\(enumValue)")
             }
         }

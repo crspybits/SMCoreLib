@@ -8,8 +8,8 @@
 
 import Foundation
 
-public class Error {
-    public class func Create(message: String) -> NSError {
+open class SMError {
+    open class func Create(_ message: String) -> NSError {
         return NSError(domain:"", code: 0, userInfo: [NSLocalizedDescriptionKey:message])
     }
 }

@@ -10,9 +10,9 @@ import Foundation
 
 // See also http://stackoverflow.com/questions/24114288/macros-in-swift
 
-public class Assert {
+open class Assert {
     // Must have upper case "I" in "If" here because "if" is a keyword.
-    public class func If(conditionIsTrue: Bool, thenPrintThisString message: String) {
+    open class func If(_ conditionIsTrue: Bool, thenPrintThisString message: String) {
         #if DEBUG
             if conditionIsTrue {
                 Log.error(message)
@@ -24,7 +24,7 @@ public class Assert {
         #endif
     }
     
-    public class func badMojo(alwaysPrintThisString message: String) {
+    open class func badMojo(alwaysPrintThisString message: String) {
         #if DEBUG
             Log.error(message)
             assert(false, "\(message)")

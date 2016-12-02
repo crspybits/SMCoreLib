@@ -8,40 +8,40 @@
 
 import Foundation
 
-public extension NSDate {
+public extension Date {
     public enum TimeUnit {
-        case Day
-        case Week
-        case Month
-        case Year
+        case day
+        case week
+        case month
+        case year
     }
     
     // Any units other than those given are discarded in the returned date.
     // Note that units can be passed in an array style, e.g., [.Year, .Month, .Day]
-    public func keepOnlyUnits(units:NSCalendarUnit) -> NSDate {
-        let calendar = NSCalendar.currentCalendar()
-        let components = calendar.components(units, fromDate: self)
-        return calendar.dateFromComponents(components)!
+    public func keepOnlyUnits(_ units:NSCalendar.Unit) -> Date {
+        let calendar = Calendar.current
+        let components = (calendar as NSCalendar).components(units, from: self)
+        return calendar.date(from: components)!
     }
     
-    public func add(timeUnit:TimeUnit, amount:Int) -> NSDate {
-        let calendar = NSCalendar.currentCalendar()
-        let additionalDateComponent = NSDateComponents()
+    public func add(_ timeUnit:TimeUnit, amount:Int) -> Date {
+        let calendar = Calendar.current
+        var additionalDateComponent = DateComponents()
         
         switch timeUnit {
-        case .Day:
+        case .day:
             additionalDateComponent.day = amount
             
-        case .Week:
+        case .week:
             additionalDateComponent.weekOfYear = amount
 
-        case .Month:
+        case .month:
             additionalDateComponent.month = amount
 
-        case .Year:
+        case .year:
             additionalDateComponent.year = amount
         }
 
-        return calendar.dateByAddingComponents(additionalDateComponent, toDate: self, options: NSCalendarOptions(rawValue: 0))!
+        return (calendar as NSCalendar).date(byAdding: additionalDateComponent, to: self, options: NSCalendar.Options(rawValue: 0))!
     }
 }

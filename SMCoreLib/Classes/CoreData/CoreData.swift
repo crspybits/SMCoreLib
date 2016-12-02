@@ -12,13 +12,13 @@ import Foundation
 
 public extension CoreData {
 
-    public class func fetchObjectWithUUID(uuid:String, usingUUIDKey uuidKey:String, fromEntityName entityName: String, coreDataSession session:CoreData) -> NSManagedObject? {
+    public class func fetchObjectWithUUID(_ uuid:String, usingUUIDKey uuidKey:String, fromEntityName entityName: String, coreDataSession session:CoreData) -> NSManagedObject? {
         var objs:[NSManagedObject]?
         
         Log.msg("Looking for UUID: \(uuid)");
 
         do {
-            let result = try session.fetchObjectsWithEntityName(entityName) { (request: NSFetchRequest!) in
+            let result = try session.fetchObjects(withEntityName: entityName) { (request: NSFetchRequest!) in
                 // This doesn't seem to work
                 //NSString *predicateFormat = [NSString stringWithFormat:@"(%@ == %%s)", UUID_KEY];
                 // See https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/Predicates/Articles/pSyntax.html
@@ -49,23 +49,23 @@ public extension CoreData {
         return obj
     }
     
-    public class func getSMRelativeLocalURL(fromCoreDataProperty coreDataProperty: NSData?) -> SMRelativeLocalURL? {
+    public class func getSMRelativeLocalURL(fromCoreDataProperty coreDataProperty: Data?) -> SMRelativeLocalURL? {
         if nil == coreDataProperty {
             return nil
         }
         
-        let url = NSKeyedUnarchiver.unarchiveObjectWithData(coreDataProperty!) as? SMRelativeLocalURL
+        let url = NSKeyedUnarchiver.unarchiveObject(with: coreDataProperty!) as? SMRelativeLocalURL
         Assert.If(url == nil, thenPrintThisString: "Yikes: No URL!")
         return url
     }
     
-    public class func setSMRelativeLocalURL(newValue:SMRelativeLocalURL?, inout toCoreDataProperty coreDataProperty: NSData?, coreDataSessionName:String) {
+    public class func setSMRelativeLocalURL(_ newValue:SMRelativeLocalURL?, toCoreDataProperty coreDataProperty: inout Data?, coreDataSessionName:String) {
     
         if newValue == nil {
             coreDataProperty = nil
         }
         else {
-            coreDataProperty = NSKeyedArchiver.archivedDataWithRootObject(newValue!)
+            coreDataProperty = NSKeyedArchiver.archivedData(withRootObject: newValue!)
         }
         
         CoreData.sessionNamed(coreDataSessionName).saveContext()

@@ -9,11 +9,11 @@
 import Foundation
 
 extension NSError {
-    class func create(message:String) -> NSError {
+    class func create(_ message:String) -> NSError {
         return NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey:message])
     }
     
-    class func createWithCode(message:String, code:Int) -> NSError {
+    class func createWithCode(_ message:String, code:Int) -> NSError {
         return NSError(domain: "", code: code, userInfo: [NSLocalizedDescriptionKey:message])
     }
 }

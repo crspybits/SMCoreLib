@@ -12,7 +12,7 @@ import UIKit
 extension UIView {
     // Come up with a CGSize to maximally scale sizeToScale within containingSize, keeping it's aspect ratio.
     // Only scales down. If sizeToScale is smaller already, returns nil in that case. i.e., you can use the original size.
-    public class func sizeToScaleDown(sizeToScale:CGSize, containingSize:CGSize) -> CGSize? {
+    public class func sizeToScaleDown(_ sizeToScale:CGSize, containingSize:CGSize) -> CGSize? {
         
         // Case 1) sizeToScale already fits.
         if sizeToScale.height <= containingSize.height && sizeToScale.width <= containingSize.width {

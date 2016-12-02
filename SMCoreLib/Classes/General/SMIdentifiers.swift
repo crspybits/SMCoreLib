@@ -11,23 +11,23 @@
 import Foundation
 
 // @objc so we can access static properties from Objective-C.
-@objc public class SMIdentifiers : NSObject {
+@objc open class SMIdentifiers : NSObject {
     // You can make a subclass that assigns to this.
-    public static var _session:SMIdentifiers?
+    open static var _session:SMIdentifiers?
     
-    private static var appVersionString:String!
-    private static var appBundleIdentifier:String!
-    private static var appBuildString:String!
+    fileprivate static var appVersionString:String!
+    fileprivate static var appBundleIdentifier:String!
+    fileprivate static var appBuildString:String!
 
     // Exclusive property of SMShowingHints.swift
-    public static let SHOWING_HINTS_FILE = "ShowingHints.dat"
+    open static let SHOWING_HINTS_FILE = "ShowingHints.dat"
     
-    public static let SM_SUPPORT_EMAIL = "support@SpasticMuffin.biz"
+    open static let SM_SUPPORT_EMAIL = "support@SpasticMuffin.biz"
     
-    public static let LARGE_IMAGE_DIRECTORY = "largeImages"
-    public static let SMALL_IMAGE_DIRECTORY = "smallImages"
+    open static let LARGE_IMAGE_DIRECTORY = "largeImages"
+    open static let SMALL_IMAGE_DIRECTORY = "smallImages"
     
-    public class func session() -> SMIdentifiers {
+    open class func session() -> SMIdentifiers {
         if self._session == nil {
             self._session = SMIdentifiers()
         }
@@ -36,24 +36,24 @@ import Foundation
     
     public override init() {
         super.init()
-        SMIdentifiers.appVersionString = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleShortVersionString") as! String
-        SMIdentifiers.appBundleIdentifier = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleIdentifier") as! String
-        SMIdentifiers.appBuildString = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleVersion") as! String
+        SMIdentifiers.appVersionString = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
+        SMIdentifiers.appBundleIdentifier = Bundle.main.object(forInfoDictionaryKey: "CFBundleIdentifier") as! String
+        SMIdentifiers.appBuildString = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as! String
     }
     
-    public func APP_BUILD_STRING() -> String {
+    open func APP_BUILD_STRING() -> String {
         return SMIdentifiers.appBuildString
     }
     
-    public func APP_VERSION_FLOAT() -> Float {
+    open func APP_VERSION_FLOAT() -> Float {
         return (SMIdentifiers.appVersionString as NSString).floatValue
     }
     
-    public func APP_VERSION_STRING() -> String {
+    open func APP_VERSION_STRING() -> String {
         return SMIdentifiers.appVersionString
     }
     
-    public func APP_BUNDLE_IDENTIFIER() -> String {
+    open func APP_BUNDLE_IDENTIFIER() -> String {
         return SMIdentifiers.appBundleIdentifier
     }
 }

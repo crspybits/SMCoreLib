@@ -9,15 +9,15 @@ import Foundation
 import MultipeerConnectivity
 
 public protocol SMMultiPeerDelegate : class {
-    func didReceive(data data:NSData, fromPeer:String)
+    func didReceive(data:Data, fromPeer:String)
 }
 
-public class SMMultiPeer : NSObject {
-    private let ServiceType = "SMMultiPeer"
-    private let myPeerId = MCPeerID(displayName: UIDevice.currentDevice().name)
-    private let serviceAdvertiser : MCNearbyServiceAdvertiser
-    private let serviceBrowser : MCNearbyServiceBrowser
-    public weak var delegate:SMMultiPeerDelegate?
+open class SMMultiPeer : NSObject {
+    fileprivate let ServiceType = "SMMultiPeer"
+    fileprivate let myPeerId = MCPeerID(displayName: UIDevice.current.name)
+    fileprivate let serviceAdvertiser : MCNearbyServiceAdvertiser
+    fileprivate let serviceBrowser : MCNearbyServiceBrowser
+    open weak var delegate:SMMultiPeerDelegate?
     
     public override init() {
         self.serviceAdvertiser = MCNearbyServiceAdvertiser(peer: self.myPeerId, discoveryInfo: nil, serviceType: self.ServiceType)
@@ -37,20 +37,20 @@ public class SMMultiPeer : NSObject {
         self.serviceBrowser.stopBrowsingForPeers()
     }
     
-    public lazy var session: MCSession = {
-        let session = MCSession(peer: self.myPeerId, securityIdentity: nil, encryptionPreference: MCEncryptionPreference.Required)
+    open lazy var session: MCSession = {
+        let session = MCSession(peer: self.myPeerId, securityIdentity: nil, encryptionPreference: MCEncryptionPreference.required)
         session.delegate = self
         return session
     }()
 
     // returns true iff there was no error sending.
-    public func sendData(data:NSData) -> Bool {
+    open func sendData(_ data:Data) -> Bool {
         var result:Bool = true
         
         if session.connectedPeers.count > 0 {
             var error : NSError?
             do {
-                try self.session.sendData(data, toPeers: self.session.connectedPeers, withMode: MCSessionSendDataMode.Reliable)
+                try self.session.send(data, toPeers: self.session.connectedPeers, with: MCSessionSendDataMode.reliable)
             } catch let error1 as NSError {
                 error = error1
                 Log.error("\(error)")
@@ -65,21 +65,21 @@ public class SMMultiPeer : NSObject {
     }
     
     // returns true iff there was no error sending.
-    public func sendString(string : String) -> Bool {
-        return self.sendData(string.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!)
+    open func sendString(_ string : String) -> Bool {
+        return self.sendData(string.data(using: String.Encoding.utf8, allowLossyConversion: false)!)
     }
 }
 
 extension SMMultiPeer : MCNearbyServiceAdvertiserDelegate {
     
-    public func advertiser(advertiser: MCNearbyServiceAdvertiser, didNotStartAdvertisingPeer error: NSError) {
+    public func advertiser(_ advertiser: MCNearbyServiceAdvertiser, didNotStartAdvertisingPeer error: Error) {
         NSLog("%@", "didNotStartAdvertisingPeer: \(error)")
     }
     
     public func advertiser(_ advertiser: MCNearbyServiceAdvertiser,
 didReceiveInvitationFromPeer peerID: MCPeerID, 
-    withContext context: NSData?,
-invitationHandler: (Bool, MCSession?) -> Void) {
+    withContext context: Data?,
+invitationHandler: @escaping (Bool, MCSession?) -> Void) {
         NSLog("%@", "didReceiveInvitationFromPeer \(peerID)")
         invitationHandler(true, self.session)
     }
@@ -87,17 +87,17 @@ invitationHandler: (Bool, MCSession?) -> Void) {
 
 extension SMMultiPeer : MCNearbyServiceBrowserDelegate {
     
-    public func browser(browser: MCNearbyServiceBrowser, didNotStartBrowsingForPeers error: NSError) {
+    public func browser(_ browser: MCNearbyServiceBrowser, didNotStartBrowsingForPeers error: Error) {
         NSLog("%@", "didNotStartBrowsingForPeers: \(error)")
     }
     
-    public func browser(browser: MCNearbyServiceBrowser, foundPeer peerID: MCPeerID, withDiscoveryInfo info: [String : String]?) {
+    public func browser(_ browser: MCNearbyServiceBrowser, foundPeer peerID: MCPeerID, withDiscoveryInfo info: [String : String]?) {
         NSLog("%@", "foundPeer: \(peerID)")
         NSLog("%@", "invitePeer: \(peerID)")
-        browser.invitePeer(peerID, toSession: self.session, withContext: nil, timeout: 10)
+        browser.invitePeer(peerID, to: self.session, withContext: nil, timeout: 10)
     }
     
-    public func browser(browser: MCNearbyServiceBrowser, lostPeer peerID: MCPeerID) {
+    public func browser(_ browser: MCNearbyServiceBrowser, lostPeer peerID: MCPeerID) {
         NSLog("%@", "lostPeer: \(peerID)")
     }
 }
@@ -105,34 +105,33 @@ extension SMMultiPeer : MCNearbyServiceBrowserDelegate {
 extension MCSessionState {
     func stringValue() -> String {
         switch(self) {
-        case .NotConnected: return "NotConnected"
-        case .Connecting: return "Connecting"
-        case .Connected: return "Connected"
+        case .notConnected: return "NotConnected"
+        case .connecting: return "Connecting"
+        case .connected: return "Connected"
         }
     }
 }
 
 extension SMMultiPeer : MCSessionDelegate {
-    
-    public func session(session: MCSession, peer peerID: MCPeerID, didChangeState state: MCSessionState) {
-        NSLog("%@", "peer \(peerID) didChangeState: \(state.stringValue())")
+    public func session(_ session: MCSession, peer peerID: MCPeerID, didChange state: MCSessionState) -> Void {
+        //NSLog("%@", "peer \(peerID) didChangeState: \(state.stringValue())")
     }
     
-    public func session(session: MCSession, didReceiveData data: NSData, fromPeer peerID: MCPeerID) {
-        NSLog("%@", "didReceiveData: \(data.length) bytes")
+    public func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
+        NSLog("%@", "didReceiveData: \(data.count) bytes")
         //let str = NSString(data: data, encoding: NSUTF8StringEncoding) as! String
         self.delegate?.didReceive(data: data, fromPeer: peerID.displayName)
     }
     
-    public func session(session: MCSession, didReceiveStream stream: NSInputStream, withName streamName: String, fromPeer peerID: MCPeerID) {
+    public func session(_ session: MCSession, didReceive stream: InputStream, withName streamName: String, fromPeer peerID: MCPeerID) {
         NSLog("%@", "didReceiveStream")
     }
-    
-    public func session(session: MCSession, didFinishReceivingResourceWithName resourceName: String, fromPeer peerID: MCPeerID, atURL localURL: NSURL, withError error: NSError?) {
+
+    public func session(_ session: MCSession, didFinishReceivingResourceWithName resourceName: String, fromPeer peerID: MCPeerID, at localURL: URL, withError error: Error?) {
         NSLog("%@", "didFinishReceivingResourceWithName")
     }
-    
-    public func session(session: MCSession, didStartReceivingResourceWithName resourceName: String, fromPeer peerID: MCPeerID, withProgress progress: NSProgress) {
+
+    public func session(_ session: MCSession, didStartReceivingResourceWithName resourceName: String, fromPeer peerID: MCPeerID, with progress: Progress) {
         NSLog("%@", "didStartReceivingResourceWithName")
     }
 }

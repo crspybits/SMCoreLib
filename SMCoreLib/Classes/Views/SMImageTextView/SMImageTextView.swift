@@ -12,16 +12,16 @@ import Foundation
 import HPTextViewTapGestureRecognizer
 
 @objc public protocol SMImageTextViewDelegate : class {
-    optional func smImageTextView(imageTextView:SMImageTextView, imageWasDeleted imageId:NSUUID?)
+    @objc optional func smImageTextView(_ imageTextView:SMImageTextView, imageWasDeleted imageId:Foundation.UUID?)
     
     // You should provide the UIImage corresponding to the NSUUID. Only in an error should this return nil.
-    func smImageTextView(imageTextView: SMImageTextView, imageForUUID: NSUUID) -> UIImage?
+    func smImageTextView(_ imageTextView: SMImageTextView, imageForUUID: Foundation.UUID) -> UIImage?
     
-    optional func smImageTextView(imageTextView: SMImageTextView, imageWasTapped imageId:NSUUID?)
+    @objc optional func smImageTextView(_ imageTextView: SMImageTextView, imageWasTapped imageId:Foundation.UUID?)
 }
 
 private class ImageTextAttachment : NSTextAttachment {
-    var imageId:NSUUID?
+    var imageId:Foundation.UUID?
 }
 
 public func ==(lhs:SMImageTextView.ImageTextViewElement, rhs:SMImageTextView.ImageTextViewElement) -> Bool {
@@ -32,11 +32,11 @@ public func ===(lhs:SMImageTextView.ImageTextViewElement, rhs:SMImageTextView.Im
     return lhs.equalsWithRange(rhs)
 }
 
-public class SMImageTextView : UITextView, UITextViewDelegate {
-    public weak var imageDelegate:SMImageTextViewDelegate?
-    public var scalingFactor:CGFloat = 0.5
+open class SMImageTextView : UITextView, UITextViewDelegate {
+    open weak var imageDelegate:SMImageTextViewDelegate?
+    open var scalingFactor:CGFloat = 0.5
     
-    override public var delegate: UITextViewDelegate? {
+    override open var delegate: UITextViewDelegate? {
         set {
             if newValue == nil {
                 super.delegate = nil
@@ -61,11 +61,11 @@ public class SMImageTextView : UITextView, UITextViewDelegate {
         self.setup()
     }
     
-    private func setup() {
+    fileprivate func setup() {
         super.delegate = self
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(keyboardWillShow), name: UIKeyboardWillShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(keyboardWillHide), name: UIKeyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         
         let tapGesture = HPTextViewTapGestureRecognizer()
         tapGesture.delegate = self
@@ -73,8 +73,8 @@ public class SMImageTextView : UITextView, UITextViewDelegate {
     }
     
     deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillHideNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
     
     /*
@@ -82,13 +82,13 @@ public class SMImageTextView : UITextView, UITextViewDelegate {
         Log.msg("imageTapGestureAction")
     }*/
     
-    private var originalEdgeInsets:UIEdgeInsets?
+    fileprivate var originalEdgeInsets:UIEdgeInsets?
     
     // There are a number of ways to get the text view to play well the keyboard *and* autolayout: http://stackoverflow.com/questions/14140536/resizing-an-uitextview-when-the-keyboard-pops-up-with-auto-layout (see https://developer.apple.com/library/ios/documentation/StringsTextFonts/Conceptual/TextAndWebiPhoneOS/KeyboardManagement/KeyboardManagement.html for the idea of changing bottom .contentInset). I didn't use http://stackoverflow.com/questions/12924649/autolayout-constraint-keyboard, but it seems to be another means.
-    @objc private func keyboardWillShow(notification:NSNotification) {
+    @objc fileprivate func keyboardWillShow(_ notification:Notification) {
         let info = notification.userInfo!
         let kbFrame = info[UIKeyboardFrameEndUserInfoKey] as! NSValue
-        let keyboardFrame = kbFrame.CGRectValue()
+        let keyboardFrame = kbFrame.cgRectValue
         Log.msg("keyboardFrame: \(keyboardFrame)")
         
         self.originalEdgeInsets = self.contentInset
@@ -97,16 +97,16 @@ public class SMImageTextView : UITextView, UITextViewDelegate {
         self.contentInset = insets
     }
 
-    @objc private func keyboardWillHide(notification:NSNotification) {
+    @objc fileprivate func keyboardWillHide(_ notification:Notification) {
         self.contentInset = self.originalEdgeInsets!
     }
     
-    public func insertImageAtCursorLocation(image:UIImage, imageId:NSUUID?) {
+    open func insertImageAtCursorLocation(_ image:UIImage, imageId:Foundation.UUID?) {
         let attrStringWithImage = self.makeImageAttachment(image, imageId: imageId)
-        self.textStorage.insertAttributedString(attrStringWithImage, atIndex: self.selectedRange.location)
+        self.textStorage.insert(attrStringWithImage, at: self.selectedRange.location)
     }
     
-    private func makeImageAttachment(image:UIImage, imageId:NSUUID?) -> NSAttributedString {
+    fileprivate func makeImageAttachment(_ image:UIImage, imageId:Foundation.UUID?) -> NSAttributedString {
         // Modified from http://stackoverflow.com/questions/24010035/how-to-add-image-and-text-in-uitextview-in-ios
 
         let textAttachment = ImageTextAttachment()
@@ -117,48 +117,48 @@ public class SMImageTextView : UITextView, UITextViewDelegate {
         //I'm subtracting 10px to make the image display nicely, accounting
         //for the padding inside the textView
         let scaleFactor = oldWidth / (self.frameWidth - 10)
-        textAttachment.image = UIImage(CGImage: image.CGImage!, scale: scaleFactor/self.scalingFactor, orientation: image.imageOrientation)
+        textAttachment.image = UIImage(cgImage: image.cgImage!, scale: scaleFactor/self.scalingFactor, orientation: image.imageOrientation)
         
         let attrStringWithImage = NSAttributedString(attachment: textAttachment)
         
         return attrStringWithImage
     }
     
-    private static let ElementType = "ElementType"
-    private static let ElementTypeText = "Text"
-    private static let ElementTypeImage = "Image"
-    private static let RangeLocation = "RangeLocation"
-    private static let RangeLength = "RangeLength"
-    private static let Contents = "Contents"
+    fileprivate static let ElementType = "ElementType"
+    fileprivate static let ElementTypeText = "Text"
+    fileprivate static let ElementTypeImage = "Image"
+    fileprivate static let RangeLocation = "RangeLocation"
+    fileprivate static let RangeLength = "RangeLength"
+    fileprivate static let Contents = "Contents"
 
     public enum ImageTextViewElement : Equatable {
         case Text(String, NSRange)
-        case Image(UIImage?, NSUUID?, NSRange)
+        case image(UIImage?, Foundation.UUID?, NSRange)
         
         public var text:String? {
             switch self {
             case .Text(let string, _):
                 return string
                 
-            case .Image:
+            case .image:
                 return nil
             }
         }
         
         // Doesn't test range. For text, tests string. For image, tests uuid.
-        public func equals(other:SMImageTextView.ImageTextViewElement) -> Bool {
+        public func equals(_ other:SMImageTextView.ImageTextViewElement) -> Bool {
             switch self {
             case .Text(let string, _):
                 switch other {
                 case .Text(let stringOther, _):
                     return string == stringOther
-                case .Image:
+                case .image:
                     return false
                 }
             
-            case .Image(_, let uuid, _):
+            case .image(_, let uuid, _):
                 switch other {
-                case .Image(_, let uuidOther, _):
+                case .image(_, let uuidOther, _):
                     return uuid == uuidOther
                 case .Text:
                     return false
@@ -166,19 +166,19 @@ public class SMImageTextView : UITextView, UITextViewDelegate {
             }
         }
         
-        public func equalsWithRange(other:SMImageTextView.ImageTextViewElement) -> Bool {
+        public func equalsWithRange(_ other:SMImageTextView.ImageTextViewElement) -> Bool {
             switch self {
             case .Text(let string, let range):
                 switch other {
                 case .Text(let stringOther, let rangeOther):
                     return string == stringOther && range.length == rangeOther.length && range.location == rangeOther.location
-                case .Image:
+                case .image:
                     return false
                 }
             
-            case .Image(_, let uuid, let range):
+            case .image(_, let uuid, let range):
                 switch other {
-                case .Image(_, let uuidOther, let rangeOther):
+                case .image(_, let uuidOther, let rangeOther):
                     return uuid == uuidOther && range.length == rangeOther.length && range.location == rangeOther.location
                 case .Text:
                     return false
@@ -189,19 +189,19 @@ public class SMImageTextView : UITextView, UITextViewDelegate {
         public func toDictionary() -> [String:AnyObject] {
             switch self {
             case .Text(let string, let range):
-                return [ElementType: ElementTypeText, RangeLocation: range.location, RangeLength: range.length, Contents: string]
+                return [ElementType: ElementTypeText as AnyObject, RangeLocation: range.location as AnyObject, RangeLength: range.length as AnyObject, Contents: string as AnyObject]
             
-            case .Image(_, let uuid, let range):
+            case .image(_, let uuid, let range):
                 var uuidString = ""
                 if uuid != nil {
-                    uuidString = uuid!.UUIDString
-                }
-                return [ElementType: ElementTypeImage, RangeLocation: range.location, RangeLength: range.length, Contents: uuidString]
+                    uuidString = uuid!.uuidString
+                }                
+                return [ElementType: ElementTypeImage as AnyObject, RangeLocation: range.location as AnyObject, RangeLength: range.length as AnyObject, Contents: uuidString as AnyObject]
             }
         }
         
         // UIImages in .Image elements will be nil.
-        public static func fromDictionary(dict:[String:AnyObject]) -> ImageTextViewElement? {
+        public static func fromDictionary(_ dict:[String:AnyObject]) -> ImageTextViewElement? {
             guard let elementType = dict[ElementType] as? String else {
                 Log.error("Couldn't get element type")
                 return nil
@@ -226,7 +226,7 @@ public class SMImageTextView : UITextView, UITextViewDelegate {
                     return nil
                 }
                 
-                return .Image(nil, NSUUID(UUIDString: uuidString), NSMakeRange(rangeLocation, rangeLength))
+                return .image(nil, UUID(uuidString: uuidString), NSMakeRange(rangeLocation, rangeLength))
             
             default:
                 return nil
@@ -234,23 +234,23 @@ public class SMImageTextView : UITextView, UITextViewDelegate {
         }
     }
     
-    public var contents:[ImageTextViewElement]? {
+    open var contents:[ImageTextViewElement]? {
         get {
             var result = [ImageTextViewElement]()
             
             // See https://stackoverflow.com/questions/37370556/ranges-of-strings-from-nsattributedstring
             
-            self.attributedText.enumerateAttributesInRange(NSMakeRange(0, self.attributedText.length), options: NSAttributedStringEnumerationOptions(rawValue: 0)) { (dict, range, stop) in
+            self.attributedText.enumerateAttributes(in: NSMakeRange(0, self.attributedText.length), options: NSAttributedString.EnumerationOptions(rawValue: 0)) { (dict, range, stop) in
                 Log.msg("dict: \(dict); range: \(range)")
                 if dict[NSAttachmentAttributeName] == nil {
-                    let string = (self.attributedText.string as NSString).substringWithRange(range)
+                    let string = (self.attributedText.string as NSString).substring(with: range)
                     Log.msg("string in range: \(range): \(string)")
                     result.append(.Text(string, range))
                 }
                 else {
                     let imageAttachment = dict[NSAttachmentAttributeName] as! ImageTextAttachment
                     Log.msg("image at range: \(range)")
-                    result.append(.Image(imageAttachment.image!, imageAttachment.imageId, range))
+                    result.append(.image(imageAttachment.image!, imageAttachment.imageId, range))
                 }
             }
             
@@ -276,11 +276,11 @@ public class SMImageTextView : UITextView, UITextViewDelegate {
                     switch elem {
                     case .Text(let string, let range):
                         let attrString = NSAttributedString(string: string)
-                        mutableAttrString.insertAttributedString(attrString, atIndex: range.location)
+                        mutableAttrString.insert(attrString, at: range.location)
                     
-                    case .Image(let image, let uuid, let range):
+                    case .image(let image, let uuid, let range):
                         let attrImageString = self.makeImageAttachment(image!, imageId: uuid)
-                        mutableAttrString.insertAttributedString(attrImageString, atIndex: range.location)
+                        mutableAttrString.insert(attrImageString, at: range.location)
                     }
                 }
             }
@@ -297,11 +297,11 @@ public class SMImageTextView : UITextView, UITextViewDelegate {
 extension SMImageTextView {
     // Modified from http://stackoverflow.com/questions/29571682/how-to-detect-deletion-of-image-in-uitextview
     
-    public func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
+    public func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
 
         // empty text means backspace
         if text.isEmpty {
-            textView.attributedText.enumerateAttribute(NSAttachmentAttributeName, inRange: NSMakeRange(0, textView.attributedText.length), options: NSAttributedStringEnumerationOptions(rawValue: 0)) { (object, imageRange, stop) in
+            textView.attributedText.enumerateAttribute(NSAttachmentAttributeName, in: NSMakeRange(0, textView.attributedText.length), options: NSAttributedString.EnumerationOptions(rawValue: 0)) { (object, imageRange, stop) in
             
                 if let textAttachment = object as? ImageTextAttachment {
                     if NSLocationInRange(imageRange.location, range) {
@@ -317,7 +317,7 @@ extension SMImageTextView {
 }
 
 extension SMImageTextView : HPTextViewTapGestureRecognizerDelegate {
-    public func gestureRecognizer(gestureRecognizer: UIGestureRecognizer!, handleTapOnTextAttachment textAttachment: NSTextAttachment!, inRange characterRange: NSRange) {
+    public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer!, handleTapOn textAttachment: NSTextAttachment!, in characterRange: NSRange) {
         let attach = textAttachment as! ImageTextAttachment
         self.imageDelegate?.smImageTextView?(self, imageWasTapped: attach.imageId)
     }

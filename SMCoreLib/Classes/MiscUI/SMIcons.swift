@@ -10,10 +10,10 @@
 
 import Foundation
 
-public class SMIcons {
-    public static var GoogleIcon:UIImage {
-        let bundle = NSBundle(forClass: self)
+open class SMIcons {
+    open static var GoogleIcon:UIImage {
+        let bundle = Bundle(for: self)
         // Log.msg("bundle: \(bundle)")
-        return UIImage(named: "GoogleIcon", inBundle: bundle,compatibleWithTraitCollection: nil)!
+        return UIImage(named: "GoogleIcon", in: bundle,compatibleWith: nil)!
     }
 }

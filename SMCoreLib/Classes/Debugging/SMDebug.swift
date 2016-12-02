@@ -8,8 +8,8 @@
 
 import Foundation
 
-@objc public class SMDebugInjectionTest : NSObject {
-    public var injectTest:Bool = false
+@objc open class SMDebugInjectionTest : NSObject {
+    open var injectTest:Bool = false
     
     public override init() {
         super.init()
@@ -18,10 +18,10 @@ import Foundation
 
 }
 
-@objc public class SMDebug : NSObject {
+@objc open class SMDebug : NSObject {
     // public let exampleInjectionTest = SMDebugInjectionTest()
     
-    public static let SMIAPReceiptInvalidReceipt = SMDebugInjectionTest()
+    open static let SMIAPReceiptInvalidReceipt = SMDebugInjectionTest()
     
     // My hope is that Swift will entirely compile out uses of these functions in production builds because their bodies will be empty.
     
@@ -31,7 +31,7 @@ import Foundation
     }
     */
     
-    public class func it(yourDebugCode:()->()) {
+    open class func it(_ yourDebugCode:()->()) {
         #if DEBUG
             yourDebugCode()
         #endif
@@ -43,7 +43,7 @@ import Foundation
     }
     */
     
-    public class func injectTestIf(condition:SMDebugInjectionTest, yourInjectionTest:()->()) {
+    open class func injectTestIf(_ condition:SMDebugInjectionTest, yourInjectionTest:()->()) {
         #if DEBUG
             if condition.injectTest {
                 yourInjectionTest()

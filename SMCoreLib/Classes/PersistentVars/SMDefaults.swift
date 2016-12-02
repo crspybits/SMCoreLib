@@ -11,7 +11,7 @@
 import Foundation
 
 // Need NSObject inheritance for NSCoding.
-public class SMDefaultItem : NSObject {
+open class SMDefaultItem : NSObject {
     let name:String!
     let initialValue:AnyObject!
     
@@ -29,13 +29,13 @@ public class SMDefaultItem : NSObject {
 
 class SMDefaultItemBool : SMDefaultItem {
     init(name:String!, initialBoolValue:Bool!) {
-        super.init(name: name, initialValue:initialBoolValue)
+        super.init(name: name, initialValue:initialBoolValue as AnyObject!)
     }
     
     // Current Bool value
     var boolValue:Bool {
         get {
-            let defsStoredValue: AnyObject? = NSUserDefaults.standardUserDefaults().objectForKey(self.name)
+            let defsStoredValue: AnyObject? = UserDefaults.standard.object(forKey: self.name) as AnyObject?
             if (nil == defsStoredValue) {
                 // No value in NSUserDefaults; return the initial value.
                 return self.initialValue!.boolValue
@@ -46,21 +46,21 @@ class SMDefaultItemBool : SMDefaultItem {
         }
         
         set {
-            NSUserDefaults.standardUserDefaults().setBool(newValue, forKey: self.name)
+            UserDefaults.standard.set(newValue, forKey: self.name)
             SMDefaults.session().save()
         }
     }
 }
 
-public class SMDefaultItemInt : SMDefaultItem {
+open class SMDefaultItemInt : SMDefaultItem {
     init(name:String!, initialIntValue:Int!) {
-        super.init(name: name, initialValue:initialIntValue)
+        super.init(name: name, initialValue:initialIntValue as AnyObject!)
     }
     
     // Current Int value
     var intValue:Int {
         get {
-            let defsStoredValue: AnyObject? = NSUserDefaults.standardUserDefaults().objectForKey(self.name)
+            let defsStoredValue: AnyObject? = UserDefaults.standard.object(forKey: self.name) as AnyObject?
             if (nil == defsStoredValue) {
                 // No value in NSUserDefaults; return the initial value.
                 return self.initialValue!.intValue
@@ -71,7 +71,7 @@ public class SMDefaultItemInt : SMDefaultItem {
         }
         
         set {
-            NSUserDefaults.standardUserDefaults().setInteger(newValue, forKey: self.name)
+            UserDefaults.standard.set(newValue, forKey: self.name)
             SMDefaults.session().save()
         }
     }
@@ -89,13 +89,13 @@ class SMDefaultItemArchivable : SMDefaultItem {
     // Current value
     var value:AnyObject? {
         get {
-            let defsStoredData = NSUserDefaults.standardUserDefaults().objectForKey(self.name) as? NSData
+            let defsStoredData = UserDefaults.standard.object(forKey: self.name) as? Data
             if (nil == defsStoredData) {
                 // No value in NSUserDefaults; return the initial value.
                 return self.initialValue
             }
             else {
-                let unarchivedValue: AnyObject? = NSKeyedUnarchiver.unarchiveObjectWithData(defsStoredData!)
+                let unarchivedValue: AnyObject? = NSKeyedUnarchiver.unarchiveObject(with: defsStoredData!) as AnyObject?
                 return unarchivedValue
             }
         }
@@ -105,9 +105,9 @@ class SMDefaultItemArchivable : SMDefaultItem {
         }
     }
     
-    private func save(value:AnyObject!) {
-        let archivedData = NSKeyedArchiver.archivedDataWithRootObject(value)
-        NSUserDefaults.standardUserDefaults().setObject(archivedData, forKey: self.name)
+    fileprivate func save(_ value:AnyObject!) {
+        let archivedData = NSKeyedArchiver.archivedData(withRootObject: value)
+        UserDefaults.standard.set(archivedData, forKey: self.name)
         SMDefaults.session().save()
     }
 }
@@ -130,7 +130,7 @@ class SMDefaultItemSet : SMDefaultItemArchivable {
     }
     
     // Note that each time this is called/used, it retrieves the value from NSUserDefaults
-    private var theSetValue:NSMutableSet {
+    fileprivate var theSetValue:NSMutableSet {
         return self.value as! NSMutableSet
     }
     
@@ -151,20 +151,20 @@ class SMDefaultItemSet : SMDefaultItemArchivable {
         return theSetValue.objectEnumerator()
     }
     
-    func memberOfSetValueWrapper(object:AnyObject!) -> AnyObject? {
-        return theSetValue.member(object)
+    func memberOfSetValueWrapper(_ object:AnyObject!) -> AnyObject? {
+        return theSetValue.member(object) as AnyObject?
     }
     
     // For the following two accessors, use the add<Key>Object methods as these are for individual objects; otherwise, the parameter is actually passed as a set.
-    func addSetValueWrapperObject(object:AnyObject!) {
+    func addSetValueWrapperObject(_ object:AnyObject!) {
         let set = theSetValue
-        set.addObject(object)
+        set.add(object)
         self.save(set)
     }
     
-    func removeSetValueWrapperObject(object:AnyObject!) {
+    func removeSetValueWrapperObject(_ object:AnyObject!) {
         let set = theSetValue
-        set.removeObject(object)
+        set.remove(object)
         self.save(set)
     }
     
@@ -178,7 +178,7 @@ class SMDefaultItemSet : SMDefaultItemArchivable {
     var setValue:NSMutableSet! {
         get {
             // Return the proxy object. The proxy methods are named as, for example, add<Key>Object where key is SetValueWrapper, which is the key below, but with the first letter capitalized.
-            return self.mutableSetValueForKey("setValueWrapper")
+            return self.mutableSetValue(forKey: "setValueWrapper")
         }
         
         set {
@@ -189,7 +189,7 @@ class SMDefaultItemSet : SMDefaultItemArchivable {
 
 @objc class SMDefaults : NSObject {
     // Singleton class.
-    private static let theSession = SMDefaults()
+    fileprivate static let theSession = SMDefaults()
     
     // I have this as a class function and not a public static property to enable access from Objective-C
     class func session() -> SMDefaults {
@@ -197,9 +197,9 @@ class SMDefaultItemSet : SMDefaultItemArchivable {
     }
     
     // The names of all the defaults. Just held in RAM (not stored in NSUserDefaults itself) so we can do a reset of all of the items stored in NSUserDefaults if needed.
-    private var names = Set<String>()
+    fileprivate var names = Set<String>()
     
-    private override init() {
+    fileprivate override init() {
         super.init()
     }
     
@@ -211,13 +211,13 @@ class SMDefaultItemSet : SMDefaultItemArchivable {
         self.save()
     }
     
-    func reset(name:String) {
-        NSUserDefaults.standardUserDefaults().removeObjectForKey(name)
+    func reset(_ name:String) {
+        UserDefaults.standard.removeObject(forKey: name)
         self.save()
     }
     
-    private func save() {
-        NSUserDefaults.standardUserDefaults().synchronize()
+    fileprivate func save() {
+        UserDefaults.standard.synchronize()
     }
 }
 
@@ -247,7 +247,7 @@ class SMDefaultsTest {
         case .ChangeValues:
             self.TEST_BOOL.boolValue = false
             self.TEST_INT.intValue += 1
-            self.TEST_SET.setValue.addObject(NSDate())
+            self.TEST_SET.setValue.add(NSDate())
             
         case .Reset:
             SMDefaults.session().reset()

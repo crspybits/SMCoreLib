@@ -8,23 +8,23 @@
 
 import Foundation
 
-public class FileExtras {
-    public static let defaultDirectoryPath = "LargeImages"
-    public static let defaultFileExtension = ".jpg"
-    public static let defaultFilePrefix = "img"
+open class FileExtras {
+    open static let defaultDirectoryPath = "LargeImages"
+    open static let defaultFileExtension = ".jpg"
+    open static let defaultFilePrefix = "img"
     
     // Change these if you want.
-    public var directoryPathFromDocuments:String = FileExtras.defaultDirectoryPath
-    public var fileExtension:String = FileExtras.defaultFileExtension
-    public var filePrefix:String = FileExtras.defaultFilePrefix
+    open var directoryPathFromDocuments:String = FileExtras.defaultDirectoryPath
+    open var fileExtension:String = FileExtras.defaultFileExtension
+    open var filePrefix:String = FileExtras.defaultFilePrefix
     
     public init() {
     }
     
-    public func newURLForImage() ->  SMRelativeLocalURL {
-        let directoryURL = FileStorage.urlOfItem(self.directoryPathFromDocuments)
+    open func newURLForImage() ->  SMRelativeLocalURL {
+        let directoryURL = FileStorage.url(ofItem: self.directoryPathFromDocuments)
         FileStorage.createDirectoryIfNeeded(directoryURL)
-        let newFileName = FileStorage.createTempFileNameInDirectory(directoryURL.path, withPrefix: self.filePrefix, andExtension: self.fileExtension)
-        return SMRelativeLocalURL(withRelativePath: self.directoryPathFromDocuments + "/" + newFileName, toBaseURLType: .DocumentsDirectory)!
+        let newFileName = FileStorage.createTempFileName(inDirectory: directoryURL?.path, withPrefix: self.filePrefix, andExtension: self.fileExtension)
+        return SMRelativeLocalURL(withRelativePath: self.directoryPathFromDocuments + "/" + newFileName!, toBaseURLType: .documentsDirectory)!
     }
 }

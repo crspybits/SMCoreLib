@@ -9,7 +9,7 @@
 import Foundation
 
 public extension SMImageTextView {
-    public func contentsToData() -> NSData? {
+    public func contentsToData() -> Data? {
         guard let currentContents = self.contents
         else {
             return nil
@@ -18,37 +18,37 @@ public extension SMImageTextView {
         return SMImageTextView.contentsToData(currentContents)
     }
     
-    public class func contentsToData(contents:[ImageTextViewElement]) -> NSData? {
+    public class func contentsToData(_ contents:[ImageTextViewElement]) -> Data? {
         // First create array of dictionaries.
         var array = [[String:AnyObject]]()
         for elem in contents {
             array.append(elem.toDictionary())
         }
         
-        var jsonData:NSData?
+        var jsonData:Data?
         
         do {
-            try jsonData = NSJSONSerialization.dataWithJSONObject(array, options: NSJSONWritingOptions(rawValue: 0))
+            try jsonData = JSONSerialization.data(withJSONObject: array, options: JSONSerialization.WritingOptions(rawValue: 0))
         } catch (let error) {
             Log.error("Error serializing array to JSON data: \(error)")
             return nil
         }
 
-        let jsonString = NSString(data: jsonData!, encoding: NSUTF8StringEncoding) as? String
+        let jsonString = NSString(data: jsonData!, encoding: String.Encoding.utf8.rawValue) as? String
 
         Log.msg("json results: \(jsonString)")
         
         return jsonData
     }
     
-    public func saveContents(toFileURL fileURL:NSURL) -> Bool {
+    public func saveContents(toFileURL fileURL:URL) -> Bool {
         guard let jsonData = self.contentsToData()
         else {
             return false
         }
         
         do {
-            try jsonData.writeToURL(fileURL, options: .AtomicWrite)
+            try jsonData.write(to: fileURL, options: .atomicWrite)
         } catch (let error) {
             Log.error("Error writing JSON data to file: \(error)")
             return false
@@ -58,7 +58,7 @@ public extension SMImageTextView {
     }
     
     // Give populateImagesUsing as non-nil to populate the images.
-    private class func contents(fromJSONData jsonData:NSData?, populateImagesUsing smImageTextView:SMImageTextView?) -> [ImageTextViewElement]? {
+    fileprivate class func contents(fromJSONData jsonData:Data?, populateImagesUsing smImageTextView:SMImageTextView?) -> [ImageTextViewElement]? {
         var array:[[String:AnyObject]]?
         
         if jsonData == nil {
@@ -66,7 +66,7 @@ public extension SMImageTextView {
         }
 
         do {
-            try array = NSJSONSerialization.JSONObjectWithData(jsonData!, options: NSJSONReadingOptions(rawValue: 0)) as? [[String : AnyObject]]
+            try array = JSONSerialization.jsonObject(with: jsonData!, options: JSONSerialization.ReadingOptions(rawValue: 0)) as? [[String : AnyObject]]
         } catch (let error) {
             Log.error("Error converting JSON data to array: \(error)")
             return nil
@@ -83,13 +83,13 @@ public extension SMImageTextView {
                 var elemToAdd = elem
                 
                 switch elem {
-                case .Image(_, let uuid, let range):
+                case .image(_, let uuid, let range):
                     if smImageTextView == nil {
-                        elemToAdd = .Image(nil, uuid, range)
+                        elemToAdd = .image(nil, uuid, range)
                     }
                     else {
                         if let image = smImageTextView!.imageDelegate?.smImageTextView(smImageTextView!, imageForUUID: uuid!) {
-                            elemToAdd = .Image(image, uuid, range)
+                            elemToAdd = .image(image, uuid, range)
                         }
                         else {
                             return nil
@@ -110,12 +110,12 @@ public extension SMImageTextView {
         return results
     }
 
-    public class func contents(fromJSONData jsonData:NSData?) -> [ImageTextViewElement]? {
+    public class func contents(fromJSONData jsonData:Data?) -> [ImageTextViewElement]? {
         return self.contents(fromJSONData: jsonData, populateImagesUsing: nil)
     }
     
     // Concatenates all of the string components. Ignores the images.
-    public class func contentsAsConcatenatedString(fromJSONData jsonData:NSData?) -> String? {
+    public class func contentsAsConcatenatedString(fromJSONData jsonData:Data?) -> String? {
         if let contents = SMImageTextView.contents(fromJSONData: jsonData) {
             var result = ""
     
@@ -135,13 +135,13 @@ public extension SMImageTextView {
         return nil
     }
     
-    public func loadContents(fromJSONData jsonData:NSData?) -> Bool {
+    public func loadContents(fromJSONData jsonData:Data?) -> Bool {
         self.contents = SMImageTextView.contents(fromJSONData: jsonData, populateImagesUsing: self)
         return self.contents == nil ? false : true
     }
     
-    public func loadContents(fromJSONFileURL fileURL:NSURL) -> Bool {
-        guard let jsonData = NSData(contentsOfURL: fileURL)
+    public func loadContents(fromJSONFileURL fileURL:URL) -> Bool {
+        guard let jsonData = try? Data(contentsOf: fileURL)
         else {
             return false
         }

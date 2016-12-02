@@ -24,7 +24,7 @@ class SMHint : NSObject {
 // A hint shown until some app defined condition.
 class SMBoolHint : SMHint, NSCoding {
     var shown:Bool = true
-    private var actual:Bool = true
+    fileprivate var actual:Bool = true
     
     init(name:String, shown:Bool) {
         super.init()
@@ -36,10 +36,10 @@ class SMBoolHint : SMHint, NSCoding {
         super.init()
     }
     
-    @objc func encodeWithCoder(aCoder: NSCoder) {
+    @objc func encode(with aCoder: NSCoder) {
     }
 
-    func set(toValue:Bool) {
+    func set(_ toValue:Bool) {
         
     }
     
@@ -52,7 +52,7 @@ class SMBoolHint : SMHint, NSCoding {
 // A hint shown for a certain number of times.
 class SMCountHint : SMHint, NSCoding {
     var maxToShow:Int = 0
-    private var current:Int = 0
+    fileprivate var current:Int = 0
     
     init(name:String, maxToShow:Int) {
         super.init()
@@ -63,15 +63,15 @@ class SMCountHint : SMHint, NSCoding {
     @objc required init?(coder aDecoder: NSCoder) {
         super.init()
         
-        self.name = aDecoder.decodeObjectForKey("name") as! String
-        self.maxToShow = aDecoder.decodeObjectForKey("maxToShow") as! Int
-        self.current = aDecoder.decodeObjectForKey("current") as! Int
+        self.name = aDecoder.decodeObject(forKey: "name") as! String
+        self.maxToShow = aDecoder.decodeObject(forKey: "maxToShow") as! Int
+        self.current = aDecoder.decodeObject(forKey: "current") as! Int
     }
     
-    @objc func encodeWithCoder(aCoder: NSCoder) {
-        aCoder.encodeObject(self.name, forKey: "name")
-        aCoder.encodeObject(self.maxToShow, forKey: "maxToShow")
-        aCoder.encodeObject(self.current, forKey: "current")
+    @objc func encode(with aCoder: NSCoder) {
+        aCoder.encode(self.name, forKey: "name")
+        aCoder.encode(self.maxToShow, forKey: "maxToShow")
+        aCoder.encode(self.current, forKey: "current")
     }
     
     // Just checks the maxToShow to see if it's reached. Doesn't alter the number of hints.
@@ -101,7 +101,7 @@ class SMCountHint : SMHint, NSCoding {
         return result
     }
     
-    private func getHintForName(name:String) -> SMCountHint {
+    fileprivate func getHintForName(_ name:String) -> SMCountHint {
         if (nil == SMShowingHints.session.dataDict![self.name]) {
             // This hint is not in the dictionary yet.
             SMShowingHints.session.dataDict![self.name] = self
@@ -121,9 +121,9 @@ class SMCountHint : SMHint, NSCoding {
     static let session = SMShowingHints()
     
     // Running into Swift compiler bugs, so this proved useful.
-    private var dataDict:Dictionary<String, SMHint>?
+    fileprivate var dataDict:Dictionary<String, SMHint>?
     
-    private override init() {
+    fileprivate override init() {
         super.init(fileName: SMIdentifiers.SHOWING_HINTS_FILE)
         
         if (nil == self.data) {
@@ -138,7 +138,7 @@ class SMCountHint : SMHint, NSCoding {
         self.create()
     }
     
-    private func create() {
+    fileprivate func create() {
         self.dataDict = Dictionary<String, SMHint>()
         self.data = self.dataDict
         self.save()

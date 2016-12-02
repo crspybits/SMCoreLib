@@ -3,7 +3,7 @@ pod lib lint --sources="https://github.com/crspybits/Specs.git,https://github.co
 
 # and then push updated revision of pod to its repo
 
-git add -A && git commit -m "Release 0.0.14: <Note>..."
+git add -A && git commit -m "Release 0.0.14: Updating to Swift 3.0"
 git tag '0.0.14'
 git push --tags
 

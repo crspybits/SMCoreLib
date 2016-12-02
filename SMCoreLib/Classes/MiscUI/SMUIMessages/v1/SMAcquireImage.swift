@@ -14,24 +14,24 @@ import UIKit
 
 public protocol SMAcquireImageDelegate : class {
     // Called before the image is acquired to obtain a URL for the image. A file shouldn't exist at this URL yet.
-    func smAcquireImageURLForNewImage(acquireImage:SMAcquireImage) -> SMRelativeLocalURL
+    func smAcquireImageURLForNewImage(_ acquireImage:SMAcquireImage) -> SMRelativeLocalURL
 
     // Called after the image is acquired.
-    func smAcquireImage(acquireImage:SMAcquireImage, newImageURL: SMRelativeLocalURL)
+    func smAcquireImage(_ acquireImage:SMAcquireImage, newImageURL: SMRelativeLocalURL)
 }
 
-public class SMAcquireImage : NSObject {
-    public weak var delegate:SMAcquireImageDelegate!
-    public var acquiringImage:Bool {
+open class SMAcquireImage : NSObject {
+    open weak var delegate:SMAcquireImageDelegate!
+    open var acquiringImage:Bool {
         return self._acquiringImage
     }
     
     // This should be a value between 0 and 1, with larger values giving higher quality, but larger files.
-    public var compressionQuality:CGFloat = 0.5
+    open var compressionQuality:CGFloat = 0.5
 
-    private weak var parentViewController:UIViewController!
-    private let imagePicker = UIImagePickerController()
-    public var _acquiringImage:Bool = false
+    fileprivate weak var parentViewController:UIViewController!
+    fileprivate let imagePicker = UIImagePickerController()
+    open var _acquiringImage:Bool = false
     
     // documentsDirectoryPath is the path within the Documents directory to store new image files.
     public init(withParentViewController parentViewController:UIViewController) {
@@ -41,49 +41,49 @@ public class SMAcquireImage : NSObject {
         self.imagePicker.delegate = self
     }
     
-    public func showAlert(fromBarButton barButton:UIBarButtonItem) {
+    open func showAlert(fromBarButton barButton:UIBarButtonItem) {
         self._acquiringImage = true
         
-        let alert = UIAlertController(title: "Get an image?", message: nil, preferredStyle: .ActionSheet)
+        let alert = UIAlertController(title: "Get an image?", message: nil, preferredStyle: .actionSheet)
         alert.popoverPresentationController?.barButtonItem = barButton
         
-        alert.addAction(UIAlertAction(title: "Cancel", style: .Cancel) { alert in
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel) { alert in
             self._acquiringImage = false
         })
         
         if UIImagePickerController.isSourceTypeAvailable(
-                UIImagePickerControllerSourceType.Camera) {
-            alert.addAction(UIAlertAction(title: "Camera", style: .Default) { alert in
-                self.getImageUsing(.Camera)
+                UIImagePickerControllerSourceType.camera) {
+            alert.addAction(UIAlertAction(title: "Camera", style: .default) { alert in
+                self.getImageUsing(.camera)
             })
         }
 
-        if UIImagePickerController.isSourceTypeAvailable(.SavedPhotosAlbum) {
-            alert.addAction(UIAlertAction(title: "Camera Roll", style: .Default) { alert in
-                self.getImageUsing(.SavedPhotosAlbum)
+        if UIImagePickerController.isSourceTypeAvailable(.savedPhotosAlbum) {
+            alert.addAction(UIAlertAction(title: "Camera Roll", style: .default) { alert in
+                self.getImageUsing(.savedPhotosAlbum)
             })
         }
 
-        if UIImagePickerController.isSourceTypeAvailable(.PhotoLibrary) {
-            alert.addAction(UIAlertAction(title: "Photo Library", style: .Default) { alert in
-                self.getImageUsing(.PhotoLibrary)
+        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+            alert.addAction(UIAlertAction(title: "Photo Library", style: .default) { alert in
+                self.getImageUsing(.photoLibrary)
             })
         }
         
-        self.parentViewController.presentViewController(alert, animated: true, completion: nil)
+        self.parentViewController.present(alert, animated: true, completion: nil)
     }
     
-    private func getImageUsing(sourceType:UIImagePickerControllerSourceType) {
+    fileprivate func getImageUsing(_ sourceType:UIImagePickerControllerSourceType) {
         self.imagePicker.sourceType = sourceType
         self.imagePicker.allowsEditing = false
 
-        self.parentViewController.presentViewController(imagePicker, animated: true,
+        self.parentViewController.present(imagePicker, animated: true,
             completion: nil)
     }
 }
 
 extension SMAcquireImage : UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    public func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+    public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         Log.msg("info: \(info)")
         let image = info[UIImagePickerControllerOriginalImage] as! UIImage
         
@@ -96,7 +96,7 @@ extension SMAcquireImage : UIImagePickerControllerDelegate, UINavigationControll
         var success:Bool = true
         if let imageData = UIImageJPEGRepresentation(image, self.compressionQuality) {
             do {
-                try imageData.writeToURL(newFileURL!, options: .AtomicWrite)
+                try imageData.write(to: newFileURL! as URL, options: .atomicWrite)
             } catch (let error) {
                 Log.error("Error writing file: \(error)")
                 success = false
@@ -112,13 +112,13 @@ extension SMAcquireImage : UIImagePickerControllerDelegate, UINavigationControll
         }
         
         self._acquiringImage = false
-        picker.dismissViewControllerAnimated(true, completion: nil)
+        picker.dismiss(animated: true, completion: nil)
     }
     
-    public func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+    public func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         Log.msg("imagePickerControllerDidCancel")
         
         self._acquiringImage = false
-        picker.dismissViewControllerAnimated(true, completion: nil)
+        picker.dismiss(animated: true, completion: nil)
     }
 }

@@ -12,100 +12,100 @@ import Foundation
 
 // The different persistent variable types have separate name spaces. I.e., you can use the same name (see init method below) in across user defaults and keychain.
 public enum SMPersistVarType {
-    case UserDefaults
-    case KeyChain
+    case userDefaults
+    case keyChain
 }
 
 private let KEYCHAIN_ACCOUNT = "SMPersistVars"
 
 // Need NSObject inheritance for NSCoding.
-public class SMPersistItem : NSObject {
-    // if you set isMutable to true in your sublcass, it is important that you implement .mutableCopy if your SMPersistItem subclass has a non-primitive/non-built-in mutable class. E.g., my SMPersistItemDict class uses SMMutableDictionary internally (not NSMutableDictionary). cachedOrArchivedValue makes a .mutableCopy and, if we didn't implement our own mutableCopy method, we'd get an NSMutableDictionary as a result which causes a crash.
-    private var isMutable:Bool = false
+open class SMPersistItem : NSObject {
+    // if you set isMutable to true in your subclass, it is important that you implement .mutableCopy if your SMPersistItem subclass has a non-primitive/non-built-in mutable class. E.g., my SMPersistItemDict class uses SMMutableDictionary internally (not NSMutableDictionary). cachedOrArchivedValue makes a .mutableCopy and, if we didn't implement our own mutableCopy method, we'd get an NSMutableDictionary as a result which causes a crash.
+    fileprivate var isMutable:Bool = false
     
     // Some subclasses have specific archive/unarchive methods.
-    private var unarchiveValueMethod:((data:NSData!) -> (AnyObject?))?
-    private var archiveValueMethod:((value:AnyObject!) -> (NSData?))?
+    fileprivate var unarchiveValueMethod:((_ data:Data?) -> (AnyObject?))?
+    fileprivate var archiveValueMethod:((_ value:AnyObject?) -> (Data?))?
     
-    private  let initialValue:AnyObject!
+    fileprivate  let initialValue:AnyObject!
     
     // 10/31/15; I've introduced this for performance reasons, and specifically for the KeyChain persistence type, but will use it for NS user defaults too just for generality.
-    private var _cachedCurrentValue:AnyObject?
+    fileprivate var _cachedCurrentValue:AnyObject?
     
-    public let persistType:SMPersistVarType
-    public let name:String
+    open let persistType:SMPersistVarType
+    open let name:String
 
     init(name:String!, initialValue:AnyObject!, persistType type:SMPersistVarType) {
         self.name = name
         self.initialValue = initialValue
         self.persistType = type
         
-        Log.msg("type: \(self.persistType); name: \(self.name); initialValue: \(self.initialValue); initialValueType: \(initialValue.dynamicType)")
+        Log.msg("type: \(self.persistType); name: \(self.name); initialValue: \(self.initialValue); initialValueType: \(type(of: initialValue))")
         
         switch (type) {
-        case .UserDefaults:
+        case .userDefaults:
             SMPersistVars.session().userDefaultNames.insert(name)
             
-        case .KeyChain:
+        case .keyChain:
             SMPersistVars.session().keyChainNames.insert(name)
         }
     }
     
     // Reset just this value.
-    public func reset() {
+    open func reset() {
         switch (self.persistType) {
-        case .UserDefaults:
+        case .userDefaults:
             SMPersistVars.session().resetUserDefaults(self.name)
             
-        case .KeyChain:
+        case .keyChain:
             SMPersistVars.session().resetKeyChain(self.name)
         }
         
         self._cachedCurrentValue = nil
     }
     
-    private func unarchiveValue(data:NSData!) -> AnyObject? {
+    fileprivate func unarchiveValue(_ data:Data!) -> AnyObject? {
         var unarchivedValue: AnyObject?
         
         if nil == self.unarchiveValueMethod {
-            unarchivedValue = NSKeyedUnarchiver.unarchiveObjectWithData(data)
+            unarchivedValue = NSKeyedUnarchiver.unarchiveObject(with: data) as AnyObject?
         }
         else {
-            unarchivedValue = self.unarchiveValueMethod!(data: data)
+            unarchivedValue = self.unarchiveValueMethod!(data)
         }
         
         return unarchivedValue
     }
     
-    private func archiveValue(value:AnyObject!) -> NSData? {
-        var archivedData:NSData?
+    fileprivate func archiveValue(_ value:AnyObject!) -> Data? {
+        var archivedData:Data?
         
         if nil == self.archiveValueMethod {
-            archivedData = NSKeyedArchiver.archivedDataWithRootObject(value)
+            archivedData = NSKeyedArchiver.archivedData(withRootObject: value)
         }
         else {
-            archivedData = self.archiveValueMethod!(value: value)
+            archivedData = self.archiveValueMethod!(value)
         }
         
         return archivedData
     }
     
     // [1]. 11/14/15; I changed the return value from NSData? to AnyObject? because v1.2 of Catsy had Int's and Bool's stored in NSUserDefaults for SMDefaultItemInt's and SMDefaultItemBool's. i.e., objectForKey would directly return an Int or Bool (as an NSNumber, I believe).
-    private func getPersistentValue() -> AnyObject? {
+    fileprivate func getPersistentValue() -> AnyObject? {
         var defsStoredValue:AnyObject?
 
         switch (self.persistType) {
-        case .UserDefaults:
-            defsStoredValue = NSUserDefaults.standardUserDefaults().objectForKey(self.name)
+        case .userDefaults:
+            defsStoredValue = UserDefaults.standard.object(forKey: self.name) as AnyObject?
             
-        case .KeyChain:
-            defsStoredValue = KeyChain.secureDataForService(self.name, account: KEYCHAIN_ACCOUNT)
+        case .keyChain:
+            defsStoredValue = KeyChain.secureData(forService: self.name, account: KEYCHAIN_ACCOUNT) as AnyObject?
         }
         
         return defsStoredValue
     }
     
-    private func savePersistentValue(value:AnyObject!) -> Bool {
+    fileprivate func savePersistentValue(_ value:AnyObject!) -> Bool {
         let archivedData = self.archiveValue(value)
         if nil == archivedData {
             Log.error("savePersistentValue: Failed")
@@ -116,18 +116,18 @@ public class SMPersistItem : NSObject {
         }
     }
     
-    private func savePersistentData(data:NSData!) {
+    fileprivate func savePersistentData(_ data:Data!) {
         switch (self.persistType) {
-        case .UserDefaults:
-            NSUserDefaults.standardUserDefaults().setObject(data, forKey: self.name)
+        case .userDefaults:
+            UserDefaults.standard.set(data, forKey: self.name)
             SMPersistVars.session().saveUserDefaults()
             
-        case .KeyChain:
+        case .keyChain:
             KeyChain.setSecureData(data, forService: self.name, account: KEYCHAIN_ACCOUNT)
         }
     }
     
-    private var cachedOrArchivedValue:AnyObject? {
+    fileprivate var cachedOrArchivedValue:AnyObject? {
         get {
             if self._cachedCurrentValue != nil {
                 return self._cachedCurrentValue
@@ -137,10 +137,22 @@ public class SMPersistItem : NSObject {
             let persistentValue = self.getPersistentValue()
             
             if (nil == persistentValue) {
+                
                 // No value; return the initial value.
                 if self.isMutable {
-                    // It is important to return a mutable copy here-- because the returned object may get mutated. If we don't return mutable copy, we'll get mutating changes to self.initialValue, which we definitely do not want.
-                    returnValue = self.initialValue.mutableCopy()
+                    // It is important to return a mutable copy here-- because the returned object may get mutated. If we don't return a mutable copy, we'll get mutating changes to self.initialValue, which we definitely do not want.
+                    
+                    // 12/1/16; I was having a compiler crash here.
+                    // This is what was causing it:
+                    // return self.initialValue.mutableCopy() as AnyObject!
+
+                    if let initialObjValue = self.initialValue as? NSObject {
+                         let result = initialObjValue.mutableCopy()
+                        return result as! AnyObject!
+                    }
+                    else {
+                        Assert.badMojo(alwaysPrintThisString: "Yikes: Could not make mutable copy")
+                    }
                 }
                 else {
                     returnValue = self.initialValue
@@ -148,8 +160,8 @@ public class SMPersistItem : NSObject {
             }
             else {
                 if persistentValue is NSData {
-                    let unarchivedValue = self.unarchiveValue(persistentValue! as! NSData)
-                    Log.msg("name: \(self.name); \(unarchivedValue); type: \(unarchivedValue.dynamicType)")
+                    let unarchivedValue = self.unarchiveValue(persistentValue! as! Data)
+                    Log.msg("name: \(self.name); \(unarchivedValue); type: \(type(of: unarchivedValue))")
                     returnValue = unarchivedValue
                 }
                 else {
@@ -164,103 +176,103 @@ public class SMPersistItem : NSObject {
         }
         
         set {
-            self.savePersistentValue(newValue)
-            self._cachedCurrentValue = newValue
+            let _ = self.savePersistentValue(newValue)
+            let _ = self._cachedCurrentValue = newValue
         }
     }
     
-    public func print() {
+    open func print() {
         Log.msg("\(self.cachedOrArchivedValue)")
     }
 }
 
-public class SMPersistItemBool : SMPersistItem {
+open class SMPersistItemBool : SMPersistItem {
     public init(name:String!, initialBoolValue:Bool!,  persistType:SMPersistVarType) {
-        super.init(name: name, initialValue:initialBoolValue, persistType:persistType)
+        super.init(name: name, initialValue:initialBoolValue as AnyObject!, persistType:persistType)
     }
     
     // Current Bool value
-    public var boolValue:Bool {
+    open var boolValue:Bool {
         get {
             return self.cachedOrArchivedValue as! Bool
         }
         
         set {
-            self.cachedOrArchivedValue = newValue
+            self.cachedOrArchivedValue = newValue as AnyObject?
         }
     }
     
-    public var boolDefault:Bool {
+    open var boolDefault:Bool {
         return self.initialValue as! Bool
     }
 }
 
-public class SMPersistItemInt : SMPersistItem {
+open class SMPersistItemInt : SMPersistItem {
     public init(name:String!, initialIntValue:Int!,  persistType:SMPersistVarType) {
-        super.init(name: name, initialValue:initialIntValue, persistType:persistType)
+        super.init(name: name, initialValue:initialIntValue as AnyObject!, persistType:persistType)
     }
 
     // Current Int value
-    public var intValue:Int {
+    open var intValue:Int {
         get {
             return self.cachedOrArchivedValue as! Int
         }
         
         set {
-            self.cachedOrArchivedValue = newValue
+            self.cachedOrArchivedValue = newValue as AnyObject?
         }
     }
     
-    public var intDefault:Int {
+    open var intDefault:Int {
         return self.initialValue as! Int
     }
 }
 
-public class SMPersistItemString : SMPersistItem {
+open class SMPersistItemString : SMPersistItem {
     public init(name:String!, initialStringValue:String!,  persistType:SMPersistVarType) {
-        super.init(name: name, initialValue:initialStringValue, persistType:persistType)
+        super.init(name: name, initialValue:initialStringValue as AnyObject!, persistType:persistType)
     }
     
     // Current String value
-    public var stringValue:String {
+    open var stringValue:String {
         get {
             return self.cachedOrArchivedValue as! String
         }
         
         set {
-            self.cachedOrArchivedValue = newValue
+            self.cachedOrArchivedValue = newValue as AnyObject?
         }
     }
     
-    public var stringDefault:String {
+    open var stringDefault:String {
         return self.initialValue as! String
     }
 }
 
-public class SMPersistItemData : SMPersistItem {
-    public init(name:String!, initialDataValue:NSData!,  persistType:SMPersistVarType) {
-        super.init(name: name, initialValue:initialDataValue, persistType:persistType)
+open class SMPersistItemData : SMPersistItem {
+    public init(name:String!, initialDataValue:Data!,  persistType:SMPersistVarType) {
+        super.init(name: name, initialValue:initialDataValue as AnyObject!, persistType:persistType)
     }
 
     // Current NSData value
-    public var dataValue:NSData {
+    open var dataValue:Data {
         get {
-            return self.cachedOrArchivedValue as! NSData
+            return self.cachedOrArchivedValue as! Data
         }
         
         set {
-            self.cachedOrArchivedValue = newValue
+            self.cachedOrArchivedValue = newValue as AnyObject?
         }
     }
     
-    public var dataDefault:NSData {
-        return self.initialValue as! NSData
+    open var dataDefault:Data {
+        return self.initialValue as! Data
     }
 }
 
 // I wanted the SMDefaultItemSet class to be a generic class using Swift sets. But, generics in swift don't play well with NSCoding, so I'm just going to use NSMutableSet instead :(.
 // 10/6/15. POSSIBLE ISSUE: I may have an issue here. Suppose you add an object to an SMPersistItemSet which is itself mutable. E.g., an NSMutableDictionary. THEN, you change that object which is already in the mutable set. I am unsure whether or not I will detect this change and flush the change to NSUserDefaults or the KeyChain. It seems unlikely I would detect the change. NEED TO TEST.
-public class SMPersistItemSet : SMPersistItem {
+open class SMPersistItemSet : SMPersistItem {
     //private var myContext = 0 // Apple says this is needed for KVO
     
     // The sets you give here should have elements abiding by NSCoding. 
@@ -278,7 +290,7 @@ public class SMPersistItemSet : SMPersistItem {
     }
     
     // Note that each time this is called/used, it retrieves the value from NSUserDefaults or the KeyChain
-    private var theSetValue:NSMutableSet {
+    fileprivate var theSetValue:NSMutableSet {
         return self.cachedOrArchivedValue as! NSMutableSet
     }
     
@@ -299,21 +311,21 @@ public class SMPersistItemSet : SMPersistItem {
         return theSetValue.objectEnumerator()
     }
     
-    func memberOfSetValueWrapper(object:AnyObject!) -> AnyObject? {
-        return theSetValue.member(object)
+    func memberOfSetValueWrapper(_ object:AnyObject!) -> AnyObject? {
+        return theSetValue.member(object) as AnyObject?
     }
     
     // For the following two accessors, use the add<Key>Object methods as these are for individual objects; otherwise, the parameter is actually passed as a set.
-    func addSetValueWrapperObject(object:AnyObject!) {
+    func addSetValueWrapperObject(_ object:AnyObject!) {
         let set = theSetValue
-        set.addObject(object)
-        self.savePersistentValue(set)
+        set.add(object)
+        let _ = self.savePersistentValue(set)
     }
     
-    func removeSetValueWrapperObject(object:AnyObject!) {
+    func removeSetValueWrapperObject(_ object:AnyObject!) {
         let set = theSetValue
-        set.removeObject(object)
-        self.savePersistentValue(set)
+        set.remove(object)
+        let _ = self.savePersistentValue(set)
     }
     
     //MARK: End proxy methods
@@ -323,10 +335,10 @@ public class SMPersistItemSet : SMPersistItem {
     override func observeValueForKeyPath(keyPath: String, ofObject object: AnyObject, change: [NSObject : AnyObject], context: UnsafeMutablePointer<Void>) {
     }*/
     
-    public var setValue:NSMutableSet! {
+    open var setValue:NSMutableSet! {
         get {
             // Return the proxy object. The proxy methods are named as, for example, add<Key>Object where key is SetValueWrapper, which is the key below, but with the first letter capitalized.
-            return self.mutableSetValueForKey("setValueWrapper")
+            return self.mutableSetValue(forKey: "setValueWrapper")
         }
         
         set {
@@ -334,32 +346,42 @@ public class SMPersistItemSet : SMPersistItem {
         }
     }
     
-    public var setDefault:NSMutableSet {
-        return self.initialValue.mutableCopy() as! NSMutableSet
+    open var setDefault:NSMutableSet {
+        // 12/1/16; This was giving a compiler crash until I fiddled with it.
+        // Original code:
+        // return self.initialValue.mutableCopy() as! NSMutableSet
+        // See also http://stackoverflow.com/questions/24222644/swift-compiler-segmentation-fault-when-building
+
+        let initialSetValue = self.initialValue as! NSMutableSet
+        let copy = NSMutableSet(set: initialSetValue);
+        return copy
     }
 }
 
 // A mutable dictionary, but being consistent with other names in this file.
-public class SMPersistItemDict : SMPersistItem, SMMutableDictionaryDelegate {
+open class SMPersistItemDict : SMPersistItem, SMMutableDictionaryDelegate {
     
     // The elements of your dictionaries should abide by NSCoding.
     public init(name:String!, initialDictValue:NSDictionary!, persistType:SMPersistVarType) {
         let dict = SMMutableDictionary(dictionary: initialDictValue)
-        Log.msg("\(NSStringFromClass(dict.dynamicType))")
+        Log.msg("\(NSStringFromClass(type(of: dict)))")
         super.init(name: name, initialValue:dict, persistType:persistType)
         dict.delegate = self
         self.isMutable = true
         
         // SMMutableDictionary has specific archive/unarchive methods.
         
-        self.archiveValueMethod = { (value:AnyObject!) -> NSData? in
+        self.archiveValueMethod = { (value:AnyObject?) -> Data? in
             let dict = value as! SMMutableDictionary
             let data = dict.archive()
             return data
         }
         
-        self.unarchiveValueMethod = { (data:NSData!) -> AnyObject? in
-            let dict = SMMutableDictionary.unarchiveFromData(data)
+        self.unarchiveValueMethod = { (data:Data?) -> AnyObject? in
+            if nil == data {
+                return nil
+            }
+            let dict = SMMutableDictionary.unarchive(from: data!)
             return dict
         }
         
@@ -369,17 +391,17 @@ public class SMPersistItemDict : SMPersistItem, SMMutableDictionaryDelegate {
     // MARK: SMMutableDictionaryDelegate method
     
     // I don't really want this to be public but Swift says it has to be -- only for use by the delegate. Pretty please.
-    public func dictionaryWasChanged(dictionary:SMMutableDictionary) {
+    open func dictionaryWasChanged(_ dictionary:SMMutableDictionary) {
         // dictionary gives the *updated* dictionary that must be saved.
         self.dictValue = dictionary
     }
     
     // MARK: End SMMutableDictionaryDelegate method
     
-    public var dictValue:NSMutableDictionary! {
+    open var dictValue:NSMutableDictionary! {
         get {
             let dict = self.cachedOrArchivedValue as! SMMutableDictionary
-            Log.msg("\(NSStringFromClass(dict.dynamicType))")
+            Log.msg("\(NSStringFromClass(type(of: dict)))")
             dict.delegate = self
             return dict
         }
@@ -391,14 +413,14 @@ public class SMPersistItemDict : SMPersistItem, SMMutableDictionaryDelegate {
         }
     }
     
-    public var dictDefault:NSMutableDictionary {
+    open var dictDefault:NSMutableDictionary {
         let dict = SMMutableDictionary(dictionary: self.initialValue as! NSMutableDictionary)
         dict.delegate = self
         return dict
     }
 }
 
-public class SMPersistItemArray : SMPersistItem {
+open class SMPersistItemArray : SMPersistItem {
     
     // The sets you give here should have elements abiding by NSCoding. 
     public init(name:String!, initialArrayValue:NSMutableArray!, persistType:SMPersistVarType) {
@@ -407,7 +429,7 @@ public class SMPersistItemArray : SMPersistItem {
     }
     
     // Note that each time this is called/used, it retrieves the value from NSUserDefaults or the KeyChain
-    private var theArrayValue:NSMutableArray {
+    fileprivate var theArrayValue:NSMutableArray {
         return self.cachedOrArchivedValue as! NSMutableArray
     }
     
@@ -418,30 +440,30 @@ public class SMPersistItemArray : SMPersistItem {
         return UInt(theArrayValue.count)
     }
     
-    func objectInArrayValueWrapperAtIndex(index:UInt) -> AnyObject {
-        return theArrayValue.objectAtIndex(Int(index))
+    func objectInArrayValueWrapperAtIndex(_ index:UInt) -> AnyObject {
+        return theArrayValue.object(at: Int(index)) as AnyObject
     }
     
     // -insertObject:in<Key>AtIndex:
-    func insertObject(object: AnyObject, inArrayValueWrapperAtIndex index:UInt) {
+    func insertObject(_ object: AnyObject, inArrayValueWrapperAtIndex index:UInt) {
         let array = theArrayValue
-        array.insertObject(object, atIndex: Int(index))
-        self.savePersistentValue(array)
+        array.insert(object, at: Int(index))
+        let _ = self.savePersistentValue(array)
     }
     
     // -removeObjectFrom<Key>AtIndex:
-    func removeObjectFromArrayValueWrapperAtIndex(index:UInt) {
+    func removeObjectFromArrayValueWrapperAtIndex(_ index:UInt) {
         let array = theArrayValue
-        array.removeObjectAtIndex(Int(index))
-        self.savePersistentValue(array)
+        array.removeObject(at: Int(index))
+        let _ = self.savePersistentValue(array)
     }
     
     //MARK: End proxy methods
     
-    public var arrayValue:NSMutableArray {
+    open var arrayValue:NSMutableArray {
         get {
             // Return the proxy object. The proxy methods are named as, for example, add<Key>Object where key is SetValueWrapper, which is the key below, but with the first letter capitalized.
-            return self.mutableArrayValueForKey("arrayValueWrapper")
+            return self.mutableArrayValue(forKey: "arrayValueWrapper")
         }
         
         set {
@@ -449,29 +471,36 @@ public class SMPersistItemArray : SMPersistItem {
         }
     }
     
-    public var arrayDefault:NSMutableArray {
-        return self.initialValue.mutableCopy() as! NSMutableArray
+    open var arrayDefault:NSMutableArray {
+        // 12/1/16; This was giving a compiler crash here until I fiddled with this.
+        // Original code:
+        // return self.initialValue.mutableCopy() as! NSMutableArray
+        // See also: http://stackoverflow.com/questions/24222644/swift-compiler-segmentation-fault-when-building
+        
+        let arrayInitialValue = self.initialValue as! NSMutableArray
+        let copy = NSMutableArray(array: arrayInitialValue);
+        return copy
     }
 }
 
-@objc public class SMPersistVars : NSObject {
+@objc open class SMPersistVars : NSObject {
     // Singleton class.
-    private static let theSession = SMPersistVars()
+    fileprivate static let theSession = SMPersistVars()
     
     // I have this as a class function and not a public static property to enable access from Objective-C
-    public class func session() -> SMPersistVars {
+    open class func session() -> SMPersistVars {
         return self.theSession
     }
     
     // The names of all the defaults. Just held in RAM so we can do a reset of all of the items stored in NSUserDefaults and KeyChain if needed.
-    private var userDefaultNames = Set<String>()
-    private var keyChainNames = Set<String>()
+    fileprivate var userDefaultNames = Set<String>()
+    fileprivate var keyChainNames = Set<String>()
 
-    private override init() {
+    fileprivate override init() {
         super.init()
     }
     
-    public func reset() {
+    open func reset() {
         for name in self.userDefaultNames {
             self.resetUserDefaults(name)
         }
@@ -483,39 +512,39 @@ public class SMPersistItemArray : SMPersistItem {
         }
     }
     
-    private func resetUserDefaults(name:String) {
-        NSUserDefaults.standardUserDefaults().removeObjectForKey(name)
+    fileprivate func resetUserDefaults(_ name:String) {
+        UserDefaults.standard.removeObject(forKey: name)
         self.saveUserDefaults()
     }
     
-    private func saveUserDefaults() {
-        NSUserDefaults.standardUserDefaults().synchronize()
+    fileprivate func saveUserDefaults() {
+        UserDefaults.standard.synchronize()
     }
     
-    private func resetKeyChain(name:String) {
-        if !KeyChain.removeSecureTokenForService(name, account: KEYCHAIN_ACCOUNT) {
+    fileprivate func resetKeyChain(_ name:String) {
+        if !KeyChain.removeSecureToken(forService: name, account: KEYCHAIN_ACCOUNT) {
             Log.msg("Failed on removeSecureTokenForService: name: \(name); account: \(KEYCHAIN_ACCOUNT)")
         }
     }
 }
 
 // NSObject so I can access from Obj-C
-public class SMPersistVarTest : NSObject {
+open class SMPersistVarTest : NSObject {
 #if DEBUG
-    static let TEST_BOOL = SMPersistItemBool(name: "TestBool", initialBoolValue:true, persistType: .UserDefaults)
+    static let TEST_BOOL = SMPersistItemBool(name: "TestBool", initialBoolValue:true, persistType: .userDefaults)
     static let TEST_INT = SMPersistItemInt(name: "TestInt", initialIntValue:0,
-        persistType: .UserDefaults)
-    static let TEST_SET = SMPersistItemSet(name: "TestSet", initialSetValue:NSMutableSet(), persistType: .UserDefaults)
-    static let TEST_STRING = SMPersistItemString(name: "TestString", initialStringValue:"", persistType: .UserDefaults)
-    static let TEST_DICT = SMPersistItemDict(name: "TestDict", initialDictValue:[:], persistType: .UserDefaults)
-    static let TEST_DICT2 = SMPersistItemDict(name: "TestDict2", initialDictValue:[:], persistType: .UserDefaults)
+        persistType: .userDefaults)
+    static let TEST_SET = SMPersistItemSet(name: "TestSet", initialSetValue:NSMutableSet(), persistType: .userDefaults)
+    static let TEST_STRING = SMPersistItemString(name: "TestString", initialStringValue:"", persistType: .userDefaults)
+    static let TEST_DICT = SMPersistItemDict(name: "TestDict", initialDictValue:[:], persistType: .userDefaults)
+    static let TEST_DICT2 = SMPersistItemDict(name: "TestDict2", initialDictValue:[:], persistType: .userDefaults)
     
-    static let TEST_BOOL_KEYCHAIN = SMPersistItemBool(name: "TestBool", initialBoolValue:true, persistType: .KeyChain)
+    static let TEST_BOOL_KEYCHAIN = SMPersistItemBool(name: "TestBool", initialBoolValue:true, persistType: .keyChain)
     static let TEST_INT_KEYCHAIN = SMPersistItemInt(name: "TestInt", initialIntValue:0,
-        persistType: .KeyChain)
-    static let TEST_SET_KEYCHAIN = SMPersistItemSet(name: "TestSet", initialSetValue:NSMutableSet(), persistType: .KeyChain)
-    static let TEST_STRING_KEYCHAIN = SMPersistItemString(name: "TestString", initialStringValue:"", persistType: .KeyChain)
-    static let TEST_DICT_KEYCHAIN = SMPersistItemDict(name: "TestDict", initialDictValue:[:], persistType: .KeyChain)
+        persistType: .keyChain)
+    static let TEST_SET_KEYCHAIN = SMPersistItemSet(name: "TestSet", initialSetValue:NSMutableSet(), persistType: .keyChain)
+    static let TEST_STRING_KEYCHAIN = SMPersistItemString(name: "TestString", initialStringValue:"", persistType: .keyChain)
+    static let TEST_DICT_KEYCHAIN = SMPersistItemDict(name: "TestDict", initialDictValue:[:], persistType: .keyChain)
     
     private enum TestType {
         case JustPrint
@@ -550,15 +579,15 @@ public class SMPersistVarTest : NSObject {
         case .ChangeValues:
             self.TEST_BOOL.boolValue = false
             self.TEST_INT.intValue += 1
-            self.TEST_SET.setValue.addObject(NSDate())
+            self.TEST_SET.setValue.add(NSDate())
             self.TEST_STRING.stringValue = "New user defaults string"
             self.TEST_DICT.dictValue["someKey"] = "someValue"
             self.TEST_DICT2.dictValue["someKey"] = true
-            testChangeVar(self.TEST_DICT2)
+            testChangeVar(dictVar: self.TEST_DICT2)
             Log.msg("\(self.TEST_DICT2.dictValue)")
             self.TEST_BOOL_KEYCHAIN.boolValue = false
             self.TEST_INT_KEYCHAIN.intValue = 10
-            self.TEST_SET_KEYCHAIN.setValue.addObject("new")
+            self.TEST_SET_KEYCHAIN.setValue.add("new")
             self.TEST_STRING_KEYCHAIN.stringValue = "New keychain string"
             self.TEST_DICT_KEYCHAIN.dictValue["someKey"] = "someValue"
             
@@ -576,7 +605,7 @@ public class SMPersistVarTest : NSObject {
             self.TEST_DICT_KEYCHAIN.reset()
         }
         
-        printValues("after")
+        printValues(messagePrefix: "after")
     }
     
     class func testChangeVar(dictVar:SMPersistItemDict) {
