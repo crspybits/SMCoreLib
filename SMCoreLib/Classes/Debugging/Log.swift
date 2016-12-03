@@ -7,11 +7,18 @@
 //
 
 import Foundation
+import SwiftyBeaver
 
 // See http://stackoverflow.com/questions/24114288/macros-in-swift
 // And http://stackoverflow.com/questions/24048430/logging-method-signature-using-swift/31737561#31737561
 
 open class Log {
+    fileprivate let log = SwiftyBeaver.self
+    fileprivate let console = ConsoleDestination()  // log to Xcode Console
+    // let file = FileDestination()  // log to default swiftybeaver.log file
+    // let cloud = SBPlatformDestination(appID: "foo", appSecret: "bar", encryptionKey: "123") // to cloud
+    fileprivate static let session = Log()
+
     // In the default arguments to these functions:
     // 1) If I use a String type, the macros (e.g., __LINE__) don't expand at run time.
     //  "\(__FUNCTION__)\(__FILE__)\(__LINE__)"
@@ -22,6 +29,10 @@ open class Log {
     // 3) This String = __FUNCTION__ + __FILE__
     //  also doesn't work.
     
+    fileprivate init() {
+        self.log.addDestination(console)
+    }
+    
     open class func redirectConsoleLogToDocumentFolder(clearRedirectLog:Bool) {
         LogFile.redirectConsoleLog(toDocumentFolder: clearRedirectLog)
     }
@@ -31,10 +42,7 @@ open class Log {
     // http://stackoverflow.com/questions/24041554/how-can-i-output-to-stderr-with-swift
     
     fileprivate class func logIt(_ string:String) {
-        if UIDevice.beingDebugged() {
-            // When attached to the debugger, print goes to the console.
-            print(string)
-        } else {
+        if !UIDevice.beingDebugged() {
             // When not attached to the debugger, this assumes we've redirected stderr to a file.
             fputs(string, stderr)
         }
@@ -44,8 +52,9 @@ open class Log {
         functionName:  String = #function, fileNameWithPath: String = #file, lineNumber: Int = #line ) {
 
 #if DEBUG
-        let output = self.formatLogString(message, loggingColor: .blue, functionName: functionName, fileNameWithPath: fileNameWithPath, lineNumber: lineNumber)
+        let output = self.formatLogString(message, functionName: functionName, fileNameWithPath: fileNameWithPath, lineNumber: lineNumber)
         logIt(output)
+        self.session.log.verbose(output)
 #endif
     }
     
@@ -53,8 +62,9 @@ open class Log {
     open class func error(_ message: String,
         functionName:  String = #function, fileNameWithPath: String = #file, lineNumber: Int = #line ) {
 #if DEBUG
-        let output = self.formatLogString(message, loggingColor: .red, functionName: functionName, fileNameWithPath: fileNameWithPath, lineNumber: lineNumber)
+        let output = self.formatLogString(message, functionName: functionName, fileNameWithPath: fileNameWithPath, lineNumber: lineNumber)
         logIt(output)
+        self.session.log.error(output)
 #endif
     }
     
@@ -62,8 +72,9 @@ open class Log {
     open class func warning(_ message: String,
         functionName:  String = #function, fileNameWithPath: String = #file, lineNumber: Int = #line ) {
 #if DEBUG
-        let output = self.formatLogString(message, loggingColor: .pink, functionName: functionName, fileNameWithPath: fileNameWithPath, lineNumber: lineNumber)
+        let output = self.formatLogString(message, functionName: functionName, fileNameWithPath: fileNameWithPath, lineNumber: lineNumber)
         logIt(output)
+        self.session.log.warning(output)
 #endif
     }
     
@@ -71,11 +82,13 @@ open class Log {
     open class func special(_ message: String,
         functionName:  String = #function, fileNameWithPath: String = #file, lineNumber: Int = #line ) {
 #if DEBUG
-        let output = self.formatLogString(message, loggingColor: .purple, functionName: functionName, fileNameWithPath: fileNameWithPath, lineNumber: lineNumber)
+        let output = self.formatLogString(message, functionName: functionName, fileNameWithPath: fileNameWithPath, lineNumber: lineNumber)
         logIt(output)
+        self.session.log.info(output)
 #endif
     }
 
+    /*
     fileprivate enum SMLoggingColor {
         case red
         case yellow // Can't read this on a white background
@@ -84,34 +97,14 @@ open class Log {
         case pink
         case none
     }
+    */
     
-    fileprivate class func formatLogString(_ message: String, loggingColor:SMLoggingColor,
+    fileprivate class func formatLogString(_ message: String,
         functionName:  String, fileNameWithPath: String, lineNumber: Int) -> String {
 
         let fileNameWithoutPath = (fileNameWithPath as NSString).lastPathComponent
-        var possiblyColoredMessage:String
-            
-        switch (loggingColor) {
-            case .red:
-                possiblyColoredMessage = SMColorLog.red(message)
-            
-            case .blue:
-                possiblyColoredMessage = SMColorLog.blue(message)
-            
-            case .yellow:
-                possiblyColoredMessage = SMColorLog.yellow(message)
-            
-            case .purple:
-                possiblyColoredMessage = SMColorLog.purple(message)
-            
-            case .pink:
-                possiblyColoredMessage = SMColorLog.pink(message)
-
-            case .none:
-                possiblyColoredMessage = message
-        }
-            
-        let output = "\(Date()): \(possiblyColoredMessage) [\(functionName) in \(fileNameWithoutPath), line \(lineNumber)]"
+        
+        let output = "\(Date()): \(message) [\(functionName) in \(fileNameWithoutPath), line \(lineNumber)]"
 
         return output
     }
@@ -124,18 +117,21 @@ open class Log {
             
 #if DEBUG
         // Log this in red because we typically log to a file because something important or bad has happened.
-        output = self.formatLogString(message, loggingColor: .red, functionName: functionName, fileNameWithPath: fileNameWithPath, lineNumber: lineNumber)
+        output = self.formatLogString(message, functionName: functionName, fileNameWithPath: fileNameWithPath, lineNumber: lineNumber)
         logIt(output)
+        self.session.log.error(output)
 #endif
         
-        output = self.formatLogString(message, loggingColor: .none, functionName: functionName, fileNameWithPath: fileNameWithPath, lineNumber: lineNumber)
+        output = self.formatLogString(message, functionName: functionName, fileNameWithPath: fileNameWithPath, lineNumber: lineNumber)
         LogFile.write(output + "\n")
     }
 }
 
 // From https://github.com/robbiehanson/XcodeColors
 // Use this with XcodeColors plugin.
+// Now defunct due to Xcode 8's lack of plugin support.
 
+/*
 struct SMColorLog {
     static let ESCAPE = "\u{001b}["
     
@@ -171,3 +167,4 @@ struct SMColorLog {
         return "\(ESCAPE)fg0,255,255;\(object)\(RESET)"
     }
 }
+*/

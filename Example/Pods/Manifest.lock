@@ -16,10 +16,12 @@ PODS:
     - AFNetworking/NSURLSession
   - HPTextViewTapGestureRecognizer (0.1)
   - Reachability (3.2)
-  - SMCoreLib (0.0.13):
+  - SMCoreLib (0.0.14):
     - AFNetworking
     - HPTextViewTapGestureRecognizer (~> 0.1)
     - Reachability
+    - SwiftyBeaver
+  - SwiftyBeaver (1.1.1)
 
 DEPENDENCIES:
   - SMCoreLib (from `../`)
@@ -32,7 +34,8 @@ SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   HPTextViewTapGestureRecognizer: 6a73fd09f858e49a2743c3a338dc5c0791b0fae0
   Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
-  SMCoreLib: b09a6ded92584608122c61691aabdb87edd54532
+  SMCoreLib: ce5de517d0477f4fbb0e2fecd76cd931d1fb6d64
+  SwiftyBeaver: 2b68694df862381235e32bcfc4ec991e26bf131d
 
 PODFILE CHECKSUM: 225886903fb8ee7ec53cd6e817c1c17c324b5cc0
 

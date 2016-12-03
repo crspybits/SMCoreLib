@@ -1,6 +1,6 @@
 {
   "name": "SMCoreLib",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "summary": "Spastic Muffin Core Library for iOS",
   "description": "Objective-C and Swift classes to support Spastic Muffin code.",
   "homepage": "https://github.com/crspybits/SMCoreLib.git",
@@ -16,7 +16,7 @@
   },
   "source": {
     "git": "https://github.com/crspybits/SMCoreLib.git",
-    "tag": "0.0.13"
+    "tag": "0.0.14"
   },
   "source_files": "SMCoreLib/Classes/**/*.{h,m,swift}",
   "resources": "SMCoreLib/Assets/*.xcassets",
@@ -33,6 +33,9 @@
       "~> 0.1"
     ],
     "Reachability": [
+
+    ],
+    "SwiftyBeaver": [
 
     ]
   }
