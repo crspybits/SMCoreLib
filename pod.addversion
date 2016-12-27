@@ -1,16 +1,18 @@
-# validate the pod, without downloading
+# 1) Update the .podspec with the new version number
+
+# 2) validate the pod, without downloading
 pod lib lint --sources="https://github.com/crspybits/Specs.git,https://github.com/CocoaPods/Specs.git" --allow-warnings
 
-# and then push updated revision of pod to its repo
+# 3) then push updated revision of pod to its repo
 
-git add -A && git commit -m "Release 0.0.16: Added PlistDictLoader class and tests"
-git tag '0.0.16'
+git add -A && git commit -m "Release 0.0.17: Updated podspec"
+git tag '0.0.17'
 git push --tags
 
-# validate the pod, with downloading
+# 4) validate the pod, with downloading
 pod spec lint --allow-warnings
 
-# Then, to push my podspec to my Specs repo:
+# 5) Then, to push my podspec to my Specs repo:
 # See also: ls ~/.cocoapods/repos/
 # These need to be done from the relevant directory, e.g., SMCoreLib
 
