@@ -11,8 +11,10 @@ import Foundation
 open class PlistDictLoader {
     
     public enum PlistDictLoaderError : Error {
-    case fileNotFound
-    case requiredVarNotFound
+    case fileNotFound(name:String)
+    case requiredVarNotFound(key:String)
+    case requiredStringVarNotFound(key:String)
+    case requiredIntVarNotFound(key:String)
     }
     
     private let plistDict:NSDictionary!
@@ -25,7 +27,7 @@ open class PlistDictLoader {
         plistDict = NSDictionary(contentsOfFile: plistPath)
         
         if plistDict == nil {
-            throw PlistDictLoaderError.fileNotFound
+            throw PlistDictLoaderError.fileNotFound(name: plistPath)
         }
     }
     
@@ -61,7 +63,21 @@ open class PlistDictLoader {
             return result
         }
         else {
-            throw PlistDictLoaderError.requiredVarNotFound
+            throw PlistDictLoaderError.requiredVarNotFound(key: varName)
         }
+    }
+    
+    open func getInt(varName key:String) throws -> Int {
+        if case .intValue(let intValue) = try self.getRequired(varName: key) {
+            return intValue
+        }
+        throw PlistDictLoaderError.requiredIntVarNotFound(key: key)
+    }
+    
+    open func getString(varName key:String) throws -> String {
+        if case .stringValue(let strValue) = try self.getRequired(varName: key) {
+            return strValue
+        }
+        throw PlistDictLoaderError.requiredStringVarNotFound(key: key)
     }
 }
