@@ -302,21 +302,28 @@ static CoreData* s_sharedInstance = nil;
     return managedObjectContext;
 }
 
+- (NSURL *) getModelURLForBundleResource: (NSString *) modelResource from: (NSBundle *) bundle;
+{
+    NSURL *modelURL = [bundle URLForResource:modelResource withExtension:@"mom"];
+    
+    // CGP; 5/5/16; I've no clue why, but today, "mom" isn't working for an example app, but "momd" is!
+    if (!modelURL) {
+        modelURL = [bundle URLForResource:modelResource withExtension:@"momd"];
+    }
+    
+    return modelURL;
+}
+
 // Returns the managed object model for the application.
 // If the model doesn't already exist, it is created from the application's model.
 - (NSManagedObjectModel *)managedObjectModelForBundleResource: (NSString *) modelResource withBundle: (NSBundle *) modelBundle;
 {
     // Check if first if we can find the model in the main bundle.
-    NSURL *modelURL = [[NSBundle mainBundle] URLForResource:modelResource withExtension:@"mom"];
-    
-    // CGP; 5/5/16; I've no clue why, but today, "mom" isn't working for an example app, but "momd" is!
-    if (!modelURL) {
-        modelURL = [[NSBundle mainBundle] URLForResource:modelResource withExtension:@"momd"];
-    }
-    
+    NSURL *modelURL = [self getModelURLForBundleResource:modelResource from:[NSBundle mainBundle]];
+
     if (!modelURL && modelBundle) {
         // This is how I'm locating the CoreData model for my custom framework-- relative to the framework viewed as a bundle.
-        modelURL = [modelBundle URLForResource:modelResource withExtension:@"mom"];
+        modelURL = [self getModelURLForBundleResource:modelResource from:modelBundle];
     }
     
     AssertIf(nil == modelURL, "YIKES: modelURL is nil: Couldn't find your Core Data model!")
