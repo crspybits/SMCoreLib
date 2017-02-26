@@ -2,7 +2,7 @@ import UIKit
 import XCTest
 import SMCoreLib
 
-class Tests: XCTestCase {
+class PlistTests: XCTestCase {
     
     override func setUp() {
         super.setUp()

@@ -14,6 +14,7 @@
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		607FACEC1AFB9204008FA782 /* TestPlistLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* TestPlistLoader.swift */; };
+		835C60AE1E62B16F003E9AF8 /* SMRelativeLocalURLTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 835C60AD1E62B16F003E9AF8 /* SMRelativeLocalURLTests.swift */; };
 		836D4BE81E11F400005209F2 /* Test.plist in Resources */ = {isa = PBXBuildFile; fileRef = 836D4BE71E11F400005209F2 /* Test.plist */; };
 		8374BED51D2B474D00A88F92 /* TestObjc.m in Sources */ = {isa = PBXBuildFile; fileRef = 8374BED41D2B474D00A88F92 /* TestObjc.m */; };
 		D49C61248AE65E274D9B5B7D /* Pods_SMCoreLib_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D6898309ABC01933A8E4878 /* Pods_SMCoreLib_Example.framework */; };
@@ -45,6 +46,7 @@
 		728E304308F245C0E18096C9 /* Pods-SMCoreLib_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SMCoreLib_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-SMCoreLib_Example/Pods-SMCoreLib_Example.release.xcconfig"; sourceTree = "<group>"; };
 		740BC94FD6298943D5F2A68A /* Pods-SMCoreLib_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SMCoreLib_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SMCoreLib_Tests/Pods-SMCoreLib_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		75041B25A2439372636A4803 /* Pods_SMCoreLib_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SMCoreLib_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		835C60AD1E62B16F003E9AF8 /* SMRelativeLocalURLTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMRelativeLocalURLTests.swift; sourceTree = "<group>"; };
 		836D4BE71E11F400005209F2 /* Test.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Test.plist; sourceTree = "<group>"; };
 		8374BED21D2B474C00A88F92 /* SMCoreLib_Example-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SMCoreLib_Example-Bridging-Header.h"; sourceTree = "<group>"; };
 		8374BED31D2B474D00A88F92 /* TestObjc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestObjc.h; sourceTree = "<group>"; };
@@ -144,6 +146,7 @@
 		607FACE81AFB9204008FA782 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				835C60AD1E62B16F003E9AF8 /* SMRelativeLocalURLTests.swift */,
 				607FACEB1AFB9204008FA782 /* TestPlistLoader.swift */,
 				607FACE91AFB9204008FA782 /* Supporting Files */,
 			);
@@ -383,6 +386,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				607FACEC1AFB9204008FA782 /* TestPlistLoader.swift in Sources */,
+				835C60AE1E62B16F003E9AF8 /* SMRelativeLocalURLTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

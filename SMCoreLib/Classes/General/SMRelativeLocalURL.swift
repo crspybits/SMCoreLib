@@ -64,7 +64,7 @@ open class SMRelativeLocalURL : NSURL {
     }
 
     required public init?(coder aDecoder: NSCoder) {
-        let rawValue = aDecoder.decodeObject(forKey: "localBaseURLType") as! Int
+        let rawValue = aDecoder.decodeInteger(forKey: "localBaseURLType") as! Int
         self._localBaseURLType = BaseURLType(rawValue: rawValue)!
         
         let relativePath = aDecoder.decodeObject(forKey: "relativePath") as! String
@@ -88,6 +88,7 @@ open class SMRelativeLocalURL : NSURL {
     
     open override func encode(with aCoder: NSCoder) {
         super.encode(with: aCoder)
+        let tmp = self._localBaseURLType.rawValue
         aCoder.encode(self._localBaseURLType.rawValue, forKey: "localBaseURLType")
         aCoder.encode(self.relativePath, forKey: "relativePath")
     }
