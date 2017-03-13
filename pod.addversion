@@ -5,8 +5,8 @@ pod lib lint --sources="https://github.com/crspybits/Specs.git,https://github.co
 
 # 3) then push updated revision of pod to its repo
 
-git add -A && git commit -m "Release 0.0.19: Fixed bug in archiving/unarchiving of SMRelativeLocalURL's."
-git tag 0.0.20
+git add -A && git commit -m "Release 0.0.21: Fixed file name extension issue and added parameter to delegate method."
+git tag 0.0.21
 git push --tags
 
 # 4) validate the pod, with downloading
