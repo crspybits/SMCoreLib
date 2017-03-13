@@ -17,7 +17,7 @@ public protocol SMAcquireImageDelegate : class {
     func smAcquireImageURLForNewImage(_ acquireImage:SMAcquireImage) -> SMRelativeLocalURL
 
     // Called after the image is acquired.
-    func smAcquireImage(_ acquireImage:SMAcquireImage, newImageURL: SMRelativeLocalURL)
+    func smAcquireImage(_ acquireImage:SMAcquireImage, newImageURL: SMRelativeLocalURL, mimeType:String)
 }
 
 open class SMAcquireImage : NSObject {
@@ -108,7 +108,7 @@ extension SMAcquireImage : UIImagePickerControllerDelegate, UINavigationControll
         }
         
         if success {
-            self.delegate.smAcquireImage(self, newImageURL: newFileURL!)
+            self.delegate.smAcquireImage(self, newImageURL: newFileURL!, mimeType:"image/jpeg")
         }
         
         self._acquiringImage = false

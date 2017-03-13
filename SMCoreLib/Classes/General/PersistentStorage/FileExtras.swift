@@ -10,7 +10,7 @@ import Foundation
 
 open class FileExtras {
     open static let defaultDirectoryPath = "LargeImages"
-    open static let defaultFileExtension = ".jpg"
+    open static let defaultFileExtension = "jpg"
     open static let defaultFilePrefix = "img"
     
     // Change these if you want.
