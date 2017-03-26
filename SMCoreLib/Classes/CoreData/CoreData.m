@@ -48,6 +48,7 @@ const NSString *CoreDataBundleModelName = @"CoreDataModelName";
 const NSString *CoreDataSqlliteFileName = @"CoreDataSqliteFileName";
 const NSString *CoreDataSqlliteBackupFileName = @"CoreDataSqliteBackupFileName";
 const NSString *CoreDataModelBundle = @"CoreDataModelBundle";
+const NSString * CoreDataPrivateQueue = @"CoreDataPrivateQueue";
 
 // See [1] below.
 /*
@@ -79,7 +80,7 @@ const NSString *CoreDataModelBundle = @"CoreDataModelBundle";
 @property (strong, nonatomic) NSObject<TargetsAndSelectors> *didUpdateObjects;
 @property (strong, nonatomic) NSObject<TargetsAndSelectors> *didInsertObjects;
 
-@property (nonatomic, strong) NSDictionary *dictNames;
+@property (nonatomic, strong) NSDictionary *options;
 @end
 
 @implementation CoreData
@@ -87,16 +88,16 @@ const NSString *CoreDataModelBundle = @"CoreDataModelBundle";
 
 - (NSURL *) sqliteURL {
     if (!_sqliteURL) {
-        SPASLogDetail(@"%@", self.dictNames[COREDATA_SQLITE_FILE_NAME]);
-        _sqliteURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:self.dictNames[COREDATA_SQLITE_FILE_NAME]];
+        SPASLogDetail(@"%@", self.options[COREDATA_SQLITE_FILE_NAME]);
+        _sqliteURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:self.options[COREDATA_SQLITE_FILE_NAME]];
     }
     return _sqliteURL;
 }
 
 - (NSURL *) sqliteBackupURL {
     if (!_sqliteBackupURL) {
-        SPASLogDetail(@"%@", self.dictNames[COREDATA_SQLITE_BACKUP_FILE_NAME]);
-        _sqliteBackupURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:self.dictNames[COREDATA_SQLITE_BACKUP_FILE_NAME]];
+        SPASLogDetail(@"%@", self.options[COREDATA_SQLITE_BACKUP_FILE_NAME]);
+        _sqliteBackupURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:self.options[COREDATA_SQLITE_BACKUP_FILE_NAME]];
     }
     return _sqliteBackupURL;
 }
@@ -132,7 +133,7 @@ const NSString *CoreDataModelBundle = @"CoreDataModelBundle";
 }
 
 - (void) setupWithMigrationOptions: (NSDictionary *) migrationOptions {
-    self.managedObjectModel = [self managedObjectModelForBundleResource:self.dictNames[COREDATA_BUNDLE_MODEL_NAME] withBundle:self.dictNames[COREDATA_MODEL_BUNDLE]];
+    self.managedObjectModel = [self managedObjectModelForBundleResource:self.options[COREDATA_BUNDLE_MODEL_NAME] withBundle:self.options[COREDATA_MODEL_BUNDLE]];
     if (!self.managedObjectModel) {
         [self errorWithMessage: @"No managed object model"];
         return;
@@ -144,7 +145,7 @@ const NSString *CoreDataModelBundle = @"CoreDataModelBundle";
         return;
     }
     
-    if (! [self addSqliteFileTo:_persistentStoreCoordinator withSqliteFileName:self.dictNames[COREDATA_SQLITE_FILE_NAME] andOptions:migrationOptions]) {
+    if (! [self addSqliteFileTo:_persistentStoreCoordinator withSqliteFileName:self.options[COREDATA_SQLITE_FILE_NAME] andOptions:migrationOptions]) {
         [self errorWithMessage: @"Could not add sqlite file to coordinator"];
         return;
     }
@@ -159,7 +160,7 @@ const NSString *CoreDataModelBundle = @"CoreDataModelBundle";
 }
 
 // the selector will be called when an NSManagedObject is deleted; it has a parameter of an NSSet of managed objects.
-- (instancetype) initWithNamesDictionary: (NSDictionary *) dictionary;
+- (instancetype) initWithOptions: (NSDictionary *) dictionary;
 {
     self = [super init];
     if (self) {
@@ -167,7 +168,7 @@ const NSString *CoreDataModelBundle = @"CoreDataModelBundle";
         AssertIf(!dictionary[COREDATA_SQLITE_FILE_NAME], @"Core Data Sqlite File Name");
         AssertIf(!dictionary[COREDATA_SQLITE_BACKUP_FILE_NAME], @"Core Data Sqlite Backup File name");
     
-        self.dictNames = dictionary;
+        self.options = dictionary;
     
         // Check to see if there is any .sqllite file. If there is none, then presumably we are starting for the first time.
 
@@ -270,16 +271,14 @@ static CoreData* s_sharedInstance = nil;
     [self saveContext];
 }
 
-- (BOOL)saveContext
+- (BOOL)saveContext: (NSError **) error;
 {
-    NSError *error = nil;
-    
     if (self.managedObjectContext != nil) {
-        SPASLog(@"CoreDataViewController.saveContext: %d", [self.managedObjectContext hasChanges]);
+        SPASLog(@"CoreData.saveContext: %d", [self.managedObjectContext hasChanges]);
         if ([self.managedObjectContext hasChanges] && ![self.managedObjectContext save:&error]) {
             // Replace this implementation with code to handle the error appropriately.
             // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-            NSString *message = [NSString stringWithFormat:@"Unresolved error %@, %@", error, [error userInfo]];
+            NSString *message = [NSString stringWithFormat:@"Unresolved error %@, %@", *error, [*error userInfo]];
             SPASLogFile(@"%@", message);
             [self errorWithMessage: message];
             return NO;
@@ -290,12 +289,28 @@ static CoreData* s_sharedInstance = nil;
     return NO;
 }
 
+- (BOOL)saveContext;
+{
+    NSError *error = nil;
+    BOOL result = [self saveContext:&error];
+    return result;
+}
+
 // Returns the managed object context for the application.
 // If the context doesn't already exist, it is created and bound to the persistent store coordinator for the application.
 - (NSManagedObjectContext *)managedObjectContextWith: (NSPersistentStoreCoordinator *) persistentStoreCoordinator
 {
-    NSManagedObjectContext *managedObjectContext =
-        [[NSManagedObjectContext alloc] init];
+    NSManagedObjectContext *managedObjectContext;
+    
+    if (self.options[COREDATA_PRIVATE_QUEUE]
+        && ([self.options[COREDATA_PRIVATE_QUEUE] boolValue] == YES)) {
+        managedObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
+    }
+    else {
+        // This is old, but maintains backward compatiblity with previous versions of tje CoreData class.
+        managedObjectContext = [[NSManagedObjectContext alloc] init];
+    }
+    
     [managedObjectContext setPersistentStoreCoordinator:persistentStoreCoordinator];
     
     SPASLog(@"CoreData.managedObjectContextForSqliteFile: %@", managedObjectContext);
@@ -455,8 +470,8 @@ static CoreData* s_sharedInstance = nil;
 {
     if (error) *error = nil;
     
-    SPASLogDetail(@"entityName: %@", entityName);
-    SPASLogDetail(@"dict: %@", self.dictNames);
+    // SPASLogDetail(@"entityName: %@", entityName);
+    // SPASLogDetail(@"dict: %@", self.options);
     AssertIf([entityName length] == 0, @"No entity name given!");
     
     NSFetchRequest *fetchRequest = [self fetchRequestWithEntityName:entityName modifyingFetchRequestWith:fetchRequestModifier];
@@ -548,6 +563,11 @@ static NSMutableDictionary *sessions = nil;
     AssertIf(nil == result, @"Yikes: No CoreData session for: %@", sessionName);
     
     return result;
+}
+
+- (void) performAndWait: (nonnull void (^)(void ) )  block;
+{
+    [self.managedObjectContext performBlockAndWait:block];
 }
 
 @end
