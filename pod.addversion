@@ -5,8 +5,8 @@ pod lib lint --sources="https://github.com/crspybits/Specs.git,https://github.co
 
 # 3) then push updated revision of pod to its repo
 
-git add -A && git commit -m "Release 0.0.22: Added flexibility for Core Data concurrency."
-git tag 0.0.22
+git add -A && git commit -m "Release 0.0.23: Added flexibility for Core Data concurrency."
+git tag 0.0.24
 git push --tags
 
 # 4) validate the pod, with downloading

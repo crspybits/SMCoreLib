@@ -271,7 +271,7 @@ static CoreData* s_sharedInstance = nil;
     [self saveContext];
 }
 
-- (BOOL)saveContext: (NSError **) error;
+- (BOOL) saveContextWithError: (NSError * _Nullable * _Nullable) error;
 {
     if (self.managedObjectContext != nil) {
         SPASLog(@"CoreData.saveContext: %d", [self.managedObjectContext hasChanges]);
@@ -292,7 +292,7 @@ static CoreData* s_sharedInstance = nil;
 - (BOOL)saveContext;
 {
     NSError *error = nil;
-    BOOL result = [self saveContext:&error];
+    BOOL result = [self saveContextWithError:&error];
     return result;
 }
 

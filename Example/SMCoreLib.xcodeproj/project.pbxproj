@@ -17,6 +17,7 @@
 		835C60AE1E62B16F003E9AF8 /* SMRelativeLocalURLTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 835C60AD1E62B16F003E9AF8 /* SMRelativeLocalURLTests.swift */; };
 		836D4BE81E11F400005209F2 /* Test.plist in Resources */ = {isa = PBXBuildFile; fileRef = 836D4BE71E11F400005209F2 /* Test.plist */; };
 		8374BED51D2B474D00A88F92 /* TestObjc.m in Sources */ = {isa = PBXBuildFile; fileRef = 8374BED41D2B474D00A88F92 /* TestObjc.m */; };
+		83FA44981E88CEC3002A9BAB /* CoreDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83FA44971E88CEC3002A9BAB /* CoreDataTests.swift */; };
 		D49C61248AE65E274D9B5B7D /* Pods_SMCoreLib_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D6898309ABC01933A8E4878 /* Pods_SMCoreLib_Example.framework */; };
 /* End PBXBuildFile section */
 
@@ -51,6 +52,7 @@
 		8374BED21D2B474C00A88F92 /* SMCoreLib_Example-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SMCoreLib_Example-Bridging-Header.h"; sourceTree = "<group>"; };
 		8374BED31D2B474D00A88F92 /* TestObjc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestObjc.h; sourceTree = "<group>"; };
 		8374BED41D2B474D00A88F92 /* TestObjc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestObjc.m; sourceTree = "<group>"; };
+		83FA44971E88CEC3002A9BAB /* CoreDataTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataTests.swift; sourceTree = "<group>"; };
 		96C17CA8DFAECA4026EBA83B /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		A20DE2CCB5A0C15D7AE92A31 /* Pods-SMCoreLib_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SMCoreLib_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SMCoreLib_Tests/Pods-SMCoreLib_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		B7D1E953EA06F92A4CBA6FB5 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
@@ -146,6 +148,7 @@
 		607FACE81AFB9204008FA782 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				83FA44971E88CEC3002A9BAB /* CoreDataTests.swift */,
 				835C60AD1E62B16F003E9AF8 /* SMRelativeLocalURLTests.swift */,
 				607FACEB1AFB9204008FA782 /* TestPlistLoader.swift */,
 				607FACE91AFB9204008FA782 /* Supporting Files */,
@@ -387,6 +390,7 @@
 			files = (
 				607FACEC1AFB9204008FA782 /* TestPlistLoader.swift in Sources */,
 				835C60AE1E62B16F003E9AF8 /* SMRelativeLocalURLTests.swift in Sources */,
+				83FA44981E88CEC3002A9BAB /* CoreDataTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

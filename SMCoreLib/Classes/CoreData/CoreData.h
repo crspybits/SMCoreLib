@@ -99,7 +99,7 @@ extern const NSString * _Nonnull CoreDataPrivateQueue;
 // We need a saveContext that returns void for the cases where we are doing a performSelector
 - (void) saveContextVoidReturn;
 
-- (BOOL) saveContext: (NSError * _Nullable * _Nullable) error;
+- (BOOL) saveContextWithError: (NSError * _Nullable * _Nullable) error;
 - (BOOL) saveContext;
 
 // These methods can return nil.
