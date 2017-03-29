@@ -303,7 +303,7 @@ static CoreData* s_sharedInstance = nil;
     NSManagedObjectContext *managedObjectContext;
     
     if (self.options[COREDATA_PRIVATE_QUEUE]
-        && ([self.options[COREDATA_PRIVATE_QUEUE] boolValue] == YES)) {
+        && ([self.options[COREDATA_PRIVATE_QUEUE] boolValue])) {
         managedObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
     }
     else {
