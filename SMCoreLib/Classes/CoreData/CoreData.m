@@ -48,7 +48,7 @@ const NSString *CoreDataBundleModelName = @"CoreDataModelName";
 const NSString *CoreDataSqlliteFileName = @"CoreDataSqliteFileName";
 const NSString *CoreDataSqlliteBackupFileName = @"CoreDataSqliteBackupFileName";
 const NSString *CoreDataModelBundle = @"CoreDataModelBundle";
-const NSString * CoreDataPrivateQueue = @"CoreDataPrivateQueue";
+const NSString *CoreDataPrivateQueue = @"CoreDataPrivateQueue";
 
 // See [1] below.
 /*
@@ -302,18 +302,21 @@ static CoreData* s_sharedInstance = nil;
 {
     NSManagedObjectContext *managedObjectContext;
     
+    SPASLog(@"CoreData.managedObjectContextWith: self.options[COREDATA_PRIVATE_QUEUE] %@", self.options[COREDATA_PRIVATE_QUEUE]);
+    SPASLog(@"CoreData.managedObjectContextWith: [self.options[COREDATA_PRIVATE_QUEUE] boolValue] %d", [self.options[COREDATA_PRIVATE_QUEUE] boolValue]);
+    
     if (self.options[COREDATA_PRIVATE_QUEUE]
         && ([self.options[COREDATA_PRIVATE_QUEUE] boolValue])) {
         managedObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
     }
     else {
-        // This is old, but maintains backward compatiblity with previous versions of tje CoreData class.
+        // This is old, but maintains backward compatiblity with previous versions of the CoreData class.
         managedObjectContext = [[NSManagedObjectContext alloc] init];
     }
     
     [managedObjectContext setPersistentStoreCoordinator:persistentStoreCoordinator];
     
-    SPASLog(@"CoreData.managedObjectContextForSqliteFile: %@", managedObjectContext);
+    SPASLog(@"CoreData.managedObjectContextWith: %@", managedObjectContext);
     return managedObjectContext;
 }
 
