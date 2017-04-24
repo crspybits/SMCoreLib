@@ -148,7 +148,7 @@ open class SMPersistItem : NSObject {
 
                     if let initialObjValue = self.initialValue as? NSObject {
                          let result = initialObjValue.mutableCopy()
-                        return result as! AnyObject!
+                        return result as AnyObject
                     }
                     else {
                         Assert.badMojo(alwaysPrintThisString: "Yikes: Could not make mutable copy")
@@ -161,7 +161,7 @@ open class SMPersistItem : NSObject {
             else {
                 if persistentValue is NSData {
                     let unarchivedValue = self.unarchiveValue(persistentValue! as! Data)
-                    Log.msg("name: \(self.name); \(unarchivedValue); type: \(type(of: unarchivedValue))")
+                    Log.msg("name: \(self.name); \(String(describing: unarchivedValue)); type: \(type(of: unarchivedValue))")
                     returnValue = unarchivedValue
                 }
                 else {
@@ -182,7 +182,7 @@ open class SMPersistItem : NSObject {
     }
     
     open func print() {
-        Log.msg("\(self.cachedOrArchivedValue)")
+        Log.msg("\(String(describing: self.cachedOrArchivedValue))")
     }
 }
 

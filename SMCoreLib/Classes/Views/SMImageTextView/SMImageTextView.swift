@@ -305,7 +305,7 @@ extension SMImageTextView {
             
                 if let textAttachment = object as? ImageTextAttachment {
                     if NSLocationInRange(imageRange.location, range) {
-                        Log.msg("Deletion of image: \(object); range: \(range)")
+                        Log.msg("Deletion of image: \(String(describing: object)); range: \(range)")
                         self.imageDelegate?.smImageTextView?(self, imageWasDeleted: textAttachment.imageId)
                     }
                 }

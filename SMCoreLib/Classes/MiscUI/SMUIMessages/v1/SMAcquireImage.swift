@@ -91,7 +91,7 @@ extension SMAcquireImage : UIImagePickerControllerDelegate, UINavigationControll
         // http://www.techotopia.com/index.php/Accessing_the_iOS_8_Camera_and_Photo_Library_in_Swift
         
         let newFileURL = self.delegate?.smAcquireImageURLForNewImage(self)
-        Log.msg("newFileURL: \(newFileURL)")
+        Log.msg("newFileURL: \(String(describing: newFileURL))")
         
         var success:Bool = true
         if let imageData = UIImageJPEGRepresentation(image, self.compressionQuality) {

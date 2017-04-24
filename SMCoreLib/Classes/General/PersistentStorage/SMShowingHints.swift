@@ -144,6 +144,7 @@ class SMCountHint : SMHint, NSCoding {
         self.save()
     }
     
+    @discardableResult
     override func save() -> Bool {
         self.data = self.dataDict
         return super.save()

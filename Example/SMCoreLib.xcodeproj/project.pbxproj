@@ -242,10 +242,12 @@
 				TargetAttributes = {
 					607FACCF1AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
+						DevelopmentTeam = BH68R29JBE;
 						LastSwiftMigration = 0810;
 					};
 					607FACE41AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
+						DevelopmentTeam = BH68R29JBE;
 						LastSwiftMigration = 0810;
 						TestTargetID = 607FACCF1AFB9204008FA782;
 					};
@@ -536,6 +538,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				DEVELOPMENT_TEAM = BH68R29JBE;
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = SMCoreLib/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -558,6 +561,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				DEVELOPMENT_TEAM = BH68R29JBE;
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = SMCoreLib/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -576,6 +580,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 740BC94FD6298943D5F2A68A /* Pods-SMCoreLib_Tests.debug.xcconfig */;
 			buildSettings = {
+				DEVELOPMENT_TEAM = BH68R29JBE;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -594,6 +599,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A20DE2CCB5A0C15D7AE92A31 /* Pods-SMCoreLib_Tests.release.xcconfig */;
 			buildSettings = {
+				DEVELOPMENT_TEAM = BH68R29JBE;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
