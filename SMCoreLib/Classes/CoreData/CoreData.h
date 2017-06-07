@@ -58,6 +58,7 @@ extern const NSString * _Nonnull CoreDataSqlliteBackupFileName;
 extern const NSString * _Nonnull CoreDataModelBundle; // Bundle where model is located.
 
 extern const NSString * _Nonnull CoreDataPrivateQueue;
+extern const NSString * _Nonnull CoreDataLightWeightMigration;
 
 #define COREDATA_BUNDLE_MODEL_NAME                      CoreDataBundleModelName
 #define COREDATA_SQLITE_FILE_NAME                       CoreDataSqlliteFileName
@@ -66,6 +67,9 @@ extern const NSString * _Nonnull CoreDataPrivateQueue;
 
 // If given, with a value of @YES/true, then the privateQueue concurrency option is used. Use this when you may not be accessing the Core Data objects strictly on the main thread. See also https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/CoreData/Concurrency.html
 #define COREDATA_PRIVATE_QUEUE                          CoreDataPrivateQueue
+
+// Enable lightweight migration; give any value with this key to enable it.
+#define COREDATA_LIGHTWEIGHT_MIGRATION                  CoreDataLightWeightMigration
 
 // Keys as above.
 - (instancetype _Nonnull) initWithOptions: (NSDictionary * _Nonnull) dictionary;

@@ -49,6 +49,7 @@ const NSString *CoreDataSqlliteFileName = @"CoreDataSqliteFileName";
 const NSString *CoreDataSqlliteBackupFileName = @"CoreDataSqliteBackupFileName";
 const NSString *CoreDataModelBundle = @"CoreDataModelBundle";
 const NSString *CoreDataPrivateQueue = @"CoreDataPrivateQueue";
+const NSString *CoreDataLightWeightMigration = @"CoreDataLightWeightMigration";
 
 // See [1] below.
 /*
@@ -187,7 +188,12 @@ const NSString *CoreDataPrivateQueue = @"CoreDataPrivateQueue";
         }
 #endif
 
-        [self setupWithMigrationOptions:nil];
+        if (dictionary[COREDATA_LIGHTWEIGHT_MIGRATION]) {
+            [self migrationSetup];
+        }
+        else {
+            [self setupWithMigrationOptions:nil];
+        }
 
         // This has to come after the setup above. managedObjectContext does not get set until the setup occurs. 
         [[NSNotificationCenter defaultCenter]

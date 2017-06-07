@@ -5,8 +5,8 @@ pod lib lint --sources="https://github.com/crspybits/Specs.git,https://github.co
 
 # 3) then push updated revision of pod to its repo
 
-git add -A && git commit -m "Release 0.0.28: Updating for Xcode 8.3."
-git tag 0.0.28
+git add -A && git commit -m "Release 0.0.29: Re-enabling Core Data lightweight migration."
+git tag 0.0.29
 git push --tags
 
 # 4) validate the pod, with downloading
