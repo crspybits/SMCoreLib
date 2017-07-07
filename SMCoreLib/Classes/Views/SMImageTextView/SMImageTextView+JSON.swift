@@ -36,7 +36,7 @@ public extension SMImageTextView {
 
         let jsonString = NSString(data: jsonData!, encoding: String.Encoding.utf8.rawValue) as String?
 
-        Log.msg("json results: \(jsonString)")
+        Log.msg("json results: \(String(describing: jsonString))")
         
         return jsonData
     }

@@ -53,7 +53,7 @@ open class SMMultiPeer : NSObject {
                 try self.session.send(data, toPeers: self.session.connectedPeers, with: MCSessionSendDataMode.reliable)
             } catch let error1 as NSError {
                 error = error1
-                Log.error("\(error)")
+                Log.error("\(String(describing: error))")
                 result = false
             }
         }
@@ -127,7 +127,7 @@ extension SMMultiPeer : MCSessionDelegate {
         NSLog("%@", "didReceiveStream")
     }
 
-    public func session(_ session: MCSession, didFinishReceivingResourceWithName resourceName: String, fromPeer peerID: MCPeerID, at localURL: URL, withError error: Error?) {
+    public func session(_ session: MCSession, didFinishReceivingResourceWithName resourceName: String, fromPeer peerID: MCPeerID, at localURL: URL?, withError error: Error?) {
         NSLog("%@", "didFinishReceivingResourceWithName")
     }
 

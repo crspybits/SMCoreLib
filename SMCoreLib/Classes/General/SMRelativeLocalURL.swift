@@ -96,4 +96,8 @@ open class SMRelativeLocalURL : NSURL {
     required convenience public init(fileReferenceLiteral path: String) {
         fatalError("init(fileReferenceLiteral:) has not been implemented")
     }
+    
+    required public init(itemProviderData data: Data, typeIdentifier: String) throws {
+        fatalError("init(itemProviderData:typeIdentifier:) has not been implemented")
+    }
 }
