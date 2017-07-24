@@ -120,6 +120,7 @@
 		8163C8EAAFB341E323CD655B64FBE0D0 /* SMAssert.h in Headers */ = {isa = PBXBuildFile; fileRef = 88FDD3F210402D4F233FA7ACF6259FBA /* SMAssert.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		81A5F798FDF1F4A441C92E7D333AA282 /* HPTextViewTapGestureRecognizer-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AB3D6C4B44449CEC47430B938FF9AFE /* HPTextViewTapGestureRecognizer-dummy.m */; };
 		836D4BE61E11E980005209F2 /* PlistLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836D4BE51E11E980005209F2 /* PlistLoader.swift */; };
+		83A495721F2586610060FF86 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A495711F2586610060FF86 /* Alert.swift */; };
 		84BC85C4ABAE6CD98DE46CCF3E75D6F9 /* FileDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 738E76955CAB663C5C364AF577FF7FAC /* FileDestination.swift */; };
 		85A36DAB0419AD16F30163B11F49D68A /* SMPersistVars.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D96FE9B027C5B776CBB1B4F1358A05 /* SMPersistVars.swift */; };
 		862188744901F514953B9243888734F0 /* SMRotation.m in Sources */ = {isa = PBXBuildFile; fileRef = BB032F5E306123F082D8C99FECAC69AD /* SMRotation.m */; };
@@ -423,6 +424,7 @@
 		824521CDC877858ED2802909D3E54F27 /* SMMutableDictionary.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SMMutableDictionary.h; sourceTree = "<group>"; };
 		836D4BE51E11E980005209F2 /* PlistLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlistLoader.swift; sourceTree = "<group>"; };
 		838C64E5CBF8E26E8BA8A808253E8424 /* UIImage+Resize.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "UIImage+Resize.h"; sourceTree = "<group>"; };
+		83A495711F2586610060FF86 /* Alert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		83B04083FD652A7107246AD104C4B508 /* CoreData.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = CoreData.h; sourceTree = "<group>"; };
 		85260C185AD5C0311F4EAC7A03D42C34 /* AFNetworking.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AFNetworking.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		85E7186B71113696F0C2ACF4341CA988 /* UIWebView+AFNetworking.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIWebView+AFNetworking.m"; path = "UIKit+AFNetworking/UIWebView+AFNetworking.m"; sourceTree = "<group>"; };
@@ -1016,6 +1018,7 @@
 		A0A9A615E87490FC6A517EE234B13EA6 /* MiscUI */ = {
 			isa = PBXGroup;
 			children = (
+				83A495711F2586610060FF86 /* Alert.swift */,
 				011763798088473299C93853CDF4846A /* SMAppearance.h */,
 				BB0A947A66D1DD9B2542602105C70114 /* SMAppearance.m */,
 				D5B766D9B7E49DF3D74BE36A1FD3A66F /* SMIcons.swift */,
@@ -1708,6 +1711,7 @@
 				8A75FF63AA482D6E4520E905196183AD /* UIColor+Extras.m in Sources */,
 				EF58AA84205C878DAB65C91CA3C72CC0 /* UIDevice+Extras.m in Sources */,
 				E024DDF4526FC82586EB999A4305A67A /* UIImage+Alpha.m in Sources */,
+				83A495721F2586610060FF86 /* Alert.swift in Sources */,
 				836D4BE61E11E980005209F2 /* PlistLoader.swift in Sources */,
 				B4F145CAFFC866AD717051742D26FAA6 /* UIImage+ReplacePixels.m in Sources */,
 				7071D3E5E1202EE1FE2DA4713990BCED /* UIImage+Resize.m in Sources */,
