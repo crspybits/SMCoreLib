@@ -127,6 +127,7 @@
                                                 CGImageGetColorSpace(imageRef),
                                                 CGImageGetBitmapInfo(imageRef));
     
+    // 8/27/17; Just got a crash here.
     AssertActionIf(!bitmap, @"Yikes! Invalid context!", {return nil;})
     
     // Rotate and/or flip the image if required by its orientation

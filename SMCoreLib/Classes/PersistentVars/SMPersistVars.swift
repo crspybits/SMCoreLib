@@ -35,14 +35,14 @@ open class SMPersistItem : NSObject {
     open let persistType:SMPersistVarType
     open let name:String
 
-    init(name:String!, initialValue:AnyObject!, persistType type:SMPersistVarType) {
+    init(name:String!, initialValue:AnyObject!, persistType:SMPersistVarType) {
         self.name = name
         self.initialValue = initialValue
-        self.persistType = type
+        self.persistType = persistType
         
         Log.msg("type: \(self.persistType); name: \(self.name); initialValue: \(self.initialValue); initialValueType: \(type(of: initialValue))")
         
-        switch (type) {
+        switch (persistType) {
         case .userDefaults:
             SMPersistVars.session().userDefaultNames.insert(name)
             

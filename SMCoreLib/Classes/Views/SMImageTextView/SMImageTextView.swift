@@ -239,16 +239,20 @@ open class SMImageTextView : UITextView, UITextViewDelegate {
             var result = [ImageTextViewElement]()
             
             // See https://stackoverflow.com/questions/37370556/ranges-of-strings-from-nsattributedstring
-            
+
             self.attributedText.enumerateAttributes(in: NSMakeRange(0, self.attributedText.length), options: NSAttributedString.EnumerationOptions(rawValue: 0)) { (dict, range, stop) in
                 Log.msg("dict: \(dict); range: \(range)")
-                if dict[NSAttachmentAttributeName] == nil {
+                
+                // 7/9/17; I'm having an odd issue here with NSAttributedStringKey.attachment versus--
+                let key = NSAttachmentAttributeName
+                
+                if dict[key] == nil {
                     let string = (self.attributedText.string as NSString).substring(with: range)
                     Log.msg("string in range: \(range): \(string)")
                     result.append(.Text(string, range))
                 }
                 else {
-                    let imageAttachment = dict[NSAttachmentAttributeName] as! ImageTextAttachment
+                    let imageAttachment = dict[key] as! ImageTextAttachment
                     Log.msg("image at range: \(range)")
                     result.append(.image(imageAttachment.image!, imageAttachment.imageId, range))
                 }
@@ -301,7 +305,9 @@ extension SMImageTextView {
 
         // empty text means backspace
         if text.isEmpty {
-            textView.attributedText.enumerateAttribute(NSAttachmentAttributeName, in: NSMakeRange(0, textView.attributedText.length), options: NSAttributedString.EnumerationOptions(rawValue: 0)) { (object, imageRange, stop) in
+                // 7/9/17; I'm having an odd issue here with NSAttributedStringKey.attachment versus--
+                let key = NSAttachmentAttributeName
+                textView.attributedText.enumerateAttribute(key, in: NSMakeRange(0, textView.attributedText.length), options: NSAttributedString.EnumerationOptions(rawValue: 0)) { (object, imageRange, stop) in
             
                 if let textAttachment = object as? ImageTextAttachment {
                     if NSLocationInRange(imageRange.location, range) {

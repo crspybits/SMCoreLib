@@ -10,8 +10,8 @@
 
 #import <UIKit/UIKit.h>
 
-typedef void (^AnimationStep)();
-typedef void (^AnimationDone)();
+typedef void (^AnimationStep)(void);
+typedef void (^AnimationDone)(void);
 
 @interface UIView (Extras)
 
