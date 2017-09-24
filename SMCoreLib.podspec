@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'SMCoreLib'
-  s.version          = '0.2.0'
+  s.version          = '1.0.0'
   s.summary      = 'Spastic Muffin Core Library for iOS'
 
 # This description is used to generate tags and improve search results.
@@ -29,6 +29,7 @@ Pod::Spec.new do |s|
   
   s.source       = { :git => "https://github.com/crspybits/SMCoreLib.git", :tag => "#{s.version}" }
 
+  # Oldest version of iOS we're supporting
   s.ios.deployment_target = '8.0'
 
   # 'SMCoreLib/Classes/**' matches directories recursively, but doesn't match any files!
@@ -42,7 +43,6 @@ Pod::Spec.new do |s|
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
-  # s.dependency 'AFNetworking', '~> 2.3'
   
   s.requires_arc = true
 
@@ -54,7 +54,6 @@ Pod::Spec.new do |s|
 
   # s.xcconfig = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include/libxml2" }
   
-  s.dependency 'AFNetworking'
   s.dependency 'HPTextViewTapGestureRecognizer', '~> 0.1'
   s.dependency 'Reachability'
   s.dependency 'SwiftyBeaver'

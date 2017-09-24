@@ -8,13 +8,16 @@
 import Foundation
 
 public class Alert {
-    public static func show(withTitle title:String? = nil, message:String? = nil, allowCancel cancel:Bool = false, okCompletion:(()->())? = nil) {
+    public static func show(fromVC: UIViewController? = nil, withTitle title:String? = nil, message:String? = nil, allowCancel cancel:Bool = false, okCompletion:(()->())? = nil) {
     
-        let window:UIWindow = (UIApplication.shared.delegate?.window)!!
-        let vc = window.rootViewController!
+        var vcToUse: UIViewController! = fromVC
+        if vcToUse == nil {
+            let window:UIWindow = (UIApplication.shared.delegate?.window)!!
+            vcToUse = window.rootViewController!
+        }
         
         let alert = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
-        alert.popoverPresentationController?.sourceView = vc.view!
+        alert.popoverPresentationController?.sourceView = vcToUse.view!
     
         alert.addAction(UIAlertAction(title: "OK", style: .default) { alert in
             okCompletion?()
@@ -25,6 +28,6 @@ public class Alert {
             })
         }
         
-        vc.present(alert, animated: true, completion: nil)
+        vcToUse.present(alert, animated: true, completion: nil)
     }
 }

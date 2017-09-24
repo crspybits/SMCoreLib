@@ -5,7 +5,7 @@ use_frameworks!
 
 target 'SMCoreLib_Example' do
   pod 'SMCoreLib', :path => '../'
-  # pod 'SMCoreLib' # SMCoreLib imports AFNetworking
+  # pod 'SMCoreLib'
 
   target 'SMCoreLib_Tests' do
     inherit! :search_paths

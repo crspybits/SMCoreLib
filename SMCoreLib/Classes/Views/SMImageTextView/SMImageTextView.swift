@@ -243,16 +243,16 @@ open class SMImageTextView : UITextView, UITextViewDelegate {
             self.attributedText.enumerateAttributes(in: NSMakeRange(0, self.attributedText.length), options: NSAttributedString.EnumerationOptions(rawValue: 0)) { (dict, range, stop) in
                 Log.msg("dict: \(dict); range: \(range)")
                 
-                // 7/9/17; I'm having an odd issue here with NSAttributedStringKey.attachment versus--
-                let key = NSAttachmentAttributeName
-                
-                if dict[key] == nil {
+                // 9/10/17; I'm having an odd issue here with NSAttributedStringKey.attachment versus NSAttachmentAttributeName. I can't seem to use #available(iOS 11, *) to select between them.
+                // See https://stackoverflow.com/questions/46145780/nsattributedstringkey-attachment-versus-nsattachmentattributename/46148528#46148528
+                let dictValue = dict[NSAttributedStringKey.attachment]
+                if dictValue == nil {
                     let string = (self.attributedText.string as NSString).substring(with: range)
                     Log.msg("string in range: \(range): \(string)")
                     result.append(.Text(string, range))
                 }
                 else {
-                    let imageAttachment = dict[key] as! ImageTextAttachment
+                    let imageAttachment = dictValue as! ImageTextAttachment
                     Log.msg("image at range: \(range)")
                     result.append(.image(imageAttachment.image!, imageAttachment.imageId, range))
                 }
@@ -305,8 +305,9 @@ extension SMImageTextView {
 
         // empty text means backspace
         if text.isEmpty {
-                // 7/9/17; I'm having an odd issue here with NSAttributedStringKey.attachment versus--
-                let key = NSAttachmentAttributeName
+                // 9/10/17; I'm having an odd issue here with NSAttributedStringKey.attachment versus NSAttachmentAttributeName. I can't seem to use #available(iOS 11, *) to select between them.
+                // See // See https://stackoverflow.com/questions/46145780/nsattributedstringkey-attachment-versus-nsattachmentattributename/46148528#46148528
+                let key = NSAttributedStringKey.attachment
                 textView.attributedText.enumerateAttribute(key, in: NSMakeRange(0, textView.attributedText.length), options: NSAttributedString.EnumerationOptions(rawValue: 0)) { (object, imageRange, stop) in
             
                 if let textAttachment = object as? ImageTextAttachment {

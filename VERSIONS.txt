@@ -1,0 +1,7 @@
+SMCoreLib
+
+Version 1.0.0; 9/23/17
+
+	* Removed AFNetworking from dependencies-- this was not being used by SMCoreLib, but was just there as a convenience because I'd been using it in my projects. Since I'm no longer AFNetworking, it why bother? Major version bump (to 1.0.0 from 0.2.0) because of this-- to indicate a breaking change.
+	
+	* Using NSAttributedStringKey.attachment (formerly NSAttachmentAttributeName). This library now *must* be built with Xcode 9 or higher, but still supports down to iOS 8.

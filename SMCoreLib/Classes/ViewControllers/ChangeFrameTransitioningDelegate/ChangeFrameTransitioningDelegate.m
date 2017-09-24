@@ -188,18 +188,17 @@
     [_dimmingView setBackgroundColor:[UIColor colorWithWhite:0.0 alpha:0.4]];
     [_dimmingView setAlpha:0.0];
     
-    //UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dimmingViewTapped:)];
-    //[_dimmingView addGestureRecognizer:tap];
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dimmingViewTapped:)];
+    [_dimmingView addGestureRecognizer:tap];
 }
 
-/*
 - (void)dimmingViewTapped:(UIGestureRecognizer *)gesture
 {
     if([gesture state] == UIGestureRecognizerStateRecognized)
     {
         [[self presentingViewController] dismissViewControllerAnimated:YES completion:NULL];
     }
-}*/
+}
 
 @end
 

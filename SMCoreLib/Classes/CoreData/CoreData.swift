@@ -55,7 +55,7 @@ public extension CoreData {
         }
         
         let url = NSKeyedUnarchiver.unarchiveObject(with: coreDataProperty!) as? SMRelativeLocalURL
-        Assert.If(url == nil, thenPrintThisString: "Yikes: No URL!")
+        Assert.If(url == nil, thenPrintThisString: "getSMRelativeLocalURL: Yikes: No URL!")
         return url
     }
     

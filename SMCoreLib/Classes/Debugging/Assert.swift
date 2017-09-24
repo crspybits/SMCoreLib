@@ -20,7 +20,9 @@ open class Assert {
             // For some reason, assert doesn't accept a string variable as a parameter; only a string constant.
             assert(!conditionIsTrue, "\(message)")
         #else
-            Log.file(message)
+            if conditionIsTrue {
+                Log.file(message)
+            }
         #endif
     }
     
