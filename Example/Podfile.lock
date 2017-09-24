@@ -1,7 +1,7 @@
 PODS:
   - HPTextViewTapGestureRecognizer (0.1)
   - Reachability (3.2)
-  - SMCoreLib (1.0.0):
+  - SMCoreLib (1.0.1):
     - HPTextViewTapGestureRecognizer (~> 0.1)
     - Reachability
     - SwiftyBeaver
@@ -17,9 +17,9 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   HPTextViewTapGestureRecognizer: 6a73fd09f858e49a2743c3a338dc5c0791b0fae0
   Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
-  SMCoreLib: dce32b0661ec2f376e95ae6685307a490351c35c
+  SMCoreLib: 2ddcf47f799a4e649b619f4f85a0bb7fbf6378c1
   SwiftyBeaver: f04f739cca6826c5fb0f575fed8fa3293f76b83e
 
-PODFILE CHECKSUM: b31514a1ab6527ed61f4acfb59b5aebc4292e30d
+PODFILE CHECKSUM: 13bbdfb6c89f396711db7cc375ad63d9172fec42
 
 COCOAPODS: 1.3.1

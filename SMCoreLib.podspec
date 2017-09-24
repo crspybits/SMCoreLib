@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'SMCoreLib'
-  s.version          = '1.0.1'
+  s.version          = '1.0.2'
   s.summary      = 'Spastic Muffin Core Library for iOS'
 
 # This description is used to generate tags and improve search results.
@@ -49,8 +49,7 @@ Pod::Spec.new do |s|
   s.pod_target_xcconfig = {
      # I haven't been able to get a DEBUG flag set in a Cocoapod, without these
 	'GCC_PREPROCESSOR_DEFINITIONS[config=Debug]' => 'DEBUG=1',
-	'OTHER_SWIFT_FLAGS[config=Debug]' => '-DDEBUG',
-	'SWIFT_VERSION' => '4.0'
+	'OTHER_SWIFT_FLAGS[config=Debug]' => '-DDEBUG'
   }
 
   # s.xcconfig = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include/libxml2" }

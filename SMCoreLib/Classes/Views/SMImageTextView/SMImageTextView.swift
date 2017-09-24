@@ -245,11 +245,11 @@ open class SMImageTextView : UITextView, UITextViewDelegate {
                 
                 // 9/10/17; I'm having an odd issue here with NSAttributedStringKey.attachment versus NSAttachmentAttributeName. I can't seem to use #available(iOS 11, *) to select between them.
                 // See https://stackoverflow.com/questions/46145780/nsattributedstringkey-attachment-versus-nsattachmentattributename/46148528#46148528
-//#if SWIFT4
+#if SWIFT4
                 let dictValue = dict[NSAttributedStringKey.attachment]
-//#else
-//                let dictValue = dict[NSAttachmentAttributeName]
-//#endif
+#else
+                let dictValue = dict[NSAttachmentAttributeName]
+#endif
                 if dictValue == nil {
                     let string = (self.attributedText.string as NSString).substring(with: range)
                     Log.msg("string in range: \(range): \(string)")
@@ -311,11 +311,11 @@ extension SMImageTextView {
         if text.isEmpty {
                 // 9/10/17; I'm having an odd issue here with NSAttributedStringKey.attachment versus NSAttachmentAttributeName. I can't seem to use #available(iOS 11, *) to select between them.
                 // See // See https://stackoverflow.com/questions/46145780/nsattributedstringkey-attachment-versus-nsattachmentattributename/46148528#46148528
-// #if SWIFT4
+#if SWIFT4
                 let key = NSAttributedStringKey.attachment
-//#else
-//                let key = NSAttachmentAttributeName
-//#endif
+#else
+                let key = NSAttachmentAttributeName
+#endif
             
                 textView.attributedText.enumerateAttribute(key, in: NSMakeRange(0, textView.attributedText.length), options: NSAttributedString.EnumerationOptions(rawValue: 0)) { (object, imageRange, stop) in
             
