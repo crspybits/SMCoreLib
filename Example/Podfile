@@ -10,4 +10,20 @@ target 'SMCoreLib_Example' do
   target 'SMCoreLib_Tests' do
     inherit! :search_paths
   end
+  
+  # 9/23/17; Dealing with Cocoapods inability to specify Swift versions...
+
+	post_install do |installer|
+	
+		myTargets = ['SMCoreLib']
+		
+		installer.pods_project.targets.each do |target|
+			if myTargets.include? target.name
+				target.build_configurations.each do |config|
+					config.build_settings['OTHER_SWIFT_FLAGS'] = '-DSWIFT4'
+				end
+			end
+		end
+	end
+	
 end

@@ -245,7 +245,7 @@
 		06C720DB103600BB5B67BC397FAE3936 /* Pods-SMCoreLib_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SMCoreLib_Example-acknowledgements.plist"; sourceTree = "<group>"; };
 		071D807F433C544105148504121B521A /* NSURL+Extras.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "NSURL+Extras.h"; sourceTree = "<group>"; };
 		08C17C45349B2BA911D9BEE1900F00A0 /* Pods-SMCoreLib_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SMCoreLib_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
-		091DF65FF0B8BE2243315402249C02CF /* SwiftyBeaver.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftyBeaver.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		091DF65FF0B8BE2243315402249C02CF /* SwiftyBeaver.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SwiftyBeaver.framework; path = SwiftyBeaver.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0B2BC1A80EF5EC285520F5E99A991EB3 /* SMCoreLib-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SMCoreLib-prefix.pch"; sourceTree = "<group>"; };
 		0C122989D7AF79EE393A9BC99E42CEE5 /* Array+Extras.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "Array+Extras.swift"; sourceTree = "<group>"; };
 		0CE4B89CB8B6433CB4DDC21C39AECD3A /* UIImage+Resize.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "UIImage+Resize.h"; sourceTree = "<group>"; };
@@ -284,9 +284,9 @@
 		2C85287C03C4C79E9E63B2D2530F6E60 /* HPTextViewTapGestureRecognizer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = HPTextViewTapGestureRecognizer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D0E21C98E0E6DF0F958BF55FE6CEF61 /* SMMaskUtilities.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SMMaskUtilities.swift; sourceTree = "<group>"; };
 		31422BEC2AF524B6050F6723BF8C214D /* Pods-SMCoreLib_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SMCoreLib_Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		34D1284C315135B9042F6EDFC3A4F37F /* Pods_SMCoreLib_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SMCoreLib_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		34D1284C315135B9042F6EDFC3A4F37F /* Pods_SMCoreLib_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_SMCoreLib_Example.framework; path = "Pods-SMCoreLib_Example.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3657543848529F19E2DF7806A9837ED3 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		36BFEA0656DCAA16897345FCE9D6BE58 /* SwiftyBeaver.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = SwiftyBeaver.modulemap; sourceTree = "<group>"; };
+		36BFEA0656DCAA16897345FCE9D6BE58 /* SwiftyBeaver.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = SwiftyBeaver.modulemap; sourceTree = "<group>"; };
 		36FEB881149E2A1C25A84B6DEA187391 /* ChangeFrameTransitioningDelegate.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = ChangeFrameTransitioningDelegate.m; sourceTree = "<group>"; };
 		370E9C43C69DC31924663F1405B46821 /* UIDevice+Extras.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+Extras.m"; sourceTree = "<group>"; };
 		37451671C03202DE9C4002AC45DE924A /* Network.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = Network.m; sourceTree = "<group>"; };
@@ -297,7 +297,7 @@
 		3BC587946A75DCE8489181C06B3D9677 /* WeakRef.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = WeakRef.h; sourceTree = "<group>"; };
 		3D0D00549AD0901B1D4AA4BFF9203E4D /* SwiftyBeaver.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftyBeaver.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		41A8971ADB6D323ADF1DBC5F146BE838 /* CallCounter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = CallCounter.m; sourceTree = "<group>"; };
-		427AD5F5A03C2B670CBF0A24B734ED5C /* Reachability.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = Reachability.modulemap; sourceTree = "<group>"; };
+		427AD5F5A03C2B670CBF0A24B734ED5C /* Reachability.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = Reachability.modulemap; sourceTree = "<group>"; };
 		44481ED2668CF8D8341081D6F16DC83A /* Assert.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Assert.swift; sourceTree = "<group>"; };
 		44DDB0EEE0B26FD4B7CD188A947495F3 /* SMCoreLib-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SMCoreLib-dummy.m"; sourceTree = "<group>"; };
 		45990E20386416656B2BD13BE6345503 /* Pods-SMCoreLib_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-SMCoreLib_Example-frameworks.sh"; sourceTree = "<group>"; };
@@ -311,7 +311,7 @@
 		4D99E095FC31D9362C4165EDA7F4CFDB /* FileExtras.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FileExtras.swift; sourceTree = "<group>"; };
 		4E8ACC62F2EABE46221CF14295B06C22 /* LogFile.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = LogFile.h; sourceTree = "<group>"; };
 		4F18B88913F0FD3C8923CB236AB6B1D9 /* Debounce.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = Debounce.m; sourceTree = "<group>"; };
-		4FBBA075C14D80B3D837F4DBAE1D977F /* Pods_SMCoreLib_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SMCoreLib_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4FBBA075C14D80B3D837F4DBAE1D977F /* Pods_SMCoreLib_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_SMCoreLib_Tests.framework; path = "Pods-SMCoreLib_Tests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		52DAEA2FD62C3AFEA3B20CD523BF75DE /* NSError+Extras.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "NSError+Extras.swift"; sourceTree = "<group>"; };
 		550A59780AF30FDDC3C07147035D8935 /* SMEmail.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SMEmail.h; sourceTree = "<group>"; };
 		55E135089129CDADCBB846B76F637F0A /* SMModal.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SMModal.m; sourceTree = "<group>"; };
@@ -350,16 +350,16 @@
 		84185A71EC3013FC4604BCC4C3ABF402 /* FileStorage.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = FileStorage.m; sourceTree = "<group>"; };
 		84FE22CB15E465353F089A435359D484 /* Network.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = Network.h; sourceTree = "<group>"; };
 		869E0FE9B26836DA04987D1A4BBE4046 /* UITableView+Extras.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "UITableView+Extras.h"; sourceTree = "<group>"; };
-		8BA820B47B280066417DA13925668287 /* Pods-SMCoreLib_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-SMCoreLib_Tests.modulemap"; sourceTree = "<group>"; };
+		8BA820B47B280066417DA13925668287 /* Pods-SMCoreLib_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-SMCoreLib_Tests.modulemap"; sourceTree = "<group>"; };
 		8BB8491191B1D42D7BA951E95069249A /* SMMutableDictionary.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SMMutableDictionary.m; sourceTree = "<group>"; };
 		8CE2B4BB112B2ECC091C72F645128AEB /* Pods-SMCoreLib_Tests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-SMCoreLib_Tests-frameworks.sh"; sourceTree = "<group>"; };
 		91BE339F81D9A18D2A18DAFF1B281995 /* NSDate+Extras.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "NSDate+Extras.swift"; sourceTree = "<group>"; };
 		92B89E5ED07294CC5013B452BA5FF9B8 /* LazyFrame.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = LazyFrame.m; sourceTree = "<group>"; };
 		931456E5DE9BD73827B2676B67430CA0 /* UserMessage.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = UserMessage.m; sourceTree = "<group>"; };
-		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		966319A8899697CEF86A98A74863E6BC /* UUID.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = UUID.m; sourceTree = "<group>"; };
 		96F3DA30FFF8EA8D5D766F0C0FC729E1 /* UINavigationController+Extras.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+Extras.m"; sourceTree = "<group>"; };
-		972C0C78F02A71A2BDE8AFA2EB10E067 /* HPTextViewTapGestureRecognizer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = HPTextViewTapGestureRecognizer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		972C0C78F02A71A2BDE8AFA2EB10E067 /* HPTextViewTapGestureRecognizer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = HPTextViewTapGestureRecognizer.framework; path = HPTextViewTapGestureRecognizer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		981A1195B5C2E1D51C1FC39DB639A89B /* SMIdentifiers2.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SMIdentifiers2.m; sourceTree = "<group>"; };
 		98510604D566150CAD7FE05CF28AD8B5 /* UILabel+Extras.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "UILabel+Extras.h"; sourceTree = "<group>"; };
 		9A0DC3EB4A441EA4B8DEF68C02D5B7B1 /* UIViewController+Extras.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Extras.h"; sourceTree = "<group>"; };
@@ -390,7 +390,7 @@
 		B8BAA6BFDA5909C68E3445DF3E701B6A /* Pods-SMCoreLib_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-SMCoreLib_Tests-umbrella.h"; sourceTree = "<group>"; };
 		B8BFF6624C04889BA9CA942EDDF91422 /* UITableViewCell+Extras.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "UITableViewCell+Extras.m"; sourceTree = "<group>"; };
 		B8EE9D9DF8FA62B501DDC081D4B75790 /* SwiftyBeaver-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SwiftyBeaver-dummy.m"; sourceTree = "<group>"; };
-		BA773F590F5A074E6F7851E3D24F1FBE /* Pods-SMCoreLib_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-SMCoreLib_Example.modulemap"; sourceTree = "<group>"; };
+		BA773F590F5A074E6F7851E3D24F1FBE /* Pods-SMCoreLib_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-SMCoreLib_Example.modulemap"; sourceTree = "<group>"; };
 		BABE88D1C087544C2586ADFE69F824E5 /* SMFileData.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SMFileData.m; sourceTree = "<group>"; };
 		BAF0DF2E374D69E8118E6DFF1A033AEC /* NSObject+TargetsAndSelectors.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "NSObject+TargetsAndSelectors.m"; sourceTree = "<group>"; };
 		BB888205C4806338B749AF8FCD4B616C /* ImageStorage.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = ImageStorage.h; sourceTree = "<group>"; };
@@ -405,7 +405,7 @@
 		CCE485AD0A6461FE79E6FEA48A16D1DA /* UIImageResizing.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = UIImageResizing.m; sourceTree = "<group>"; };
 		CE3A461D1602F826DDAE7B8A98B39A8A /* CLPlacemark+Extras.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CLPlacemark+Extras.h"; sourceTree = "<group>"; };
 		CF7ABD1A03B30973EE66DA1C826B3C90 /* UIImageResizing.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = UIImageResizing.h; sourceTree = "<group>"; };
-		D51077A66BF4D52C1A90B09DE707D6C7 /* SMCoreLib.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = SMCoreLib.modulemap; sourceTree = "<group>"; };
+		D51077A66BF4D52C1A90B09DE707D6C7 /* SMCoreLib.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = SMCoreLib.modulemap; sourceTree = "<group>"; };
 		D5202F777A7911D6F5713EE8523282AF /* UIColor+Extras.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "UIColor+Extras.h"; sourceTree = "<group>"; };
 		D55ACD6FA1F83BF0A6E2B906DCFB1F1C /* UIScrollView+Extras.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+Extras.h"; sourceTree = "<group>"; };
 		D61D10009AC913155B0B31873507D04B /* NSArray+Extras.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "NSArray+Extras.h"; sourceTree = "<group>"; };
@@ -424,11 +424,11 @@
 		E28D491392CCB5237308AFE7CBC43EE4 /* CallCounter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = CallCounter.h; sourceTree = "<group>"; };
 		E2F863118A4A1C528A5DF6D4A8FE755D /* SwiftyBeaver.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SwiftyBeaver.swift; path = Sources/SwiftyBeaver.swift; sourceTree = "<group>"; };
 		E4BDE5D2E3EDA3302152217495947796 /* Reachability.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
-		E645149B60F5236D438BF69D37E91B7E /* SMCoreLib.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SMCoreLib.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E645149B60F5236D438BF69D37E91B7E /* SMCoreLib.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SMCoreLib.framework; path = SMCoreLib.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E64C25FD21E147BEE809B4C9FB402F2C /* SBPlatformDestination.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SBPlatformDestination.swift; path = Sources/SBPlatformDestination.swift; sourceTree = "<group>"; };
-		E6D3F490B7A08930A4CF8F5412BF59E8 /* HPTextViewTapGestureRecognizer.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = HPTextViewTapGestureRecognizer.modulemap; sourceTree = "<group>"; };
+		E6D3F490B7A08930A4CF8F5412BF59E8 /* HPTextViewTapGestureRecognizer.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = HPTextViewTapGestureRecognizer.modulemap; sourceTree = "<group>"; };
 		E6D8DB380063062E0BF19BFE4A7FF5E4 /* UINavigationController+Extras.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+Extras.h"; sourceTree = "<group>"; };
-		EB4901ADCFD921ADB19BCD9B7B01665F /* Reachability.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Reachability.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EB4901ADCFD921ADB19BCD9B7B01665F /* Reachability.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Reachability.framework; path = Reachability.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC493E1223CA53D92B72A2EA1536FA88 /* RepeatingTimer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RepeatingTimer.h; sourceTree = "<group>"; };
 		EC7BE2070700C7319CB670ADB448A942 /* BaseDestination.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BaseDestination.swift; path = Sources/BaseDestination.swift; sourceTree = "<group>"; };
 		EF7A66CB8EA282242B7D5C720B680C36 /* SwiftyBeaver-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SwiftyBeaver-prefix.pch"; sourceTree = "<group>"; };
@@ -529,6 +529,7 @@
 				220F483F39D279C324CB60DD35340DC7 /* SMImageTextView.swift */,
 				5FE3FE24F1FA27203489186EA478DFA7 /* SMImageTextView+JSON.swift */,
 			);
+			name = SMImageTextView;
 			path = SMImageTextView;
 			sourceTree = "<group>";
 		};
@@ -544,6 +545,7 @@
 				BABE88D1C087544C2586ADFE69F824E5 /* SMFileData.m */,
 				63E5E1245AECDF4BEDDAD7BD6F46C46D /* SMShowingHints.swift */,
 			);
+			name = PersistentStorage;
 			path = PersistentStorage;
 			sourceTree = "<group>";
 		};
@@ -624,6 +626,7 @@
 				A488866F2910ABA00D4DC10AE446704A /* SMEdgeInsetLabel.h */,
 				038B7A8EEB9C444EED4992EB5E188291 /* SMEdgeInsetLabel.m */,
 			);
+			name = SMEdgeInsetLabel;
 			path = SMEdgeInsetLabel;
 			sourceTree = "<group>";
 		};
@@ -679,6 +682,7 @@
 				C0821AD25B2248FACC1FADCEC9A4D41B /* TimedCallback.h */,
 				02B9E3460105EF4101E03C9F057C3143 /* TimedCallback.m */,
 			);
+			name = Timers;
 			path = Timers;
 			sourceTree = "<group>";
 		};
@@ -715,6 +719,7 @@
 			children = (
 				DCAD9D262E8A0FC05CCFADB12D5C3F18 /* v1 */,
 			);
+			name = SMUIMessages;
 			path = SMUIMessages;
 			sourceTree = "<group>";
 		};
@@ -784,6 +789,7 @@
 				550A59780AF30FDDC3C07147035D8935 /* SMEmail.h */,
 				60D3C0B088176D4CDEA1B9ADD502AB59 /* SMEmail.m */,
 			);
+			name = SMEmail;
 			path = SMEmail;
 			sourceTree = "<group>";
 		};
@@ -811,6 +817,7 @@
 				00AA8024741282272D38E5404814C2FF /* SMModal.h */,
 				55E135089129CDADCBB846B76F637F0A /* SMModal.m */,
 			);
+			name = SMModal;
 			path = SMModal;
 			sourceTree = "<group>";
 		};
@@ -833,6 +840,7 @@
 				FA81227E9078095319FDD2784985A26A /* SMMutableDictionary.h */,
 				8BB8491191B1D42D7BA951E95069249A /* SMMutableDictionary.m */,
 			);
+			name = v1;
 			path = v1;
 			sourceTree = "<group>";
 		};
@@ -873,6 +881,7 @@
 				57BE740BFF91A4D6240002C7FB38962B /* HPTextViewTapGestureRecognizer.m */,
 				29D5FB580BF91450EC3C85670141ABB0 /* Support Files */,
 			);
+			name = HPTextViewTapGestureRecognizer;
 			path = HPTextViewTapGestureRecognizer;
 			sourceTree = "<group>";
 		};
@@ -895,6 +904,7 @@
 				DE5A7C86CA33296918781BEBF391AB7D /* NSArray+Globbing.h */,
 				B2A271DF96B9CB5D7EF6ADFADD27232C /* NSArray+Globbing.m */,
 			);
+			name = Globbing;
 			path = Globbing;
 			sourceTree = "<group>";
 		};
@@ -962,6 +972,7 @@
 				005E161AC2FA4889A051B28B65FD43F4 /* SMUIMessages.h */,
 				5AF261B7960BA6C6DCE1E072ED3994A1 /* SMUIMessages.m */,
 			);
+			name = v1;
 			path = v1;
 			sourceTree = "<group>";
 		};
@@ -991,6 +1002,7 @@
 				E2F863118A4A1C528A5DF6D4A8FE755D /* SwiftyBeaver.swift */,
 				3D5E596536727E8008012597349D6CEF /* Support Files */,
 			);
+			name = SwiftyBeaver;
 			path = SwiftyBeaver;
 			sourceTree = "<group>";
 		};
@@ -1000,6 +1012,7 @@
 				A5A892F8454E56C9A678CA159FDC80A2 /* SMRotation.h */,
 				77FD31DCBB393E1CBD63784637AD55A7 /* SMRotation.m */,
 			);
+			name = SMRotation;
 			path = SMRotation;
 			sourceTree = "<group>";
 		};
@@ -1009,6 +1022,7 @@
 				70CDF3B5502E65E4169108FEAAFEFF0D /* ChangeFrameTransitioningDelegate.h */,
 				36FEB881149E2A1C25A84B6DEA187391 /* ChangeFrameTransitioningDelegate.m */,
 			);
+			name = ChangeFrameTransitioningDelegate;
 			path = ChangeFrameTransitioningDelegate;
 			sourceTree = "<group>";
 		};
@@ -1019,6 +1033,7 @@
 				E4BDE5D2E3EDA3302152217495947796 /* Reachability.m */,
 				777254172DA82CD0B644F72B267C44A6 /* Support Files */,
 			);
+			name = Reachability;
 			path = Reachability;
 			sourceTree = "<group>";
 		};
@@ -1500,9 +1515,9 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		1B3EC0BB72AF8F125C678F78635A52B1 /* Release */ = {
+		07D9878722F2DA7BE0A241B029CAD877 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A6098E5D6F267ED75D7CAEC1E8AA662A /* HPTextViewTapGestureRecognizer.xcconfig */;
+			baseConfigurationReference = 24EE8D73BF9D07AC879CCCA4125D39D8 /* Reachability.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -1516,18 +1531,18 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/HPTextViewTapGestureRecognizer/HPTextViewTapGestureRecognizer-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/HPTextViewTapGestureRecognizer/Info.plist";
+				GCC_PREFIX_HEADER = "Target Support Files/Reachability/Reachability-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Reachability/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/HPTextViewTapGestureRecognizer/HPTextViewTapGestureRecognizer.modulemap";
+				MODULEMAP_FILE = "Target Support Files/Reachability/Reachability.modulemap";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = HPTextViewTapGestureRecognizer;
+				PRODUCT_NAME = Reachability;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -1583,7 +1598,41 @@
 			};
 			name = Debug;
 		};
-		1DBA91BE4147238F80D7A77E9BEC3D79 /* Release */ = {
+		2AE5C3E40E40FADBDCF775CD7AA4C2B9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A6098E5D6F267ED75D7CAEC1E8AA662A /* HPTextViewTapGestureRecognizer.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/HPTextViewTapGestureRecognizer/HPTextViewTapGestureRecognizer-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/HPTextViewTapGestureRecognizer/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/HPTextViewTapGestureRecognizer/HPTextViewTapGestureRecognizer.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = HPTextViewTapGestureRecognizer;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		2C006DA361B8E467FF37B3B918D6A934 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 24EE8D73BF9D07AC879CCCA4125D39D8 /* Reachability.xcconfig */;
 			buildSettings = {
@@ -1592,7 +1641,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -1605,17 +1654,17 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/Reachability/Reachability.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_NAME = Reachability;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
-			name = Release;
+			name = Debug;
 		};
 		34FE9531DA9AF2820790339988D5FF41 /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -1700,9 +1749,9 @@
 			};
 			name = Debug;
 		};
-		673708B3412FB5CC3D7250761009583E /* Debug */ = {
+		43AEB340CFD36D30520E578DB187FD97 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A6098E5D6F267ED75D7CAEC1E8AA662A /* HPTextViewTapGestureRecognizer.xcconfig */;
+			baseConfigurationReference = C65004AEE0C13ADC31A0CE7BB5B59A49 /* SMCoreLib.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -1716,53 +1765,20 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/HPTextViewTapGestureRecognizer/HPTextViewTapGestureRecognizer-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/HPTextViewTapGestureRecognizer/Info.plist";
+				GCC_PREFIX_HEADER = "Target Support Files/SMCoreLib/SMCoreLib-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/SMCoreLib/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/HPTextViewTapGestureRecognizer/HPTextViewTapGestureRecognizer.modulemap";
+				MODULEMAP_FILE = "Target Support Files/SMCoreLib/SMCoreLib.modulemap";
 				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_NAME = HPTextViewTapGestureRecognizer;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		6F17EF6EC95A225A13DB69587E2D11FD /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 564B9463F2C28E85AA8BE41C3B176ED8 /* SwiftyBeaver.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/SwiftyBeaver/SwiftyBeaver-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/SwiftyBeaver/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/SwiftyBeaver/SwiftyBeaver.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_NAME = SwiftyBeaver;
+				OTHER_SWIFT_FLAGS = "-DSWIFT4";
+				PRODUCT_NAME = SMCoreLib;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -1805,44 +1821,9 @@
 			};
 			name = Release;
 		};
-		B2EE201B4FDE4D67D6FCAC6BE7BB1514 /* Release */ = {
+		A07CCE53B6059AE56CEDD2576955032A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C65004AEE0C13ADC31A0CE7BB5B59A49 /* SMCoreLib.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/SMCoreLib/SMCoreLib-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/SMCoreLib/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/SMCoreLib/SMCoreLib.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = SMCoreLib;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		BBEF8C4E1D8915036BB33258D281AAB9 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 24EE8D73BF9D07AC879CCCA4125D39D8 /* Reachability.xcconfig */;
+			baseConfigurationReference = 564B9463F2C28E85AA8BE41C3B176ED8 /* SwiftyBeaver.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -1856,27 +1837,28 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/Reachability/Reachability-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/Reachability/Info.plist";
+				GCC_PREFIX_HEADER = "Target Support Files/SwiftyBeaver/SwiftyBeaver-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/SwiftyBeaver/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/Reachability/Reachability.modulemap";
+				MODULEMAP_FILE = "Target Support Files/SwiftyBeaver/SwiftyBeaver.modulemap";
 				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_NAME = Reachability;
+				PRODUCT_NAME = SwiftyBeaver;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 3.0;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
 		};
-		C15A30F8ED89EA5A65A195825EAC9251 /* Release */ = {
+		A64A2E400F9320421C114C9B0CC6F19A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 564B9463F2C28E85AA8BE41C3B176ED8 /* SwiftyBeaver.xcconfig */;
+			baseConfigurationReference = A6098E5D6F267ED75D7CAEC1E8AA662A /* HPTextViewTapGestureRecognizer.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -1890,19 +1872,18 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/SwiftyBeaver/SwiftyBeaver-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/SwiftyBeaver/Info.plist";
+				GCC_PREFIX_HEADER = "Target Support Files/HPTextViewTapGestureRecognizer/HPTextViewTapGestureRecognizer-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/HPTextViewTapGestureRecognizer/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/SwiftyBeaver/SwiftyBeaver.modulemap";
+				MODULEMAP_FILE = "Target Support Files/HPTextViewTapGestureRecognizer/HPTextViewTapGestureRecognizer.modulemap";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = SwiftyBeaver;
+				PRODUCT_NAME = HPTextViewTapGestureRecognizer;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -1983,7 +1964,7 @@
 			};
 			name = Debug;
 		};
-		FB65E675A7E7B17FD08BDDBEF3E41495 /* Debug */ = {
+		E073C89F6DA549A9ADA930D86828EED8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = C65004AEE0C13ADC31A0CE7BB5B59A49 /* SMCoreLib.xcconfig */;
 			buildSettings = {
@@ -1992,7 +1973,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -2005,18 +1986,54 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/SMCoreLib/SMCoreLib.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_SWIFT_FLAGS = "-DSWIFT4";
 				PRODUCT_NAME = SMCoreLib;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
-			name = Debug;
+			name = Release;
+		};
+		F6F776CC3246FCC6528FD4859F7A55DD /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 564B9463F2C28E85AA8BE41C3B176ED8 /* SwiftyBeaver.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/SwiftyBeaver/SwiftyBeaver-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/SwiftyBeaver/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/SwiftyBeaver/SwiftyBeaver.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = SwiftyBeaver;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
@@ -2042,8 +2059,8 @@
 		4FBD56F8401B631A2E80413A95122421 /* Build configuration list for PBXNativeTarget "SMCoreLib" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				FB65E675A7E7B17FD08BDDBEF3E41495 /* Debug */,
-				B2EE201B4FDE4D67D6FCAC6BE7BB1514 /* Release */,
+				43AEB340CFD36D30520E578DB187FD97 /* Debug */,
+				E073C89F6DA549A9ADA930D86828EED8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -2060,8 +2077,8 @@
 		E0D6184BE7B3200BFC89BB2A73E499DF /* Build configuration list for PBXNativeTarget "Reachability" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				BBEF8C4E1D8915036BB33258D281AAB9 /* Debug */,
-				1DBA91BE4147238F80D7A77E9BEC3D79 /* Release */,
+				2C006DA361B8E467FF37B3B918D6A934 /* Debug */,
+				07D9878722F2DA7BE0A241B029CAD877 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -2069,8 +2086,8 @@
 		E9D20F0CB44EDAE2FF9C46F49A6B57C4 /* Build configuration list for PBXNativeTarget "HPTextViewTapGestureRecognizer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				673708B3412FB5CC3D7250761009583E /* Debug */,
-				1B3EC0BB72AF8F125C678F78635A52B1 /* Release */,
+				2AE5C3E40E40FADBDCF775CD7AA4C2B9 /* Debug */,
+				A64A2E400F9320421C114C9B0CC6F19A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -2078,8 +2095,8 @@
 		F49C953C5821DE59994B83D2E8B33D8D /* Build configuration list for PBXNativeTarget "SwiftyBeaver" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				6F17EF6EC95A225A13DB69587E2D11FD /* Debug */,
-				C15A30F8ED89EA5A65A195825EAC9251 /* Release */,
+				A07CCE53B6059AE56CEDD2576955032A /* Debug */,
+				F6F776CC3246FCC6528FD4859F7A55DD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
