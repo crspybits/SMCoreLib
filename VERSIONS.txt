@@ -1,5 +1,8 @@
 SMCoreLib
 
+Version 1.0.2; 9/23/17
+	* More Swift versioning issues.
+	
 Version 1.0.1; 9/23/17
 	* Workaround Swift4/Swift3.2 issue.
 	
