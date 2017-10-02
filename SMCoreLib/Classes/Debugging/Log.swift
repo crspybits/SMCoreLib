@@ -16,8 +16,29 @@ open class Log {
     public static let logFileName = "logfile.txt"
     public static let logFileURL = FileStorage.url(ofItem: Log.logFileName)
 
-    fileprivate let log = SwiftyBeaver.self
+    private let log = SwiftyBeaver.self
     fileprivate static let session = Log()
+    
+    // Setting this to nil results in no logging output.
+    public static var minLevel:SwiftyBeaver.Level? = nil {
+        didSet {
+            if minLevel == nil {
+                Log.session.log.removeAllDestinations()
+            }
+            else {
+                Log.session.log.removeAllDestinations()
+                
+                let console = ConsoleDestination()  // log to Xcode Console
+                console.minLevel = minLevel!
+                Log.session.log.addDestination(console)
+
+                let file = FileDestination()
+                file.minLevel = minLevel!
+                file.logFileURL = Log.logFileURL
+                Log.session.log.addDestination(file)
+            }
+        }
+    }
 
     // In the default arguments to these functions:
     // 1) If I use a String type, the macros (e.g., __LINE__) don't expand at run time.
@@ -30,14 +51,6 @@ open class Log {
     //  also doesn't work.
     
     fileprivate init() {
-#if DEBUG
-        let destination1 = ConsoleDestination()  // log to Xcode Console
-        self.log.addDestination(destination1)
-
-        let destination2 = FileDestination()
-        destination2.logFileURL = Log.logFileURL
-        self.log.addDestination(destination2)
-#endif
     }
     
     open class func redirectConsoleLogToDocumentFolder(clearRedirectLog:Bool) {
