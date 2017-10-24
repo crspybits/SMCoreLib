@@ -30,6 +30,8 @@
 
 @property (nonatomic) CGPoint center;
 @property (nonatomic) CGSize size;
+@property (nonatomic) BOOL allowBackgroundTapDismiss;
+
 @end
 
 @implementation PresentationController
@@ -40,6 +42,7 @@
     // Some random default size.
     self.currentFrame = CGRectMake(0, 0, 100, 100);
     [self prepareDimmingView];
+    self.allowBackgroundTapDismiss = YES;
     return self;
 }
 
@@ -194,7 +197,7 @@
 
 - (void)dimmingViewTapped:(UIGestureRecognizer *)gesture
 {
-    if([gesture state] == UIGestureRecognizerStateRecognized)
+    if (self.allowBackgroundTapDismiss && [gesture state] == UIGestureRecognizerStateRecognized)
     {
         [[self presentingViewController] dismissViewControllerAnimated:YES completion:NULL];
     }
@@ -227,7 +230,6 @@
 {
     self.presentationController = [[PresentationController alloc] initWithPresentedViewController:presented presentingViewController:presenting];
     ((PresentationController *) self.presentationController).currentFrame = self.initalFrame;
-    
     return self.presentationController;
 }
 
@@ -249,6 +251,16 @@
 - (void) setSize:(CGSize)size;
 {
     ((PresentationController *) self.presentationController).size = size;
+}
+
+- (void) setAllowBackgroundTapDismiss:(BOOL)allowBackgroundTapDismiss;
+{
+    ((PresentationController *) self.presentationController).allowBackgroundTapDismiss = allowBackgroundTapDismiss;
+}
+
+- (BOOL) allowBackgroundTapDismiss;
+{
+    return ((PresentationController *) self.presentationController).allowBackgroundTapDismiss;
 }
 
 @end

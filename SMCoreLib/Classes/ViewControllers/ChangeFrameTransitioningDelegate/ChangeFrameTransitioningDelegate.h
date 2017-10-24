@@ -29,4 +29,7 @@
 // The center of the presented view.
 @property (nonatomic) CGSize size;
 
+// Defaults to YES.
+@property (nonatomic) BOOL allowBackgroundTapDismiss;
+
 @end

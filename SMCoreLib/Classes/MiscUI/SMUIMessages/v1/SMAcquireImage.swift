@@ -41,11 +41,23 @@ open class SMAcquireImage : NSObject {
         self.imagePicker.delegate = self
     }
     
-    open func showAlert(fromBarButton barButton:UIBarButtonItem) {
+    private enum ShowFromType {
+    case barButton(UIBarButtonItem)
+    case view(UIView)
+    }
+    
+    private func showAlert(fromType type: ShowFromType) {
         self._acquiringImage = true
         
         let alert = UIAlertController(title: "Get an image?", message: nil, preferredStyle: .actionSheet)
-        alert.popoverPresentationController?.barButtonItem = barButton
+        
+        switch type {
+        case .barButton(let barButton):
+            alert.popoverPresentationController?.barButtonItem = barButton
+        
+        case .view(let view):
+            alert.popoverPresentationController?.sourceView = view
+        }
         
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel) { alert in
             self._acquiringImage = false
@@ -71,6 +83,14 @@ open class SMAcquireImage : NSObject {
         }
         
         self.parentViewController.present(alert, animated: true, completion: nil)
+    }
+    
+    open func showAlert(fromView view:UIView) {
+        showAlert(fromType: .view(view))
+    }
+
+    open func showAlert(fromBarButton barButton:UIBarButtonItem) {
+        showAlert(fromType: .barButton(barButton))
     }
     
     fileprivate func getImageUsing(_ sourceType:UIImagePickerControllerSourceType) {

@@ -23,6 +23,10 @@ Unrecognized selector -[NetDb.SMCloudFiles methodSignatureForSelector:]
 // Can be restarted.
 - (void) cancel;
 
+// Cancels, but cannot be restarted.
+// You must call this, or the RepeatingTimer will get retained.
+- (void) destroy;
+
 // To change the time interval.
 @property (nonatomic) NSTimeInterval interval;
 

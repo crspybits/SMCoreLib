@@ -25,7 +25,8 @@
 
 - (void) setupTimer;
 {
-    self.timer = [[RepeatingTimer alloc] initWithInterval:DEFAULT_DEBOUNCE_INTERVAL selector:@selector(timerExpired:) andTarget:self];
+    __weak Debounce *weakSelf = self;
+    self.timer = [[RepeatingTimer alloc] initWithInterval:DEFAULT_DEBOUNCE_INTERVAL selector:@selector(timerExpired:) andTarget:weakSelf];
 }
 
 - (instancetype) initWithType: (DebounceType) debounceType;
@@ -35,11 +36,17 @@
         self.debounceType = debounceType;
         _interval = DEFAULT_DEBOUNCE_INTERVAL;
 
-        self.timer = [[RepeatingTimer alloc] initWithInterval:DEFAULT_DEBOUNCE_INTERVAL selector:@selector(timerExpired:) andTarget:self];
+        __weak Debounce *weakSelf = self;
+        self.timer = [[RepeatingTimer alloc] initWithInterval:DEFAULT_DEBOUNCE_INTERVAL selector:@selector(timerExpired:) andTarget:weakSelf];
         [self.timer cancel]; // We don't need it started yet.
     }
     
     return self;
+}
+
+- (void) dealloc;
+{
+    SPASLogDetail(@"dealloc");
 }
 
 - (void) setInterval:(NSTimeInterval)interval
@@ -118,6 +125,11 @@
 {
     [self.timer cancel];
     self.lastBlock = nil;
+}
+
+- (void) destroy;
+{
+    [self.timer destroy];
 }
 
 @end

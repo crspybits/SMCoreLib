@@ -34,4 +34,6 @@ typedef NS_ENUM(NSInteger, DebounceType) {
 
 - (void) cancel;
 
+- (void) destroy;
+
 @end

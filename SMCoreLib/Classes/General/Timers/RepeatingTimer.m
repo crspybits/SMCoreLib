@@ -23,8 +23,7 @@
         SPASLog(@"Constructor");
         NSMethodSignature * mySignature =
             [target methodSignatureForSelector:selector];
-        self.invocation = [NSInvocation
-                                     invocationWithMethodSignature:mySignature];
+        self.invocation = [NSInvocation invocationWithMethodSignature:mySignature];
         [self.invocation setTarget:target];
         [self.invocation setSelector:selector];
         self.interval = intervalInSeconds;
@@ -35,6 +34,11 @@
 - (BOOL) running {
     if (self.timer) return YES;
     return NO;
+}
+
+- (void) dealloc;
+{
+    SPASLogDetail(@"dealloc");
 }
 
 - (void) start {
@@ -63,6 +67,14 @@
         [self.timer invalidate];
         self.timer = nil;
     }];
+}
+
+- (void) destroy;
+{
+    [self cancel];
+    
+    // I'm not sure why, but without doing this, the RepeatingTimer gets retained.
+    self.invocation = nil;
 }
 
 @end
