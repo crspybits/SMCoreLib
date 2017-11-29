@@ -27,9 +27,7 @@
 
 + (UIImage *) getImage: (NSString *) largeImageFileName ofSize: (CGSize) size fromIconDirectory: (NSURL *) iconDirectory withLargeImageDirectory: (NSURL *) largeImageDirectory;
 {
-    // [1] I used to have this here, but it is acting like the directory is not created synchronously with this call (at least in iOS8). The first file created with this getImage: call goes in Documents, not in Documents/smallImages. This is the way this method acts when the smallImages directory is not present.
-    // AssertIf(![FileStorage createDirectoryIfNeeded:iconDirectory], @"Could not create icon directory");
-
+    AssertIf(![FileStorage createDirectoryIfNeeded:iconDirectory], @"Could not create icon directory");
     SPASLogDetail(@"largeImageFileName: %@; size: %@", largeImageFileName, NSStringFromCGSize(size));
     
     NSString *extension = nil;
@@ -69,7 +67,7 @@
 
     NSURL *imageNameWithPath = [NSURL URLWithString:smallSizedFileName relativeToURL:iconDirectory];
     AssertIf(![FileStorage addSkipBackupAttributeToItemAtURL:imageNameWithPath],
-             @"Could not add skip attribute");
+             @"Could not add skip attribute: %@", imageNameWithPath);
 
     return smallImage;
 }
@@ -115,8 +113,12 @@
     
     // http://mobiledevelopertips.com/data-file-management/save-uiimage-object-as-a-png-or-jpeg-file.html
     
-    NSURL *imageNameWithPath = [NSURL URLWithString:fileName relativeToURL:directoryPath];
+    // 11/28/17; I've been having problems with `relativeToURL` paths here.
+    // This isn't keeping the last part of the directory name in all cases. Odd.
+    // NSURL *imageNameWithPath = [NSURL URLWithString:fileName relativeToURL:directoryPath];
     
+    NSURL *imageNameWithPath = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@", directoryPath.path, fileName]];
+        
     SPASLog(@"JPG file name= %@", imageNameWithPath);
     
     float imageQuality = IMAGE_STORAGE_DEFAULT_IMAGE_QUALITY;
