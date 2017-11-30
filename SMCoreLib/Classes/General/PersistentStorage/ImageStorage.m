@@ -65,9 +65,10 @@
     BOOL result = [self saveImage:smallImage toFile:smallSizedFileName inDirectory:iconDirectory];
     AssertIf(!result, @"Could not save image");
 
+    // 11/29/17; Sometimes, adding this attibute is failing.
     NSURL *imageNameWithPath = [NSURL URLWithString:smallSizedFileName relativeToURL:iconDirectory];
-    AssertIf(![FileStorage addSkipBackupAttributeToItemAtURL:imageNameWithPath],
-             @"Could not add skip attribute: %@", imageNameWithPath);
+    result = [FileStorage addSkipBackupAttributeToItemAtURL:imageNameWithPath];
+    SPASLog(@"Could not add skip attribute: %@", imageNameWithPath);
 
     return smallImage;
 }
