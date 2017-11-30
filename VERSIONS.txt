@@ -1,10 +1,11 @@
 SMCoreLib
 	
-Version 1.1.0 (Date TBD)
+Version 1.1.0 (11/29/17)
 	* Added a destroy method to Debounce & RepeatingTimer classes -- due to a retain cycle 	
 	* Added a method to enable SMAcquireImage to be displayed from either a bar button or a view
 	* Allow background tap to dismiss a modal.
 	* Fixed an issue with saving icon images into the right directory.
+	* Removed an assert with adding skip backup attribute-- because it was causing crashes.
 
 Version 1.0.3; 10/1/17
 	* Fixed logging issue-- enabled control over logging level through Log.minLevel static variable.
