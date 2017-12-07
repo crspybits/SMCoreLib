@@ -1,5 +1,8 @@
 SMCoreLib
 	
+Version 1.2.0 (TBD)
+	* Added Dropbox icon to image assets.
+	
 Version 1.1.0 (11/29/17)
 	* Added a destroy method to Debounce & RepeatingTimer classes -- due to a retain cycle 	
 	* Added a method to enable SMAcquireImage to be displayed from either a bar button or a view
