@@ -1,6 +1,6 @@
 SMCoreLib
 	
-Version 1.2.0 (TBD)
+Version 1.2.0 (12/25/17)
 	* Added Dropbox icon to image assets.
 	
 Version 1.1.0 (11/29/17)
