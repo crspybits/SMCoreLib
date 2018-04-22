@@ -1,5 +1,8 @@
 SMCoreLib
 
+Version 1.3.1 (4/22/18)
+	* Fixed podspec
+	
 Version 1.3.0 (4/22/18)
 	* Enabled deletion of log files.
 	
