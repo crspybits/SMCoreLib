@@ -137,7 +137,7 @@ open class Log {
         LogFile.write(output + "\n")
     }
     
-    open func deleteLogFile() -> Bool {
+    open class func deleteLogFile() -> Bool {
         return Log.file.deleteLogFile()
     }
 }
