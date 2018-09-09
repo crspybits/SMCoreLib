@@ -198,7 +198,6 @@
 				607FACCD1AFB9204008FA782 /* Frameworks */,
 				607FACCE1AFB9204008FA782 /* Resources */,
 				6AD439509BAD52A700FF0682 /* [CP] Embed Pods Frameworks */,
-				903120DB967E6693C3B192CC /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -217,8 +216,6 @@
 				607FACE11AFB9204008FA782 /* Sources */,
 				607FACE21AFB9204008FA782 /* Frameworks */,
 				607FACE31AFB9204008FA782 /* Resources */,
-				1F23F706D672B120249D2E49 /* [CP] Embed Pods Frameworks */,
-				B28E9C006BBB36DA237380DC /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -294,21 +291,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		1F23F706D672B120249D2E49 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SMCoreLib_Tests/Pods-SMCoreLib_Tests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		26EC73C19015A25E883C4AB2 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -349,36 +331,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SMCoreLib_Example/Pods-SMCoreLib_Example-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		903120DB967E6693C3B192CC /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SMCoreLib_Example/Pods-SMCoreLib_Example-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		B28E9C006BBB36DA237380DC /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SMCoreLib_Tests/Pods-SMCoreLib_Tests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		DEDE3F9969055299DFD4131F /* [CP] Check Pods Manifest.lock */ = {
