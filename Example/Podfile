@@ -4,7 +4,7 @@ source 'https://github.com/crspybits/Specs.git'
 use_frameworks!
 
 target 'SMCoreLib_Example' do
-  pod 'SwiftyBeaver', :path => '../../../SwiftyBeaver'
+  # pod 'SwiftyBeaver', :path => '../../../SwiftyBeaver'
   pod 'SMCoreLib', :path => '../'
   # pod 'SMCoreLib'
 
