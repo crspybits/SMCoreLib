@@ -1,5 +1,8 @@
 SMCoreLib
 
+Version 1.4.0 (11/23/18)
+	* Added a new method to CoreDataSource: indexPathForObject
+
 Version 1.3.3 (9/26/18)
 	* Added synchronized logging (with updated SwiftyBeaver)
 	* Fixed compile issue arising with Xcode 10.
