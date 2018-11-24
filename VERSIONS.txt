@@ -1,5 +1,8 @@
 SMCoreLib
 
+Version 1.4.1 (11/24/18)
+	* Fixed issue where an absence of orientation meta data in an image would crash the SharedImages app.
+	
 Version 1.4.0 (11/23/18)
 	* Added a new method to CoreDataSource: indexPathForObject
 
