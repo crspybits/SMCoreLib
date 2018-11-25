@@ -1,5 +1,8 @@
 SMCoreLib
 
+Version 1.4.2 (11/24/18)
+	* Fixed orientation issue.
+
 Version 1.4.1 (11/24/18)
 	* Fixed issue where an absence of orientation meta data in an image would crash the SharedImages app.
 	
