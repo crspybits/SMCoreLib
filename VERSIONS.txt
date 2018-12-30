@@ -1,5 +1,8 @@
 SMCoreLib
 
+Version 1.4.3 (12/30/18)
+	* Remove debug output.
+
 Version 1.4.2 (11/24/18)
 	* Fixed orientation issue.
 
