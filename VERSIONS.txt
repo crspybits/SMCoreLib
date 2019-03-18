@@ -1,5 +1,8 @@
 SMCoreLib
 
+Version 1.4.4 (3/17/19)
+	* Remove more debug output.
+
 Version 1.4.3 (12/30/18)
 	* Remove debug output.
 
