@@ -1,5 +1,8 @@
 SMCoreLib
 
+Version 1.4.5 (3/21/19)
+	* Added explicit swift_version into podspec
+
 Version 1.4.4 (3/17/19)
 	* Remove more debug output.
 
