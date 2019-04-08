@@ -144,9 +144,9 @@
     size_t              size;
     
     // Do we have a production build?
-    #ifndef DEBUG
+#ifndef DEBUG
         return NO;
-    #endif
+#else
     
     // Initialize the flags so that, if sysctl fails for some bizarre 
     // reason, we get a predictable result.
@@ -170,6 +170,7 @@
     // We're being debugged if the P_TRACED flag is set.
 
     return ( (info.kp_proc.p_flag & P_TRACED) != 0 );
+#endif
 }
 
 @end
