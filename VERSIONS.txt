@@ -1,6 +1,6 @@
 SMCoreLib
 
-Version 2.0.0
+Version 2.0.0 (4/7/19)
 	* Removed UserMessage class, which relied on deprecated UIAlertView
 	* Updates for Swift 4.2
 

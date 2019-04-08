@@ -16,5 +16,5 @@ pod spec lint --sources="https://github.com/crspybits/Specs.git,https://github.c
 # See also: ls ~/.cocoapods/repos/
 # These need to be done from the relevant directory, e.g., SMCoreLib
 
-pod repo push crspybits-specs SMCoreLib.podspec --allow-warnings
+pod repo push crspybits-specs SMCoreLib.podspec --sources="https://github.com/crspybits/Specs.git,https://github.com/CocoaPods/Specs.git"
 
