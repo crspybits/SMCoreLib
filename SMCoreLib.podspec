@@ -25,12 +25,12 @@ Pod::Spec.new do |s|
   s.license      = { :type => "GPL3", :file => "LICENSE.txt" }
   s.author             = { "Christopher Prince" => "chris@SpasticMuffin.biz" }
 
-  s.platform     = :ios, "8.0"
+  s.platform     = :ios, "9.0"
   
   s.source       = { :git => "https://github.com/crspybits/SMCoreLib.git", :tag => "#{s.version}" }
 
   # Oldest version of iOS we're supporting
-  s.ios.deployment_target = '8.0'
+  s.ios.deployment_target = '9.0'
 
   # 'SMCoreLib/Classes/**' matches directories recursively, but doesn't match any files!
   s.source_files = 'SMCoreLib/Classes/**/*.{h,m,swift}'
@@ -51,12 +51,10 @@ Pod::Spec.new do |s|
 	'GCC_PREPROCESSOR_DEFINITIONS[config=Debug]' => 'DEBUG=1',
 	'OTHER_SWIFT_FLAGS[config=Debug]' => '-DDEBUG'
   }
-
-  # s.xcconfig = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include/libxml2" }
   
-  s.dependency 'HPTextViewTapGestureRecognizer', '~> 0.1'
+  s.dependency 'HPTextViewTapGestureRecognizer', '~> 0.2'
   s.dependency 'Reachability'
   s.dependency 'SwiftyBeaver'
 
-  s.swift_version = '3.2'
+  s.swift_version = '4.2'
 end

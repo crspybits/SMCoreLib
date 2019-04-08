@@ -1,31 +1,32 @@
 PODS:
-  - HPTextViewTapGestureRecognizer (0.1)
+  - HPTextViewTapGestureRecognizer (0.2.2)
   - Reachability (3.2)
-  - SMCoreLib (1.3.3):
-    - HPTextViewTapGestureRecognizer (~> 0.1)
+  - SMCoreLib (1.4.5):
+    - HPTextViewTapGestureRecognizer (~> 0.2)
     - Reachability
     - SwiftyBeaver
-  - SwiftyBeaver (1.6.1)
+  - SwiftyBeaver (1.7.0)
 
 DEPENDENCIES:
   - SMCoreLib (from `../`)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
-    - HPTextViewTapGestureRecognizer
     - Reachability
     - SwiftyBeaver
+  https://github.com/crspybits/Specs.git:
+    - HPTextViewTapGestureRecognizer
 
 EXTERNAL SOURCES:
   SMCoreLib:
     :path: "../"
 
 SPEC CHECKSUMS:
-  HPTextViewTapGestureRecognizer: 6a73fd09f858e49a2743c3a338dc5c0791b0fae0
+  HPTextViewTapGestureRecognizer: 8b0c0edc2b40e619ec644db11c648b7b567e1789
   Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
-  SMCoreLib: ab21fe40ff76b2cc5e873122a96b1ad22ebe02bc
-  SwiftyBeaver: ccfcdf85a04d429f1633f668650b0ce8020bda3a
+  SMCoreLib: a6f7efce76f6befa42860d697040487d5b0d7e9f
+  SwiftyBeaver: 4cc0080d2e23f980652e28978db11a5c9da39165
 
-PODFILE CHECKSUM: e9617e66ce2b4df386cbc2707d5cb4300ec2d4c3
+PODFILE CHECKSUM: 6705b60d0862087ea47f4e9f1e552cdcec6ab666
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.6.1

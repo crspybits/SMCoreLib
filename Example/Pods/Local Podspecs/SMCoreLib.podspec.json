@@ -1,6 +1,6 @@
 {
   "name": "SMCoreLib",
-  "version": "1.3.3",
+  "version": "1.4.5",
   "summary": "Spastic Muffin Core Library for iOS",
   "description": "Objective-C and Swift classes to support Spastic Muffin code.",
   "homepage": "https://github.com/crspybits/SMCoreLib.git",
@@ -12,11 +12,11 @@
     "Christopher Prince": "chris@SpasticMuffin.biz"
   },
   "platforms": {
-    "ios": "8.0"
+    "ios": "9.0"
   },
   "source": {
     "git": "https://github.com/crspybits/SMCoreLib.git",
-    "tag": "1.3.3"
+    "tag": "1.4.5"
   },
   "source_files": "SMCoreLib/Classes/**/*.{h,m,swift}",
   "resources": "SMCoreLib/Assets/*.xcassets",
@@ -27,7 +27,7 @@
   },
   "dependencies": {
     "HPTextViewTapGestureRecognizer": [
-      "~> 0.1"
+      "~> 0.2"
     ],
     "Reachability": [
 
@@ -35,5 +35,6 @@
     "SwiftyBeaver": [
 
     ]
-  }
+  },
+  "swift_version": "4.2"
 }
