@@ -1,5 +1,11 @@
 SMCoreLib
 
+Version 2.0.2 (4/25/19)
+	* Fixed Core Data issue with migration.
+
+Version 2.0.1 (4/7/19)
+	* Fixed warning.
+	
 Version 2.0.0 (4/7/19)
 	* Removed UserMessage class, which relied on deprecated UIAlertView
 	* Updates for Swift 4.2
